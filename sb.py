@@ -772,7 +772,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 targets.append(x["M"])
             for target in targets:
                 try:
-                    settings["blacklist"].append(target)
+                    ban["blacklist"].append(target)
                     line.sendReplyMentionV2(msg_id,to,"「 Add Blacklist 」\nUser @! Added To Blacklist",[target])
                 except:
                     pass
@@ -784,12 +784,12 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 targets.append(x["M"])
             for target in targets:
                 try:
-                    settings["blacklist"].remove(target)
+                    ban["blacklist"].remove(target)
                     line.sendReplyMentionV2(msg_id,to,"「 Delete Blacklist 」\nUser @! Deleted To Blacklist",[target])
                 except:
                     pass 
     elif cmd == 'blacklist':
-						if len(settings["blacklist"]) > 0:
+						if len(ban["blacklist"]) > 0:
 							h = [a for a in ban["blacklist"]]
 							k = len(h)//20
 							for aa in range(k+1):
@@ -821,7 +821,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     elif cmd.startswith("unban "):
                                     sep = text.split(" ")
                                     number = text.replace(sep[0] + " ","")
-                                    blacklist = settings["blacklist"]
+                                    blacklist = ban["blacklist"]
                                     bl = blacklist[int(number)-1]
                                     ban["blacklist"].remove(bl)
                                     line.sendReplyMessage(msg.id, to, "「 1 User Dihapus dalam blacklist 」")
@@ -833,9 +833,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                     settings["whitelist"].remove(wl)
                                     line.sendReplyMessage(msg.id, to, "「 1 User Dihapus dalam whitelist 」")
     elif cmd == 'clearbl':
-						if len(settings["blacklist"]) > 0:
+						if len(ban["blacklist"]) > 0:
 							line.sendReplyMessage(msg.id, to, "「 {} User Dihapus dalam blacklist 」".format(len(ban["blacklist"])))
-							settings["blacklist"].clear()
+							ban["blacklist"].clear()
 						else:
 							line.sendReplyMessage(msg.id,to,"「 Tidak Ada Blacklist User -_- 」")
     elif cmd == 'clearwl':
@@ -3324,7 +3324,7 @@ def executeOp(op):
                 except:pass
             if op.param1 in settings["protectjoin"]:
                 if op.param2 not in settings["whitelist"]:
-                    settings["blacklist"].append(op.param2)
+                    ban["blacklist"].append(op.param2)
                     try:
                         if op.param3 not in ban["blacklist"]:
                         	line.kickoutFromGroup(op.param1,[op.param2])
