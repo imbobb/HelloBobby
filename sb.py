@@ -566,7 +566,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                      }
                     sendTemplate(to, data)
     elif cmd == 'bl':
-      if msg._from in Creator or msg._from in Admin:
                     ret = "╭───「 Help Blacklist 」"
                     ret += "\n├➢ blacklist"
                     ret += "\n├➢ clearbl"
