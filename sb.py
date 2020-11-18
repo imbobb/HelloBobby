@@ -553,7 +553,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ Vkiss「 Mention 」"
                     ret += "\n├➢ Rkiss「 Mention 」"
                     ret += "\n├➢ Mkiss「 Mention 」"
-                    ret += "\n├➢ Xkick「 Repy 」"
+                    ret += "\n├➢ Xkick「 Reply 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
