@@ -1,0 +1,2 @@
+  File "/storage/emulated/0/Download/sb/sb.py", line 2928, in executeOp
+    print ('++ Operation : ( %i ) %s' % (op.type, OpType._VALUES_TO_NAMES[op.type].replace('_', ' ')))
