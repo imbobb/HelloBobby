@@ -295,7 +295,6 @@ def special():
                     "├➢ Check mention" + "\n" + \
                     "├➢ Delcheckmention" + "\n" + \
                     "├➢ Mentionall" + "\n" + \
-                    "├➢ Mentionnote" + "\n" + \
                     "╰───「 Bobby Selfbot 」"
     return helpGroup
 def helpsettings():
@@ -367,62 +366,7 @@ def mentionMembers2(gid, mids=[]):
         if result:
             if result.endswith('\n'): result = result[:-1]
             line.sendMessage(gid, result, {'MENTION': json.dumps({'MENTIONEES': mentionees})}, 0)
-        result = ''
-def NoteCreate(to,cmd,msg):
-    h = []
-    s = []
-    if cmd == 'mentionnote':
-        sakui = line.getProfile()
-        group = line.getGroup(msg.to);nama = [contact.mid+'||//{}'.format(contact.displayName) for contact in group.members];nama.remove(sakui.mid+'||//{}'.format(sakui.displayName))
-        data = nama
-        k = len(data)//20
-        for aa in range(k+1):
-            nos = 0
-            if aa == 0:dd = '╭「 Mention Note 」─';no=aa
-            else:dd = '├「 Mention Note 」─';no=aa*20
-            msgas = dd
-            for i in data[aa*20 : (aa+1)*20]:
-                no+=1
-                if no == len(data):msgas+='\n{}. @'.format(no)
-                else:msgas+='\n│{}. @'.format(no)
-            msgas = msgas
-            for i in data[aa*20 : (aa+1)*20]:
-                gg = []
-                dd = ''
-                for ss in msgas:
-                    if ss == '@':
-                        dd += str(ss)
-                        gg.append(dd.index('@'))
-                        dd = dd.replace('@',' ')
-                    else:
-                        dd += str(ss)
-                s.append({'type': "RECALL", 'start': gg[nos], 'end': gg[nos]+1,'mid': str(i.split('||//')[0])})
-                nos +=1
-            h = line.createPostGroup(msgas,msg.to,holdingTime=None,textMeta=s)
-    else:
-        cmd = cmd.replace(msg.text[:12],'')
-        if 'MENTION' in msg.contentMetadata.keys()!= None:
-            mention = ast.literal_eval(msg.contentMetadata['MENTION'])
-            mentionees = mention['MENTIONEES']
-            no = 0
-            for mention in mentionees:
-                ask = no
-                nama = str(line.getContact(mention["M"]))
-                h.append(str(cmd.replace('@{}'.format(nama),'@')))
-                for b in h:
-                    cmd = str(b)
-                gg = []
-                dd = ''
-                for ss in cmd:
-                    if ss == '@':
-                         dd += str(ss)
-                         gg.append(dd.index('@'))
-                         dd = dd.replace('@',' ')
-                    else:
-                         dd += str(ss)
-                s.append({'type': "RECALL", 'start': gg[no], 'end': gg[no]+1,'mid': str(mention["M"])})
-                no +=1
-        h = line.createPostGroup(cmd,msg.to,holdingTime=None,textMeta=s)            
+        result = ''            
 def sendMention(to, text="", mids=[]):
     arrData = ""
     arr = []
@@ -574,7 +518,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ debl「 Mention 」"
                     ret += "\n├➢ bl:「 On/Off 」"
                     ret += "\n├➢ unbl「 Num 」"
-                    ret += "\n╰───「 Bobby Ft Pupu Bots 」"
+                    ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
                                            "text": "{}".format(str(ret)),
@@ -594,7 +538,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ dewl「 Mention 」"
                     ret += "\n├➢ wl:「 On/Off 」"
                     ret += "\n├➢ unwl「 Num 」"
-                    ret += "\n╰───「 Bobby Ft Pupu Bots 」"
+                    ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
                                            "text": "{}".format(str(ret)),
@@ -2301,7 +2245,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             for res in ress:
                 line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
-    if cmd.startswith('createnote ') or cmd == 'mentionnote':NoteCreate(to,cmd,msg)
     elif cmd == 'mentionall':
         members = []
         if msg.toType == 1:
