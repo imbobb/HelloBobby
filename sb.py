@@ -3353,11 +3353,11 @@ def executeOp(op):
                 contact = line.getContact(myMid)
                 kiker = line.getContact(op.param2)
                 res = "╭───[ Notifikasi Kick ]"
-                res += "\n├ In Group: {}".format(nameGroup)
-                res += "\n├ Date: {}".format(jamm)
-                res += "\n├ Time: {}".format(jammm)
-                res += "\n├ Victim : {}".format(contact.displayName)
-                res += "\n├ Kicker: {}".format(kiker.displayName)
+                res += "\n├➢ In Group: {}".format(nameGroup)
+                res += "\n├➢ Date: {}".format(jamm)
+                res += "\n├➢ Time: {}".format(jammm)
+                res += "\n├➢ Victim : {}".format(contact.displayName)
+                res += "\n├➢ Kicker: {}".format(kiker.displayName)
                 res += "\n├ 👇Contact Kicker👇"
                 res += "\n╰───[ Bobby Selfbot ]"
                 data = {
@@ -3829,7 +3829,6 @@ def executeOp(op):
                 readTime3 = timeNow.strftime('%d') + "-" + bln + "-" + timeNow.strftime('%Y')
                 lastseen["username"][Name] = "was lastseen\nin group ' " + group + " '\nat time " + readTime + " WIB\non " + readTime2 + ", " + readTime3
                 lastseen['find'][msg._from] = True
-                #print(line.getContact(msg._from).displayName)
             except:
                 pass
         if op.type == 55:
@@ -3890,24 +3889,20 @@ def executeOp(op):
                                         line.sendMessageMusic(op.param1, kontak.displayName, 'betah banget jadi sider 😑', 'line.me/ti/p/~imbobby_', "https://obs.line-apps.com/os/p/{}".format(str(kontak.mid)))
                                         #sendMention(op.param1, "Kak @! jelek, sider mulu",[op.param2])
                                         #line.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net" + line.getContact(op.param2).picturePath)
-                                        #sendReader(op.param1,pelaku,'Read')
                                     else:
                                         line.sendMessageMusic(op.param1, kontak.displayName, 'sider mulu jomblo ya (｡-_-｡)', 'line.me/ti/p/~imbobby_', "https://obs.line-apps.com/os/p/{}".format(str(kontak.mid)))
                                         #sendMention(op.param1, "Kak @! sider mulu, jomblo ya ka?",[op.param2])
                                         #line.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net" + line.getContact(op.param2).picturePath)
-                                        #sendReader(op.param1,pelaku,'Read')
                                 else:
                                     line.sendMessageMusic(op.param1, kontak.displayName, 'cie ketahuan sider ( ͡° ͜ʖ ͡°)', 'line.me/ti/p/~imbobby_', "https://obs.line-apps.com/os/p/{}".format(str(kontak.mid)))
                                     #sendMention(op.param1, "Kak @! Jangan Sider dong",[op.param2])
                                     #line.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net" + line.getContact(op.param2).picturePath)
-                                    #sendReader(op.param1,pelaku,'Read')
                     else:
                         pass
                 else:
                     pass
             except:
                 pass
-
         if op.type == 65:
             if settings["unsendMessage"]:
                 trop = op.param1
