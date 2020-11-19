@@ -61,6 +61,11 @@ lastseen = ({
     "find": {},
     "username": {}
 })
+cctv = {
+    "cyduk":{},
+    "point":{},
+    "sidermem":{}
+}
 wait = {
     "limit": 1,
     "wblacklist": False,
@@ -312,6 +317,8 @@ def helpsettings():
                     "├➢ " + key + " CheckContact「On/Off」" + "\n" + \
                     "├➢ " + key + " CheckPost「On/Off」" + "\n" + \
                     "├➢ " + key + " CheckSticker「On/Off」" + "\n" + \
+                    "├➢ " + key + " Unsend「On/Off」" + "\n" + \
+                    "├➢ " + key + " Sider「On/Off」" + "\n" + \
                     "╰───「 Bobby Selfbot 」"
     return helpSettings
 def parsingRes(res):
@@ -493,10 +500,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret = "╭───「 Help Kick 」"
                     ret += "\n├➢ Kickall"
                     ret += "\n├➢ Cancelall"
-                    ret += "\n├➢ Kiss「 Mention 」"
-                    ret += "\n├➢ Vkiss「 Mention 」"
-                    ret += "\n├➢ Rkiss「 Mention 」"
-                    ret += "\n├➢ Mkiss「 Mention 」"
+                    ret += "\n├➢ Kick「 Mention 」"
+                    ret += "\n├➢ Vkick「 Mention 」"
+                    ret += "\n├➢ Rkick「 Mention 」"
+                    ret += "\n├➢ Mkick「 Mention 」"
                     ret += "\n├➢ Xkick「 Reply 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
@@ -518,7 +525,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ debl「 Mention 」"
                     ret += "\n├➢ bl:「 On/Off 」"
                     ret += "\n├➢ unbl「 Num 」"
-                    ret += "\n╰───「 Bobby Selfbot 」"
+                    ret += "\n╰───「 Bobby Ft Pupu Bots 」"
                     data = {
                                            "type": "text",
                                            "text": "{}".format(str(ret)),
@@ -538,7 +545,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ dewl「 Mention 」"
                     ret += "\n├➢ wl:「 On/Off 」"
                     ret += "\n├➢ unwl「 Num 」"
-                    ret += "\n╰───「 Bobby Selfbot 」"
+                    ret += "\n╰───「 Bobby Ft Pupu Bots 」"
                     data = {
                                            "type": "text",
                                            "text": "{}".format(str(ret)),
@@ -892,7 +899,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 							settings["protectkick"].clear()
 						else:
 							line.sendReplyMessage(msg.id,to,"「 Doesn't List Lock Kick -_- 」")
-    elif cmd == '!clear deny:invite':
+    elif cmd == 'clear deny:invite':
 						if len(settings["protectinvite"]) > 0:
 							line.sendReplyMessage(msg.id, to, "「 {} Clear List Cleared All Deny Invitation 」".format(len(settings["protectinvite"])))
 							settings["protectinvite"].clear()
@@ -1095,28 +1102,28 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 #================BATAS================
     elif cmd == 'about':
         res = '╭───[ About ]'
-        res += '\n├ Type : Selfbot'
-        res += '\n├ Version : 4.5.0'
-        res += '\n├ Library : linepy (Python)'
-        res += '\n├ Creator : Bobby'
+        res += '\n├➢ Type : Selfbot'
+        res += '\n├➢ Version : 4.5.0'
+        res += '\n├➢ Library : linepy (Python)'
+        res += '\n├➢ Creator : Bobby'
         res += '\n╰───[ Bobby Selfbot ]'
         line.sendMessage(to, res)
     elif cmd == 'status':
         res = '╭───[ Status ]'
-        res += '\n├ Auto Like : ' + bool_dict[settings['autolike']][1]
-        res += '\n├ Auto Add : ' + bool_dict[settings['autoAdd']['status']][1]
-        res += '\n├ Auto Join : ' + bool_dict[settings['autoJoin']['status']][1]
-        res += '\n├ Auto Respond : ' + bool_dict[settings['autoRespond']['status']][1]
-        res += '\n├ Auto Respond Mention : ' + bool_dict[settings['autoRespondMention']['status']][1]
-        res += '\n├ Auto Read : ' + bool_dict[settings['autoRead']][1]
-        res += '\n├ Setting Key : ' + bool_dict[settings['setKey']['status']][1]
-        res += '\n├ Mimic : ' + bool_dict[settings['mimic']['status']][1]
-        res += '\n├ Mention Kick : ' + bool_dict[settings['mentionkick']][1]
-        res += '\n├ Greetings Join : ' + bool_dict[settings['greet']['join']['status']][1]
-        res += '\n├ Greetings Leave : ' + bool_dict[settings['greet']['leave']['status']][1]
-        res += '\n├ Check Contact : ' + bool_dict[settings['checkContact']][1]
-        res += '\n├ Check Post : ' + bool_dict[settings['checkPost']][1]
-        res += '\n├ Check Sticker : ' + bool_dict[settings['checkSticker']][1]
+        res += '\n├➢ Auto Like : ' + bool_dict[settings['autolike']][1]
+        res += '\n├➢ Auto Add : ' + bool_dict[settings['autoAdd']['status']][1]
+        res += '\n├➢ Auto Join : ' + bool_dict[settings['autoJoin']['status']][1]
+        res += '\n├➢ Auto Respond : ' + bool_dict[settings['autoRespond']['status']][1]
+        res += '\n├➢ Auto Respond Mention : ' + bool_dict[settings['autoRespondMention']['status']][1]
+        res += '\n├➢ Auto Read : ' + bool_dict[settings['autoRead']][1]
+        res += '\n├➢ Setting Key : ' + bool_dict[settings['setKey']['status']][1]
+        res += '\n├➢ Mimic : ' + bool_dict[settings['mimic']['status']][1]
+        res += '\n├➢ Mention Kick : ' + bool_dict[settings['mentionkick']][1]
+        res += '\n├➢ Greetings Join : ' + bool_dict[settings['greet']['join']['status']][1]
+        res += '\n├➢ Greetings Leave : ' + bool_dict[settings['greet']['leave']['status']][1]
+        res += '\n├➢ Check Contact : ' + bool_dict[settings['checkContact']][1]
+        res += '\n├➢ Check Post : ' + bool_dict[settings['checkPost']][1]
+        res += '\n├➢ Check Sticker : ' + bool_dict[settings['checkSticker']][1]
         res += '\n╰───[ Bobby Selfbot ]'
         line.sendMessage(to, parsingRes(res))
     elif cmd == 'abort':
@@ -1140,7 +1147,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         texttl = textt.lower()
         cond = textt.split(' ')
         res = '╭───[ Error ]'
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}Error'
         res += '\n│ • {key}Error Logs'
         res += '\n│ • {key}Error Reset'
@@ -1193,9 +1200,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───[ Setting Key ]'
-        res += '\n├ Status : ' + bool_dict[settings['setKey']['status']][1]
-        res += '\n├ Key : ' + settings['setKey']['key'].title()
-        res += '\n├ Usage : '
+        res += '\n├➢ Status : ' + bool_dict[settings['setKey']['status']][1]
+        res += '\n├➢ Key : ' + settings['setKey']['key'].title()
+        res += '\n├➢ Usage : '
         res += '\n│ • Setkey'
         res += '\n│ • Setkey <on/off>'
         res += '\n│ • Setkey <key>'
@@ -1228,10 +1235,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         texttl = textt.lower()
         cond = textt.split(' ')
         res = '╭───[ Auto Add ]'
-        res += '\n├ Status : ' + bool_dict[settings['autoAdd']['status']][1]
-        res += '\n├ Reply : ' + bool_dict[settings['autoAdd']['reply']][0]
-        res += '\n├ Reply Message : ' + settings['autoAdd']['message']
-        res += '\n├ Usage : '
+        res += '\n├➢ Status : ' + bool_dict[settings['autoAdd']['status']][1]
+        res += '\n├➢ Reply : ' + bool_dict[settings['autoAdd']['reply']][0]
+        res += '\n├➢ Reply Message : ' + settings['autoAdd']['message']
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}AutoAdd'
         res += '\n│ • {key}AutoAdd <on/off>'
         res += '\n│ • {key}AutoAdd Reply <on/off>'
@@ -1276,10 +1283,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         texttl = textt.lower()
         cond = textt.split(' ')
         res = '╭───[ Auto Join ]'
-        res += '\n├ Status : ' + bool_dict[settings['autoJoin']['status']][1]
-        res += '\n├ Reply : ' + bool_dict[settings['autoJoin']['reply']][0]
-        res += '\n├ Reply Message : ' + settings['autoJoin']['message']
-        res += '\n├ Usage : '
+        res += '\n├➢ Status : ' + bool_dict[settings['autoJoin']['status']][1]
+        res += '\n├➢ Reply : ' + bool_dict[settings['autoJoin']['reply']][0]
+        res += '\n├➢ Reply Message : ' + settings['autoJoin']['message']
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}AutoJoin'
         res += '\n│ • {key}AutoJoin <on/off>'
         res += '\n│ • {key}AutoJoin Ticket <on/off>'
@@ -1341,9 +1348,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───[ Auto Respond ]'
-        res += '\n├ Status : ' + bool_dict[settings['autoRespondMention']['status']][1]
-        res += '\n├ Reply Message : ' + settings['autoRespondMention']['message']
-        res += '\n├ Usage : '
+        res += '\n├➢ Status : ' + bool_dict[settings['autoRespondMention']['status']][1]
+        res += '\n├➢ Reply Message : ' + settings['autoRespondMention']['message']
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}AutoRespondMention'
         res += '\n│ • {key}AutoRespondMention <on/off>'
         res += '\n│ • {key}AutoRespondMention <message>'
@@ -1369,9 +1376,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───[ Auto Respond ]'
-        res += '\n├ Status : ' + bool_dict[settings['autoRespond']['status']][1]
-        res += '\n├ Reply Message : ' + settings['autoRespond']['message']
-        res += '\n├ Usage : '
+        res += '\n├➢ Status : ' + bool_dict[settings['autoRespond']['status']][1]
+        res += '\n├➢ Reply Message : ' + settings['autoRespond']['message']
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}AutoRespond'
         res += '\n│ • {key}AutoRespond <on/off>'
         res += '\n│ • {key}AutoRespond <message>'
@@ -1458,10 +1465,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         texttl = textt.lower()
         profile = line.getProfile()
         res = '╭───[ My Profile ]'
-        res += '\n├ MID : ' + profile.mid
-        res += '\n├ Display Name : ' + str(profile.displayName)
-        res += '\n├ Status Message : ' + str(profile.statusMessage)
-        res += '\n├ Usage : '
+        res += '\n├➢ MID : ' + profile.mid
+        res += '\n├➢ Display Name : ' + str(profile.displayName)
+        res += '\n├➢ Status Message : ' + str(profile.statusMessage)
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}MyProfile'
         res += '\n│ • {key}MyProfile MID'
         res += '\n│ • {key}MyProfile Name'
@@ -1538,7 +1545,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             res += '\n├ Display Name : ' + str(profile.displayName)
             if profile.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(profile.displayNameOverridden)
             res += '\n├ Status Message : ' + str(profile.statusMessage)
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}Profile'
         res += '\n│ • {key}Profile Mid'
         res += '\n│ • {key}Profile Name'
@@ -1719,10 +1726,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             targets += '\n│ Nothing'
         res = '╭───[ Mimic ]'
-        res += '\n├ Status : ' + bool_dict[settings['mimic']['status']][1]
-        res += '\n├ List :'
+        res += '\n├➢ Status : ' + bool_dict[settings['mimic']['status']][1]
+        res += '\n├➢ List :'
         res += targets
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}Mimic'
         res += '\n│ • {key}Mimic <on/off>'
         res += '\n│ • {key}Mimic Reset'
@@ -1748,8 +1755,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             line.sendMessage(to, 'Success reset mimic list')
         elif texttl.startswith('add '):
             res = '╭───[ Mimic ]'
-            res += '\n├ Status : Add Target'
-            res += '\n├ Added :'
+            res += '\n├➢ Status : Add Target'
+            res += '\n├➢ Added :'
             no = 0
             if 'MENTION' in msg.contentMetadata.keys():
                 mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -1769,8 +1776,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 line.sendMessage(to, 'Failed add mimic target, no one user mentioned')
         elif texttl.startswith('del '):
             res = '╭───[ Mimic ]'
-            res += '\n├ Status : Del Target'
-            res += '\n├ Deleted :'
+            res += '\n├➢ Status : Del Target'
+            res += '\n├➢ Deleted :'
             no = 0
             if 'MENTION' in msg.contentMetadata.keys():
                 mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -1796,11 +1803,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         texttl = textt.lower()
         cond = textt.split(' ')
         res = '╭───[ Broadcast ]'
-        res += '\n├ Broadcast Type : '
+        res += '\n├➢ Broadcast Type : '
         res += '\n│ 1 : Friends'
         res += '\n│ 2 : Groups'
         res += '\n│ 0 : All'
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}Broadcast'
         res += '\n│ • {key}Broadcast <type> <message>'
         res += '\n╰───[ Bobby Selfbot ]'
@@ -1810,7 +1817,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
             bot = line.getAllContactIds()
-            res = '「 Broadcast Message 」\n'
+            res = '「 Group Broadcast 」\n'
             res += 'Sender by : @! \n'
             res += 'Send to %i Friends' % len(bot)
             res += '\n__________________________\n\n' 
@@ -1822,13 +1829,12 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except TalkException:
                     targets.remove(target)
                     continue
-                time.sleep(0.8)
             line.sendMessage(to, 'Success broadcast to all friends, sent to %i friends' % len(targets))
         elif cond[0] == '2':
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
             bot = line.getGroupIdsJoined()
-            res = '「 Broadcast Message 」\n'
+            res = '「 Friends Broadcast 」\n'
             res += 'Sender by : @! \n'
             res += 'Send to %i Groups' % len(bot)
             res += '\n__________________________\n\n' 
@@ -1840,13 +1846,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except TalkException:
                     targets.remove(target)
                     continue
-                time.sleep(0.8)
             line.sendMessage(to, 'Success broadcast to all groups, sent to %i groups' % len(targets))
         elif cond[0] == '0':
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
-            res = '「 Broadcast Message 」\n'
+            res = '「 All Broadcast 」\n'
             res += 'Sender by : @! \n\n'
+            res += '\n__________________________\n\n'
             res += textt[2:]
             targets = line.getGroupIdsJoined() + line.getAllContactIds()
             for target in targets:
@@ -1855,7 +1861,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except TalkException:
                     targets.remove(target)
                     continue
-                time.sleep(0.8)
             line.sendMessage(to, 'Success broadcast to all groups and friends, sent to %i groups and friends' % len(targets))
         else:
             line.sendMessage(to, parsingRes(res).format(key=setKey.title()))
@@ -1867,7 +1872,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         cnames = []
         ress = []
         res = '╭───[ Friend List ]'
-        res += '\n├ List:'
+        res += '\n├➢ List:'
         if cids:
             contacts = []
             no = 0
@@ -1903,7 +1908,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     cnames.append(contact.displayName)
         else:
             res += '\n│ Nothing'
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}FriendList'
         res += '\n│ • {key}FriendList Info <num/name>'
         res += '\n│ • {key}FriendList Add <mention>'
@@ -1931,10 +1936,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     cover = line.getProfileCoverURL(contact.mid)
                     line.sendImageWithURL(to, str(cover))
                     res = '╭───[ Contact Info ]'
-                    res += '\n├ MID : ' + contact.mid
-                    res += '\n├ Display Name : ' + str(contact.displayName)
+                    res += '\n├➢ MID : ' + contact.mid
+                    res += '\n├➢ Display Name : ' + str(contact.displayName)
                     if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
-                    res += '\n├ Status Message : ' + str(contact.statusMessage)
+                    res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                     res += '\n╰───[ Bobby Selfbot ]'
                     line.sendMessage(to, parsingRes(res))
                 elif name != None:
@@ -1945,16 +1950,16 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         cover = line.getProfileCoverURL(contact.mid)
                         line.sendImageWithURL(to, str(cover))
                         res = '╭───[ Contact Info ]'
-                        res += '\n├ MID : ' + contact.mid
-                        res += '\n├ Display Name : ' + str(contact.displayName)
+                        res += '\n├➢ MID : ' + contact.mid
+                        res += '\n├➢ Display Name : ' + str(contact.displayName)
                         if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
-                        res += '\n├ Status Message : ' + str(contact.statusMessage)
+                        res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                         res += '\n╰───[ Bobby Selfbot ]'
                         line.sendMessage(to, parsingRes(res))
         elif texttl.startswith('add '):
             res = '╭───[ Friend List ]'
-            res += '\n├ Status : Add Friend'
-            res += '\n├ Added :'
+            res += '\n├➢ Status : Add Friend'
+            res += '\n├➢ Added :'
             no = 0
             added = []
             if 'MENTION' in msg.contentMetadata.keys():
@@ -1981,8 +1986,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if not cids:
                 return line.sendMessage(to, 'Failed del contact from friend list, nothing friend in list')
             res = '╭───[ Friend List ]'
-            res += '\n├ Status : Del Friend'
-            res += '\n├ Deleted :'
+            res += '\n├➢ Status : Del Friend'
+            res += '\n├➢ Deleted :'
             no = 0
             deleted = []
             if 'MENTION' in msg.contentMetadata.keys():
@@ -2060,7 +2065,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         cnames = []
         ress = []
         res = '╭───[ Block List ]'
-        res += '\n├ List:'
+        res += '\n├➢ List:'
         if cids:
             contacts = []
             no = 0
@@ -2096,7 +2101,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     cnames.append(contact.displayName)
         else:
             res += '\n│ Nothing'
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}BlockList'
         res += '\n│ • {key}BlockList Info <num/name>'
         res += '\n│ • {key}BlockList Add <mention>'
@@ -2124,10 +2129,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     cover = line.getProfileCoverURL(contact.mid)
                     line.sendImageWithURL(to, str(cover))
                     res = '╭───[ Contact Info ]'
-                    res += '\n├ MID : ' + contact.mid
-                    res += '\n├ Display Name : ' + str(contact.displayName)
+                    res += '\n├➢ MID : ' + contact.mid
+                    res += '\n├➢ Display Name : ' + str(contact.displayName)
                     if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
-                    res += '\n├ Status Message : ' + str(contact.statusMessage)
+                    res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                     res += '\n╰───[ Bobby Selfbot ]'
                     line.sendMessage(to, parsingRes(res))
                 elif name != None:
@@ -2138,16 +2143,16 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         cover = line.getProfileCoverURL(contact.mid)
                         line.sendImageWithURL(to, str(cover))
                         res = '╭───[ Contact Info ]'
-                        res += '\n├ MID : ' + contact.mid
-                        res += '\n├ Display Name : ' + str(contact.displayName)
+                        res += '\n├➢ MID : ' + contact.mid
+                        res += '\n├➢ Display Name : ' + str(contact.displayName)
                         if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
-                        res += '\n├ Status Message : ' + str(contact.statusMessage)
+                        res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                         res += '\n╰───[ Bobby Selfbot ]'
                         line.sendMessage(to, parsingRes(res))
         elif texttl.startswith('add '):
             res = '╭───[ Block List ]'
-            res += '\n├ Status : Add Block'
-            res += '\n├ Added :'
+            res += '\n├➢ Status : Add Block'
+            res += '\n├➢ Added :'
             no = 0
             added = []
             if 'MENTION' in msg.contentMetadata.keys():
@@ -2174,8 +2179,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if not cids:
                 return line.sendMessage(to, 'Failed unblock contact, nothing user in list')
             res = '╭───[ Block List ]'
-            res += '\n├ Status : Del Block'
-            res += '\n├ Deleted :'
+            res += '\n├➢ Status : Del Block'
+            res += '\n├➢ Deleted :'
             no = 0
             deleted = []
             if 'MENTION' in msg.contentMetadata.keys():
@@ -2365,14 +2370,14 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         created = time.strftime('%d-%m-%Y %H:%M:%S', time.localtime(int(group.createdTime) / 1000))
         path = 'http://dl.profile.line-cdn.net/' + group.pictureStatus
         res = '╭───[ Group Info ]'
-        res += '\n├ ID : ' + group.id
-        res += '\n├ Name : ' + group.name
-        res += '\n├ Creator : ' + gcreator
-        res += '\n├ Created Time : ' + created
-        res += '\n├ Member Count : ' + str(len(group.members))
-        res += '\n├ Pending Count : ' + str(pendings)
-        res += '\n├ QR Status : ' + qr
-        res += '\n├ Ticket : ' + ticket
+        res += '\n├➢ ID : ' + group.id
+        res += '\n├➢ Name : ' + group.name
+        res += '\n├➢ Creator : ' + gcreator
+        res += '\n├➢ Created Time : ' + created
+        res += '\n├➢ Member Count : ' + str(len(group.members))
+        res += '\n├➢ Pending Count : ' + str(pendings)
+        res += '\n├➢ QR Status : ' + qr
+        res += '\n├➢ Ticket : ' + ticket
         res += '\n╰───[ Bobby Selfbot ]'
         line.sendImageWithURL(to, path)
         if ccreator:
@@ -2385,7 +2390,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         gnames = []
         ress = []
         res = '╭───[ Group List ]'
-        res += '\n├ List:'
+        res += '\n├➢ List:'
         if gids:
             groups = line.getGroups(gids)
             no = 0
@@ -2409,7 +2414,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     gnames.append(group.name)
         else:
             res += '\n│ Nothing'
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}GroupList'
         res += '\n│ • {key}GroupList Leave <num/name/all>'
         res += '\n╰───[ Bobby Selfbot ]'
@@ -2472,7 +2477,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         gnames = []
         ress = []
         res = '╭───[ Invitation List ]'
-        res += '\n├ List:'
+        res += '\n├➢ List:'
         if gids:
             groups = line.getGroups(gids)
             no = 0
@@ -2496,7 +2501,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     gnames.append(group.name)
         else:
             res += '\n│ Nothing'
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}InvitationList'
         res += '\n│ • {key}InvitationList Accept <num/name/all>'
         res += '\n│ • {key}InvitationList Reject <num/name/all>'
@@ -2745,7 +2750,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         if msg.toType in [1, 2]: res += '\n├ Status : ' + bool_dict[lurking[to]['status']][1]
         if msg.toType in [1, 2]: res += '\n├ Reply Reader : ' + bool_dict[lurking[to]['reply']['status']][1]
         if msg.toType in [1, 2]: res += '\n├ Reply Reader Message : ' + lurking[to]['reply']['message']
-        res += '\n├ Usage : '
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}Lurk'
         res += '\n│ • {key}Lurk <on/off>'
         res += '\n│ • {key}Lurk Result'
@@ -2838,11 +2843,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───[ Greet Message ]'
-        res += '\n├ Greetings Join Status : ' + bool_dict[settings['greet']['join']['status']][1]
-        res += '\n├ Greetings Join Message : ' + settings['greet']['join']['message']
-        res += '\n├ Greetings Leave Status : ' + bool_dict[settings['greet']['leave']['status']][0]
-        res += '\n├ Greetings Join Message : ' + settings['greet']['leave']['message']
-        res += '\n├ Usage : '
+        res += '\n├➢ Greetings Join Status : ' + bool_dict[settings['greet']['join']['status']][1]
+        res += '\n├➢ Greetings Join Message : ' + settings['greet']['join']['message']
+        res += '\n├➢ Greetings Leave Status : ' + bool_dict[settings['greet']['leave']['status']][0]
+        res += '\n├➢ Greetings Join Message : ' + settings['greet']['leave']['message']
+        res += '\n├➢ Usage : '
         res += '\n│ • {key}Greet'
         res += '\n│ • {key}Greet Join <on/off>'
         res += '\n│ • {key}Greet Join <message>'
@@ -2906,7 +2911,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             line.sendMessage(to, 'Success invite members, totals %i members' % len(mentions['MENTIONEES']))
         else:
             line.sendMessage(to, 'Failed invite member, please mention user you want to reinvite')
-    elif cmd.startswith('kiss '):
+    elif cmd.startswith('kick '):
         if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
             mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -2918,11 +2923,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.kickoutFromGroup(to, [mid])
                 except TalkException as talk_error:
                     return line.sendMessage(to, 'Failed kick members, the reason is `%s`' % talk_error.reason)
-                time.sleep(0.8)
             line.sendMessage(to, 'Success kick members, totals %i members' % len(mentions['MENTIONEES']))
         else:
             line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
-    elif cmd.startswith('vkiss '):
+    elif cmd.startswith('vkick'):
         if msg.toType != 2: return line.sendMessage(to, 'Failed vultra kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
             mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -2938,11 +2942,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.inviteIntoGroup(to, [mid])
                 except TalkException as talk_error:
                     return line.sendMessage(to, 'Failed vultra kick members, the reason is `%s`' % talk_error.reason)
-                time.sleep(0.8)
             line.sendMessage(to, 'Success vultra kick members, totals %i members' % len(mentions['MENTIONEES']))
         else:
             line.sendMessage(to, 'Failed vultra kick member, please mention user you want to kick')
-    elif cmd.startswith('rkiss '):
+    elif cmd.startswith('rkick '):
         if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
             mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -2956,11 +2959,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.inviteIntoGroup(to, [mid])
                 except TalkException as talk_error:
                     return line.sendMessage(to, 'Failed kick members, the reason is `%s`' % talk_error.reason)
-                time.sleep(0.8)
             line.sendMessage(to, 'Success reinvite kick members, totals %i members' % len(mentions['MENTIONEES']))
         else:
             line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
-    elif cmd.startswith('mkiss '):
+    elif cmd.startswith('mkick '):
         if msg.toType != 2: return line.sendMessage(to, 'Failed multi kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
             mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -2982,7 +2984,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.inviteIntoGroup(to, [mid])
                 except TalkException as talk_error:
                     return line.sendMessage(to, 'Failed multi kick members, the reason is `%s`' % talk_error.reason)
-                time.sleep(0.8)
             line.sendMessage(to, 'Success multi kick members, totals %i members' % len(mentions['MENTIONEES']))
         else:
             line.sendMessage(to, 'Failed multi kick member, please mention user you want to kick')
@@ -3072,6 +3073,23 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\nTotal unsend {} message.'.format(len(MId))
         res += '\nIn Group :' + G.name
         line.sendReplyMessage(msg.id, to, res)
+    elif cmd.startswith('unsend '):
+      if msg._from in Owner:
+        textt = removeCmd(text, setKey)
+        texttl = textt.lower()
+        G = line.getGroup(to)
+        if texttl == 'on':
+            if settings["unsendMessage"]:
+                line.sendReplyMessage(msg.id, to, 'Unsend already active')
+            else:
+                settings["unsendMessage"] = True
+                line.sendReplyMessage(msg.id, to, '「 Notifikasi 」\nDetect unsend berhasil diaktifkan\nDi Group ' +  str(G.name))
+        elif texttl == 'off':
+            if not settings["unsendMessage"]:
+                line.sendReplyMessage(msg.id, to, 'Unsend already deactive')
+            else:
+                settings["unsendMessage"] = False
+                line.sendReplyMessage(msg.id, to, '「 Notifikasi 」\nDetect unsend berhasil dimatikan\nDi Group ' +  str(G.name))
     elif cmd.startswith("lastseen ") and msg.toType == 2:
             if 'MENTION' in msg.contentMetadata.keys() != None:
                 names = re.findall(r'@(\w+)', msg.text)
@@ -3155,6 +3173,41 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             spam = text.split(" ")
             for asw in range(int(spam[1])):
                 line.sendReplyMessage(msg.id, to, str(text.replace(spam[0] + " " + spam[1] + " ","")))
+    elif cmd == 'sider off':
+                                if msg.to in cctv['point']:
+                                    cctv['cyduk'][msg.to]=False
+                                    wait["Sider"] = False
+                                    G = line.getGroup(to)
+                                    tz = pytz.timezone("Asia/Jakarta")
+                                    timeNow = datetime.now(tz=tz)
+                                    res = '「 Sider Off 」'
+                                    res += '\nSider berhasil Dimatikan'
+                                    res += '\nDi Group : ' +  str(G.name)
+                                    res += '\nTanggal :'  + datetime.strftime(timeNow,'%d-%m-%Y')
+                                    res += '\nJam : ' +  datetime.strftime(timeNow,'%H:%M:%S')
+                                    line.sendReplyMessage(msg.id, to, res)
+                                else:
+                                    line.sendReplyMessage(msg.id, msg.to, '「 Sider Off 」\n Sudah Tidak Aktif')
+    elif cmd == 'sider on':
+                                try:
+                                    tz = pytz.timezone("Asia/Jakarta")
+                                    G = line.getGroup(msg.to)
+                                    timeNow = datetime.now(tz=tz)
+                                    del cctv['point'][msg.to]
+                                    del cctv['sidermem'][msg.to]
+                                    del cctv['cyduk'][msg.to]
+                                except:
+                                           pass
+                                           cctv['point'][msg.to] = msg.id
+                                           cctv['sidermem'][msg.to] = ""
+                                           cctv['cyduk'][msg.to]=True
+                                           wait["Sider"] = True
+                                           res = '「 Sider On 」'
+                                           res += '\nSider berhasil Diaktifkan'
+                                           res += '\nDi Group : ' + str(G.name)
+                                           res += '\nTanggal : ' + datetime.strftime(timeNow,'%d-%m-%Y')
+                                           res += '\nJam : ' +  datetime.strftime(timeNow,'%H:%M:%S')
+                                           line.sendReplyMessage(msg.id, to, res)
 def executeOp(op):
     try:
         print ('++ Operation : ( %i ) %s' % (op.type, OpType._VALUES_TO_NAMES[op.type].replace('_', ' ')))
@@ -3266,7 +3319,7 @@ def executeOp(op):
                 except:pass
             if op.param1 in settings["protectjoin"]:
                 if op.param2 not in settings["whitelist"]:
-                    ban["blacklist"].append(op.param2)
+                    ban["blacklist"]append(op.param2)
                     try:
                         if op.param3 not in ban["blacklist"]:
                         	line.kickoutFromGroup(op.param1,[op.param2])
@@ -3347,7 +3400,7 @@ def executeOp(op):
             if msg.contentType == 0:
                 if text is None:
                     return
-                if text.lower() == 'dell':
+                if text.lower() == 'clearchat':
                     line.removeAllMessages(op.param2)
                     line.sendMessage(to, "Allchat deleted")
                 elif text.lower() == 'autolike on':
@@ -3362,20 +3415,6 @@ def executeOp(op):
                 elif text.lower() == 'autocomment off':
                     settings["autokomen"] = False
                     line.sendMessage(to, "Auto comment non actived")
-                elif msg.text.lower().startswith("respond"):
-                              if sender in myMid:
-                                group = line.getGroup(to)
-                                midMembers = [contact.mid for contact in group.members]
-                                for data in midMembers:
-                                    line.sendMessage(to, "{}".format(line.getContact(data).displayName), contentMetadata={"MSG_SENDER_NAME":"{}".format(line.getContact(data).displayName),"MSG_SENDER_ICON": "http://dl.profile.line-cdn.net/{}".format(line.getContact(data).pictureStatus)})
-                elif msg.text.lower().startswith("mybot"):
-                              if sender in myMid:
-                                group = line.getGroup(to)
-                                midMembers = [contact.mid for contact in group.members]
-                                no = 0
-                                for data in midMembers:
-                                    no += 1
-                                    line.sendMessage(to, "Bobby Selfbot {}".format(str(no)), contentMetadata={"MSG_SENDER_NAME":"{}".format(line.getContact(data).displayName),"MSG_SENDER_ICON": "http://dl.profile.line-cdn.net/{}".format(line.getContact(data).pictureStatus)})
                 elif msg.text.lower().startswith("allmid"):
                                 if msg.toType == 2:
                                     group = line.getGroup(to)
@@ -3383,7 +3422,7 @@ def executeOp(op):
                                     ret_ = "╭───[ Mid List On Group {} ]".format(group.name)
                                     for contact in group.members:
                                         num += 1
-                                        ret_ += "\n├ {}.{}\n├{}".format(num, contact.displayName, contact.mid)
+                                        ret_ += "\n├➢ {}.{}\n├{}".format(num, contact.displayName, contact.mid)
                                     ret_ += "\n╰───[ Total {} Members ]".format(len(group.members))
                                     line.sendReplyMessage(msg_id, to, ret_)
                 elif msg.text.lower().startswith("spamcall "):
@@ -3807,6 +3846,154 @@ def executeOp(op):
                 lastseen['find'][op.param2] = True
             except:
                 pass
+            if op.param1 in readers:
+                if readers[op.param1]['status'] and op.param2 not in readers[op.param1]['members']:
+                    readers[op.param1]['members'].append(op.param2)
+                    if readers[op.param1]['status']:
+                        if settings['status']:
+                            return
+                        if '@!' not in readers[op.param1]['message']:
+                            line.sendFakeMessage(op.param1, readers[op.param1]['message'], op.param2)
+                            line.sendFakeContact(op.param1, op.param2)
+                        else:
+                            line.sendMentionV2(op.param1, readers[op.param1]['message'], [op.param2])
+            try:
+                if cctv['cyduk'][op.param1]==True:
+                    if op.param1 in cctv['point']:
+                        pelaku = op.param2
+                        kontak = line.getContact(op.param2)
+                        text = settings["defaultReplyReader"]
+                        Name = line.getContact(op.param2).displayName
+                        if Name in cctv['sidermem'][op.param1]:
+                            pass
+                        else:
+                                cctv['sidermem'][op.param1] += "\n> " + Name
+                                if " " in Name:
+                                    nick = Name.split(' ')
+                                    if len(nick) == 2:
+                                        line.sendMessageMusic(op.param1, kontak.displayName, 'betah banget jadi sider 😑', 'line.me/ti/p/~imbobby_', "https://obs.line-apps.com/os/p/{}".format(str(kontak.mid)))
+                                        #sendMention(op.param1, "Kak @! jelek, sider mulu",[op.param2])
+                                        #line.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net" + line.getContact(op.param2).picturePath)
+                                        #sendReader(op.param1,pelaku,'Read')
+                                    else:
+                                        line.sendMessageMusic(op.param1, kontak.displayName, 'sider mulu jomblo ya (｡-_-｡)', 'line.me/ti/p/~imbobby_', "https://obs.line-apps.com/os/p/{}".format(str(kontak.mid)))
+                                        #sendMention(op.param1, "Kak @! sider mulu, jomblo ya ka?",[op.param2])
+                                        #line.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net" + line.getContact(op.param2).picturePath)
+                                        #sendReader(op.param1,pelaku,'Read')
+                                else:
+                                    line.sendMessageMusic(op.param1, kontak.displayName, 'cie ketahuan sider ( ͡° ͜ʖ ͡°)', 'line.me/ti/p/~imbobby_', "https://obs.line-apps.com/os/p/{}".format(str(kontak.mid)))
+                                    #sendMention(op.param1, "Kak @! Jangan Sider dong",[op.param2])
+                                    #line.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net" + line.getContact(op.param2).picturePath)
+                                    #sendReader(op.param1,pelaku,'Read')
+                    else:
+                        pass
+                else:
+                    pass
+            except:
+                pass
+
+        if op.type == 65:
+            if settings["unsendMessage"]:
+                trop = op.param1
+                msg_id = op.param2
+                if msg_id in bool_dict:
+                    if "text" in bool_dict[msg_id]:
+                        trops = line.getContact(bool_dict[msg_id]["from"])
+                        tz = pytz.timezone("Asia/Jakarta")
+                        timeNow = datetime.now(tz=tz)
+                        tro_ = "# Unsend Message"
+                        tro_ += "\nSender : {}".format(str(trops.displayName))
+                        tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                        tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                        tro_ += "\nType : Text"
+                        tro_ += "\nText : {}".format(bool_dict[msg_id]["text"])
+                        line.sendReplyMessage(msg_id, trop, str(tro_))
+                        del bool_dict[msg_id]
+                    else:
+                        if "image" in bool_dict[msg_id]:
+                            trops = line.getContact(bool_dict[msg_id]["from"])
+                            tz = pytz.timezone("Asia/Jakarta")
+                            timeNow = datetime.now(tz=tz)
+                            tro_ = "# Unsend Message"
+                            tro_ += "\nSender : {}".format(str(trops.displayName))
+                            tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                            tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                            tro_ += "\nType : Image"
+                            line.sendReplyMessage(msg_id, trop, str(tro_))
+                            line.sendImage(trop, bool_dict[msg_id]["image"])
+                            del bool_dict[msg_id]
+                        else:
+                            if "video" in bool_dict[msg_id]:
+                                trops = line.getContact(bool_dict[msg_id]["from"])
+                                tz = pytz.timezone("Asia/Jakarta")
+                                timeNow = datetime.now(tz=tz)
+                                tro_ = "# Unsend Message"
+                                tro_ += "\nSender : {}".format(str(trops.displayName))
+                                tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                                tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                                tro_ += "\nType : Video"
+                                line.sendReplyMessage(msg_id, trop, str(tro_))
+                                line.sendVideo(trop, bool_dict[msg_id]["video"])
+                                del bool_dict[msg_id]
+                            else:
+                                if "audio" in bool_dict[msg_id]:
+                                        trops = line.getContact(bool_dict[msg_id]["from"])
+                                        tz = pytz.timezone("Asia/Jakarta")
+                                        timeNow = datetime.now(tz=tz)
+                                        tro_ = "# Unsend Message"
+                                        tro_ += "\nSender : {}".format(str(trops.displayName))
+                                        tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                                        tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                                        tro_ += "\nType : Audio"
+                                        line.sendReplyMessage(msg_id, trop, str(tro_))
+                                        line.sendAudio(trop, bool_dict[msg_id]["audio"])
+                                        del bool_dict[msg_id]
+                                else:
+                                    if "sticker" in bool_dict[msg_id]:
+                                            trops = line.getContact(bool_dict[msg_id]["from"])
+                                            tz = pytz.timezone("Asia/Jakarta")
+                                            timeNow = datetime.now(tz=tz)
+                                            tro_ = "# Unsend Message"
+                                            tro_ += "\nSender : {}".format(str(trops.displayName))
+                                            tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                                            tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                                            tro_ += "\nType : Sticker"
+                                            line.sendReplyMessage(msg_id, trop, str(tro_))
+                                            line.sendImageWithURL(trop, bool_dict[msg_id]["sticker"])
+                                            del bool_dict[msg_id]
+                                    else:
+                                        if "mid" in bool_dict[msg_id]:
+                                                trops = line.getContact(bool_dict[msg_id]["from"])
+                                                tro_ = "# Unsend Message"
+                                                tro_ += "\nSender : {}".format(str(trops.displayName))
+                                                tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                                                tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                                                tro_ += "\nType : Contact"
+                                                line.sendReplyMessage(msg_id, trop, str(tro_))
+                                                line.sendContact(trop, bool_dict[msg_id]["mid"])
+                                                del bool_dict[msg_id]
+                                        else:
+                                            if "location" in bool_dict[msg_id]:
+                                                    trops = line.getContact(bool_dict[msg_id]["from"])
+                                                    tro_ = "# Unsend Message"
+                                                    tro_ += "\nSender : {}".format(str(trops.displayName))
+                                                    #tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                                                    #tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                                                    tro_ += "\nType : Location"
+                                                    line.sendReplyMessage(msg_id, trop, str(tro_))
+                                                    line.sendLocation(trop, bool_dict[msg_id]["location"])
+                                                    del bool_dict[msg_id]
+                                            else:
+                                                if "file" in bool_dict[msg_id]:
+                                                        trops = line.getContact(bool_dict[msg_id]["from"])
+                                                        tro_ = "# Unsend Message"
+                                                        tro_ += "\nSender : {}".format(str(trops.displayName))
+                                                        tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
+                                                        tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
+                                                        tro_ += "\nType : File"
+                                                        line.sendReplyMessage(msg_id, trop, str(tro_))
+                                                        line.sendFile(trop, bool_dict[msg_id]["file"])
+                                                        del bool_dict[msg_id]
     except TalkException as talk_error:
         logError(talk_error)
         if talk_error.code in [7, 8, 20]:
