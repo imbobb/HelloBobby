@@ -3,7 +3,7 @@
 ### Jika sudah di run, ketik "help" untuk melihat semua keycommandnya
 ## Installation for Termux
 ///////////////////////////////////////////////////////
-<br>$ pkg install python
+<br>$ pkg install python3 -y
 <br>$ apt-get update
 <br>$ pip install --upgrade pip
 <br>$ pkg install git -y
