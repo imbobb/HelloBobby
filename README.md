@@ -4,8 +4,7 @@
 ## Installation for Termux
 ///////////////////////////////////////////////////////
 <br>$ pkg install python3 -y
-<br>$ apt-get update
-<br>$ pip install --upgrade pip
+<br>$ apt-get install python --upgrade
 <br>$ pkg install git -y
 <br>$ pkg install nano -y
 <br>$ pip3 install rsa
