@@ -21,6 +21,7 @@
 <br>$ pip3 install pytz
 <br>$ pip3 install html5lib
 <br>$ pip3 install pafy
+<br>$ pip3 install timeago
 <br>$ pip3 install livejson
 <br>$ pip3 install humanize
 <br>git clone https://github.com/imbobb/HelloBobby
@@ -46,6 +47,7 @@
 <br>$ sudo pip3 install youtube_dl
 <br>$ sudo pip3 install tweepy
 <br>$ sudo pip3 install pytz
+<br>$ sudo pip3 install timeago
 <br>$ sudo pip3 install html5lib
 <br>$ sudo pip3 install pafy
 <br>$ sudo pip3 install livejson
