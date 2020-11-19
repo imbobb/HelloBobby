@@ -5,10 +5,10 @@ Selfbot Edition
 Special Thanks to:
  • Arifistifik
  • Team Newbie Corps™
- • MP Corps™
 
 Supported By:
  • We Bare Bears Corps™
+ • B-G-N Squad
 
 ©2020 Recode By BAI
 '''
@@ -525,7 +525,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ debl「 Mention 」"
                     ret += "\n├➢ bl:「 On/Off 」"
                     ret += "\n├➢ unbl「 Num 」"
-                    ret += "\n╰───「 Bobby Ft Pupu Bots 」"
+                    ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
                                            "text": "{}".format(str(ret)),
@@ -545,7 +545,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ dewl「 Mention 」"
                     ret += "\n├➢ wl:「 On/Off 」"
                     ret += "\n├➢ unwl「 Num 」"
-                    ret += "\n╰───「 Bobby Ft Pupu Bots 」"
+                    ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
                                            "text": "{}".format(str(ret)),
@@ -1140,8 +1140,24 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             settings['changeCoverProfile'] = False
             line.sendMessage(to, 'Change cover profile aborted')
             aborted = True
+        if wait["wblacklist"]:
+            wait["wblacklist"] = False
+            line.sendMessage(to, 'Blacklist Contact aborted')
+            aborted = True
+        if wait["dblacklist"]:
+            wait["dblacklist"] = False
+            line.sendMessage(to, 'UnBlacklist Contact aborted')
+            aborted = True
+        if wait["wwhitelist"]:
+            wait["wwhitelist"] = False
+            line.sendMessage(to, 'Whitelist Contact aborted')
+            aborted = True
+        if wait["dwhitelist"]:
+            wait["dwhitelist"] = False
+            line.sendMessage(to, 'UnWhitelist Contact aborted')
+            aborted = True
         if not aborted:
-            line.sendMessage(to, 'Failed abort, nothing to abort')
+            line.sendReplyMessage(msg.id, to, 'Failed abort, nothing to abort')
     elif cmd.startswith('error'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
