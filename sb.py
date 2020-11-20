@@ -3335,7 +3335,7 @@ def executeOp(op):
                 except:pass
             if op.param1 in settings["protectjoin"]:
                 if op.param2 not in settings["whitelist"]:
-                    ban["blacklist"]append(op.param2)
+                    ban["blacklist"].append(op.param2)
                     try:
                         if op.param3 not in ban["blacklist"]:
                         	line.kickoutFromGroup(op.param1,[op.param2])
