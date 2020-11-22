@@ -1833,7 +1833,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
             bot = line.getAllContactIds()
-            res = '「 Friends Broadcast 」\n'
+            res = '「 Friend Broadcast 」\n'
             res += 'Sender by : @! \n'
             res += 'Send to %i Friends' % len(bot)
             res += '\n__________________________\n\n' 
@@ -1880,6 +1880,24 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             line.sendMessage(to, 'Success broadcast to all groups and friends, sent to %i groups and friends' % len(targets))
         else:
             line.sendMessage(to, parsingRes(res).format(key=setKey.title()))
+    elif cmd.startswith("footergbc "):
+        bob = text.split(" ")
+        hey = text.replace(bob[0] + " ", "")
+        text = "「 Broadcast Message 」\n"
+        text += "{}".format(hey)
+        groups = line.getGroupIdsJoined()
+        for gr in groups:
+            data = {
+                                    "type": "text",
+                                    "text": "{}".format(text),
+                                    "sentBy": {
+                                        "label": "{}".format(line.getContact(myMid).displayName),
+                                        "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
+                                        "linkUrl": "https://line.me/ti/p/~imbobby_"
+                                    }
+                                }
+            sendTemplate(gr, data)
+        line.sendReplyMessage(msg.id, to, 'Success broadcast to all groups, sent to %i groups' % len(groups))
     elif cmd.startswith('friendlist'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
