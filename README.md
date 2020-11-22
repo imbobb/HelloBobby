@@ -69,3 +69,6 @@
 # SUPPORTED BY
 <br>• <a href="https://lin.ee/hzZujuI">We Bare Bears Corps™</a>
 <br>• <a href="https://lin.ee/emt8het">B-G-N Squad</a>
+
+# ADD MY LINE
+<br> <a href="https://line.me/ti/p/~imbobby_">`B O B B Y™</a>
