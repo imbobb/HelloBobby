@@ -670,9 +670,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 if 'MemFree:' in anu:
                     fr = anu.split('MemFree:')[1].replace(' ','')
             res = '╭───[ Memory ]'
-            res += "\n├ Cpu Core : {}".format(core)
-            res += "\n├ Total Memory: {}".format(mem)
-            res += "\n├ Free Memory: {}".format(fr)
+            res += "\n├➢ Cpu Core : {}".format(core)
+            res += "\n├➢ Total Memory: {}".format(mem)
+            res += "\n├➢ Free Memory: {}".format(fr)
             res += '\n╰───[ Bobby Selfbot ]'
             data = {
                                            "type": "text",
@@ -748,8 +748,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 								msgas = dd
 								for a in h[aa*20:(aa+1)*20]:
 									no+=1
-									if no == len(h):msgas+='\n│{}. @!\n╰───[ Bobby Selfbot ]'.format(no)
-									else:msgas += '\n│{}. @!'.format(no)
+									if no == len(h):msgas+='\n├➢ {}. @!\n╰───[ Bobby Selfbot ]'.format(no)
+									else:msgas += '\n├➢ {}. @!'.format(no)
 								sendMention(to, msgas, h[aa*20:(aa+1)*20])
 						else:
 							line.sendReplyMessage(msg.id,to,"「 Doesn't Have Any Blacklist User -_- 」")
@@ -763,8 +763,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 								msgas = dd
 								for a in h[aa*20:(aa+1)*20]:
 									no+=1
-									if no == len(h):msgas+='\n│{}. @!\n╰───[ Bobby Selfbot ]'.format(no)
-									else:msgas += '\n│{}. @!'.format(no)
+									if no == len(h):msgas+='\n├➢ {}. @!\n╰───[ Bobby Selfbot ]'.format(no)
+									else:msgas += '\n├➢ {}. @!'.format(no)
 								sendMention(to, msgas, h[aa*20:(aa+1)*20])
 						else:
 							line.sendReplyMessage(msg.id,to,"「 Doesn't Have Any whitelist User -_- 」")
@@ -827,8 +827,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                     msgas = dd
                                     for a in h[aa*20:(aa+1)*20]:
                                         no+=1
-                                        if no == len(h):msgas+='\n├ {}. @!\n│• Blacklist Detect!!\n│• Be CareFull\n╰───[ Bobby Selfbot ]'.format(no)
-                                        else:msgas += '\n├ {}. @!'.format(no)
+                                        if no == len(h):msgas+='\n├➢ {}. @!\n│• Blacklist Detect!!\n│• Be CareFull\n╰───[ Bobby Selfbot ]'.format(no)
+                                        else:msgas += '\n├➢ {}. @!'.format(no)
                                     sendMention(to, msgas, h[aa*20:(aa+1)*20])
     elif cmd == "detectwl":
                         if msg.toType == 2:
@@ -849,8 +849,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                     msgas = dd
                                     for a in h[aa*20:(aa+1)*20]:
                                         no+=1
-                                        if no == len(h):msgas+='\n├ {}. @!\n│• Whitelist Detect!!\n╰───[ Bobby Selfbot ]'.format(no)
-                                        else:msgas += '\n├ {}. @!'.format(no)
+                                        if no == len(h):msgas+='\n├➢ {}. @!\n│• Whitelist Detect!!\n╰───[ Bobby Selfbot ]'.format(no)
+                                        else:msgas += '\n├➢ {}. @!'.format(no)
                                     sendMention(to, msgas, h[aa*20:(aa+1)*20])
 #================Protection================
     elif cmd == "protect:set":
@@ -1557,10 +1557,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         profile = line.getContact(to) if msg.toType == 0 else None
         res = '╭───[ My Profile ]'
         if profile:
-            res += '\n├ MID : ' + profile.mid
-            res += '\n├ Display Name : ' + str(profile.displayName)
-            if profile.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(profile.displayNameOverridden)
-            res += '\n├ Status Message : ' + str(profile.statusMessage)
+            res += '\n├➢ MID : ' + profile.mid
+            res += '\n├➢ Display Name : ' + str(profile.displayName)
+            if profile.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(profile.displayNameOverridden)
+            res += '\n├➢ Status Message : ' + str(profile.statusMessage)
         res += '\n├➢ Usage : '
         res += '\n│ • {key}Profile'
         res += '\n│ • {key}Profile Mid'
@@ -1617,10 +1617,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         cover = line.getProfileCoverURL(profile.mid)
                         line.sendImageWithURL(to, str(cover))
                         res = '╭───[ Profile ]'
-                        res += '\n├ MID : ' + profile.mid
-                        res += '\n├ Display Name : ' + str(profile.displayName)
-                        if profile.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(profile.displayNameOverridden)
-                        res += '\n├ Status Message : ' + str(profile.statusMessage)
+                        res += '\n├➢ MID : ' + profile.mid
+                        res += '\n├➢ Display Name : ' + str(profile.displayName)
+                        if profile.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(profile.displayNameOverridden)
+                        res += '\n├➢ Status Message : ' + str(profile.statusMessage)
                         res += '\n╰───[ Bobby Selfbot ]'
                         line.sendMessage(to, parsingRes(res))
                 else:
@@ -1954,7 +1954,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     res = '╭───[ Contact Info ]'
                     res += '\n├➢ MID : ' + contact.mid
                     res += '\n├➢ Display Name : ' + str(contact.displayName)
-                    if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
+                    if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                     res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                     res += '\n╰───[ Bobby Selfbot ]'
                     line.sendMessage(to, parsingRes(res))
@@ -1968,7 +1968,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         res = '╭───[ Contact Info ]'
                         res += '\n├➢ MID : ' + contact.mid
                         res += '\n├➢ Display Name : ' + str(contact.displayName)
-                        if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
+                        if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                         res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                         res += '\n╰───[ Bobby Selfbot ]'
                         line.sendMessage(to, parsingRes(res))
@@ -2147,7 +2147,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     res = '╭───[ Contact Info ]'
                     res += '\n├➢ MID : ' + contact.mid
                     res += '\n├➢ Display Name : ' + str(contact.displayName)
-                    if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
+                    if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                     res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                     res += '\n╰───[ Bobby Selfbot ]'
                     line.sendMessage(to, parsingRes(res))
@@ -2161,7 +2161,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         res = '╭───[ Contact Info ]'
                         res += '\n├➢ MID : ' + contact.mid
                         res += '\n├➢ Display Name : ' + str(contact.displayName)
-                        if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
+                        if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                         res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                         res += '\n╰───[ Bobby Selfbot ]'
                         line.sendMessage(to, parsingRes(res))
@@ -2763,9 +2763,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 }
             }
         res = '╭───[ Lurking ]'
-        if msg.toType in [1, 2]: res += '\n├ Status : ' + bool_dict[lurking[to]['status']][1]
-        if msg.toType in [1, 2]: res += '\n├ Reply Reader : ' + bool_dict[lurking[to]['reply']['status']][1]
-        if msg.toType in [1, 2]: res += '\n├ Reply Reader Message : ' + lurking[to]['reply']['message']
+        if msg.toType in [1, 2]: res += '\n├➢ Status : ' + bool_dict[lurking[to]['status']][1]
+        if msg.toType in [1, 2]: res += '\n├➢ Reply Reader : ' + bool_dict[lurking[to]['reply']['status']][1]
+        if msg.toType in [1, 2]: res += '\n├➢ Reply Reader Message : ' + lurking[to]['reply']['message']
         res += '\n├➢ Usage : '
         res += '\n│ • {key}Lurk'
         res += '\n│ • {key}Lurk <on/off>'
@@ -2807,7 +2807,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 else:
                     members = lurking[to]['members']
                     res = '╭───[ Lurking ]'
-                    if msg.toType == 2: res += '\n├ Group Name : ' + line.getGroup(to).name
+                    if msg.toType == 2: res += '\n├➢ Group Name : ' + line.getGroup(to).name
                     parsed_len = len(members)//200+1
                     no = 0
                     for point in range(parsed_len):
@@ -2820,7 +2820,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                             res += '\n│ %i. %s' % (no, name)
                             if member == members[-1]:
                                 res += '\n│'
-                                res += '\n├ Time Set : ' + lurking[to]['time']
+                                res += '\n├➢ Time Set : ' + lurking[to]['time']
                                 res += '\n╰───[ Bobby Selfbot ]'
                         if res:
                             if res.startswith('\n'): res = res[1:]
@@ -3167,7 +3167,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         members = [ls]
                         line.acquireGroupCallRoute(to)
                         line.inviteIntoGroupCall(to, contactIds=members)
-                    ret_ += "\n├ @!"
+                    ret_ += "\n├➢ @!"
                 ret_ += "\n╰───[ Total {} Spam call]".format(str(dan[1]))
                 sendMention(to, ret_, lists)
     elif cmd.startswith('.spamcall '):
@@ -3438,7 +3438,7 @@ def executeOp(op):
                                     ret_ = "╭───[ Mid List On Group {} ]".format(group.name)
                                     for contact in group.members:
                                         num += 1
-                                        ret_ += "\n├➢ {}.{}\n├{}".format(num, contact.displayName, contact.mid)
+                                        ret_ += "\n├➢ {}.{}\n├➢ {}".format(num, contact.displayName, contact.mid)
                                     ret_ += "\n╰───[ Total {} Members ]".format(len(group.members))
                                     line.sendReplyMessage(msg_id, to, ret_)
                 elif msg.text.lower().startswith("spamcall "):
@@ -3479,11 +3479,11 @@ def executeOp(op):
                                     me = best.url
                                     hasil = ""
                                     arifistifik = "╭───[SEARCHING]"
-                                    title = "\n├ Judul: " + vid.title + ""
-                                    author = '\n├ Author : ' + str(vid.author)
-                                    durasi = '\n├ Duration : ' + str(vid.duration)
-                                    suka = '\n├ Likes : ' + str(vid.likes)
-                                    rating = '\n├ Rating : ' + str(vid.rating)
+                                    title = "\n├➢ Judul: " + vid.title + ""
+                                    author = '\n├➢ Author : ' + str(vid.author)
+                                    durasi = '\n├➢ Duration : ' + str(vid.duration)
+                                    suka = '\n├➢ Likes : ' + str(vid.likes)
+                                    rating = '\n├➢ Rating : ' + str(vid.rating)
                                     dpk = '\n╰───[ Bobby Selfbot ]'
                                 line.sendVideoWithURL(msg.to, me)
                                 line.sendMessage(msg.to,arifistifik+ title+ author+ durasi+ suka+ rating+ dpk)
@@ -3512,11 +3512,11 @@ def executeOp(op):
                                     me = best.url
                                     hasil = ""
                                     arifistifik = "╭───[SEARCHING]"
-                                    title = "\n├ Judul: " + vid.title + ""
-                                    author = '\n├ Author : ' + str(vid.author)
-                                    durasi = '\n├ Duration : ' + str(vid.duration)
-                                    suka = '\n├ Likes : ' + str(vid.likes)
-                                    rating = '\n├ Rating : ' + str(vid.rating)
+                                    title = "\n├➢ Judul: " + vid.title + ""
+                                    author = '\n├➢ Author : ' + str(vid.author)
+                                    durasi = '\n├➢ Duration : ' + str(vid.duration)
+                                    suka = '\n├➢ Likes : ' + str(vid.likes)
+                                    rating = '\n├➢ Rating : ' + str(vid.rating)
                                     dpk = '\n╰───[ Bobby Selfbot ]'
                                 line.sendAudioWithURL(msg.to, me)
                                 line.sendMessage(msg.to,arifistifik+ title+ author+ durasi+ suka+ rating+ dpk)
@@ -3659,10 +3659,10 @@ def executeOp(op):
             elif msg.contentType == 7: # Content type is sticker
                 if settings['checkSticker']:
                     res = '╭───[ Sticker Info ]'
-                    res += '\n├ Sticker ID : ' + msg.contentMetadata['STKID']
-                    res += '\n├ Sticker Packages ID : ' + msg.contentMetadata['STKPKGID']
-                    res += '\n├ Sticker Version : ' + msg.contentMetadata['STKVER']
-                    res += '\n├ Sticker Link : line://shop/detail/' + msg.contentMetadata['STKPKGID']
+                    res += '\n├➢ Sticker ID : ' + msg.contentMetadata['STKID']
+                    res += '\n├➢ Sticker Packages ID : ' + msg.contentMetadata['STKPKGID']
+                    res += '\n├➢ Sticker Version : ' + msg.contentMetadata['STKVER']
+                    res += '\n├➢ Sticker Link : line://shop/detail/' + msg.contentMetadata['STKPKGID']
                     res += '\n╰───[ Bobby Selfbot ]'
                     line.sendMessage(to, parsingRes(res))
             elif msg.contentType == 13: # Content type is contact
@@ -3673,10 +3673,10 @@ def executeOp(op):
                     except:
                         return line.sendMessage(to, 'Failed get details contact with mid ' + mid)
                     res = '╭───[ Details Contact ]'
-                    res += '\n├ MID : ' + mid
-                    res += '\n├ Display Name : ' + str(contact.displayName)
+                    res += '\n├➢ MID : ' + mid
+                    res += '\n├➢ Display Name : ' + str(contact.displayName)
                     if contact.displayNameOverridden: res += '\n├ Display Name Overridden : ' + str(contact.displayNameOverridden)
-                    res += '\n├ Status Message : ' + str(contact.statusMessage)
+                    res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                     res += '\n╰───[ Bobby Selfbot ]'
                     if contact.pictureStatus:
                         line.sendImageWithURL(to, 'http://dl.profile.line-cdn.net/' + contact.pictureStatus)
@@ -3717,8 +3717,8 @@ def executeOp(op):
                             author = msg.contentMetadata['serviceName']
                         posturl = msg.contentMetadata['postEndUrl']
                         res = '╭───[ Details Post ]'
-                        res += '\n├ Creator : ' + author
-                        res += '\n├ Post Link : ' + posturl
+                        res += '\n├➢ Creator : ' + author
+                        res += '\n├➢ Post Link : ' + posturl
                         res += '\n╰───[ Bobby Selfbot ]'
         elif op.type == 26:
             msg      = op.message
