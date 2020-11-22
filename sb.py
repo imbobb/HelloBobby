@@ -1833,7 +1833,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
             bot = line.getAllContactIds()
-            res = '「 Group Broadcast 」\n'
+            res = '「 Friends Broadcast 」\n'
             res += 'Sender by : @! \n'
             res += 'Send to %i Friends' % len(bot)
             res += '\n__________________________\n\n' 
@@ -1850,7 +1850,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
             bot = line.getGroupIdsJoined()
-            res = '「 Friends Broadcast 」\n'
+            res = '「 Group Broadcast 」\n'
             res += 'Sender by : @! \n'
             res += 'Send to %i Groups' % len(bot)
             res += '\n__________________________\n\n' 
