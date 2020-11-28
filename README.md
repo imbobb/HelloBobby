@@ -28,7 +28,10 @@
 <br>ls
 <br>cd HelloBobby
 <br>ls
-<br>nano sb.py (input Email & Pass)
+<br>nano sb.py 
+<br>(input Email & Pass)
+<br>ctrl+x
+<br>y -> enter
 <br>python3 sb.py
 ## Installation for VPS
 ///////////////////////////////////////////////////////
@@ -56,7 +59,10 @@
 <br>ls
 <br>cd HelloBobby
 <br>ls
-<br>nano sb.py (input Email & Pass)
+<br>nano sb.py
+<br>(input Email & Pass)
+<br>ctrl+x
+<br>y -> enter
 <br>python3 sb.py
 
 # NOTE
