@@ -50,6 +50,7 @@ protectjoin = []
 protectqr = []
 protectcancel = []
 tmp_text = []
+readers = {}
 lurking = {}
 settings = livejson.File('setting.json', True, False, 4)
 ban = livejson.File('blacklist.json', True, False, 4)
