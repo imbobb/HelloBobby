@@ -39,10 +39,8 @@ parser.add_argument('-T', '--traceback', type=str2bool, nargs='?', default=False
 parser.add_argument('-S', '--showqr', type=str2bool, nargs='?', default=False, metavar='', required=False, const=True, choices=[True, False], help='Show QR | Use : True/False')
 args = parser.parse_args()
 listAppType = ['DESKTOPWIN', 'DESKTOPMAC', 'IOSIPAD', 'CHROMEOS']
-with open("token1.txt","r") as z:
-    jepangpunya = z.read()
-line = LINE(jepangpunya)
-line.log("Auth Token : " + str(line.authToken))
+print ('##----- LOGIN CLIENT -----##')
+line = LINE("Email","Pw")#Input Email & Pw Here
 #=======================================================================================================================
 myMid = line.profile.mid
 programStart = time.time()
