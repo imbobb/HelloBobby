@@ -265,61 +265,60 @@ def replaceAll(text, dic):
         text = text.replace(i, j)
     return text
 def help():
-    if settings['setKey'] == True:
-        key = settings['keyCommand']
+    if settings['setKey']['status'] == True:
+        key = settings['setKey']['key']
     else:
         key = ''
     help =   "╭───「 Help 」" + "\n" + \
-             "├➢ Group" + "\n" + \
-             "├➢ Remote" + "\n" + \
-             "├➢ Kick" + "\n" + \
-             "├➢ Spam" + "\n" + \
-             "├➢ Setting" + "\n" + \
+             "├➢ " + key + "Group" + "\n" + \
+             "├➢ " + key + "Remote" + "\n" + \
+             "├➢ " + key + "Kick" + "\n" + \
+             "├➢ " + key + "Spam" + "\n" + \
+             "├➢ " + key + "Setting" + "\n" + \
              "╰───「 Bobby Selfbot 」"
     return help
 def special():
-    if settings['setKey'] == True:
-        key = settings['keyCommand']
+    if settings['setKey']['status'] == True:
+        key = settings['setKey']['key']
     else:
         key = ''
     helpGroup =   "╭───「 Help Group 」" + "\n" + \
-                    "├➢ Groupinfo" + "\n" + \
-                    "├➢ Grouplist" + "\n" + \
-                    "├➢ InvitationList" + "\n" + \
-                    "├➢ Invt「 Mention 」" + "\n" + \
-                    "├➢ Xinvt「 Reply 」" + "\n" + \
-                    "├➢ Openqr" + "\n" + \
-                    "├➢ Closeqr" + "\n" + \
-                    "├➢ Bl" + "\n" + \
-                    "├➢ Wl" + "\n" + \
-                    "├➢ Protect:set" + "\n" + \
-                    "├➢ Protect:list" + "\n" + \
-                    "├➢ Changegroupname「 Name 」" + "\n" + \
-                    "├➢ Changegrouppict" + "\n" + \
-                    "├➢ Lastseen「 Mention 」" + "\n" + \
-                    "├➢ Find「 Mention 」" + "\n" + \
-                    "├➢ Check mention" + "\n" + \
-                    "├➢ Delcheckmention" + "\n" + \
-                    "├➢ Mentionall" + "\n" + \
+                    "├➢ " + key + "Groupinfo" + "\n" + \
+                    "├➢ " + key + "Grouplist" + "\n" + \
+                    "├➢ " + key + "InvitationList" + "\n" + \
+                    "├➢ " + key + "Invt「 Mention 」" + "\n" + \
+                    "├➢ " + key + "Xinvt「 Reply 」" + "\n" + \
+                    "├➢ " + key + "Openqr" + "\n" + \
+                    "├➢ " + key + "Closeqr" + "\n" + \
+                    "├➢ " + key + "Bl" + "\n" + \
+                    "├➢ " + key + "Wl" + "\n" + \
+                    "├➢ " + key + "Protect:set" + "\n" + \
+                    "├➢ " + key + "Protect:list" + "\n" + \
+                    "├➢ " + key + "Changegroupname「 Name 」" + "\n" + \
+                    "├➢ " + key + "Changegrouppict" + "\n" + \
+                    "├➢ " + key + "Lastseen「 Mention 」" + "\n" + \
+                    "├➢ " + key + "Find「 Mention 」" + "\n" + \
+                    "├➢ " + key + "Check mention" + "\n" + \
+                    "├➢ " + key + "Delcheckmention" + "\n" + \
+                    "├➢ " + key + "Mentionall" + "\n" + \
                     "╰───「 Bobby Selfbot 」"
     return helpGroup
 def helpsettings():
-    if settings['setKey'] == True:
-        key = settings['keyCommand']
+    if settings['setKey']['status'] == True:
+        key = settings['setKey']['key']
     else:
         key = ''
     helpSettings =   "╭───「 Help Setting 」" + "\n" + \
-                    "├➢ " + key + " AutoAdd「On/Off」" + "\n" + \
-                    "├➢ " + key + " AutoJoin「On/Off」" + "\n" + \
-                    "├➢ " + key + " AutoJoinTicket「On/Off」" + "\n" + \
-                    "├➢ " + key + " AutoLeave「On/Off」" + "\n" + \
-                    "├➢ " + key + " AutoRead「On/Off」" + "\n" + \
-                    "├➢ " + key + " AutoRespon「On/Off」" + "\n" + \
-                    "├➢ " + key + " CheckContact「On/Off」" + "\n" + \
-                    "├➢ " + key + " CheckPost「On/Off」" + "\n" + \
-                    "├➢ " + key + " CheckSticker「On/Off」" + "\n" + \
-                    "├➢ " + key + " Unsend「On/Off」" + "\n" + \
-                    "├➢ " + key + " Sider「On/Off」" + "\n" + \
+                    "├➢ " + key + "AutoAdd「On/Off」" + "\n" + \
+                    "├➢ " + key + "AutoJoin「On/Off」" + "\n" + \
+                    "├➢ " + key + "AutoJoinTicket「On/Off」" + "\n" + \
+                    "├➢ " + key + "AutoRead「On/Off」" + "\n" + \
+                    "├➢ " + key + "AutoRespon「On/Off」" + "\n" + \
+                    "├➢ " + key + "CheckContact「On/Off」" + "\n" + \
+                    "├➢ " + key + "CheckPost「On/Off」" + "\n" + \
+                    "├➢ " + key + "CheckSticker「On/Off」" + "\n" + \
+                    "├➢ " + key + "Unsend「On/Off」" + "\n" + \
+                    "├➢ " + key + "Sider「On/Off」" + "\n" + \
                     "╰───「 Bobby Selfbot 」"
     return helpSettings
 def parsingRes(res):
@@ -424,7 +423,7 @@ def debug():
 	get_profile = line.getProfile()
 	get_profile_time = time.time() - get_profile_time_start
 	get_profile_took = time.time() - get_profile_time_start
-	return "「 Bots Speed 」\nType: Speed♪\n • Took : %.3fms♪\n • Taken: %.5f♪" % (get_profile_took,get_profile_time)
+	return "「 Speed 」\nType: Speed♪\n • Took : %.3fms♪\n • Taken: %.5f♪" % (get_profile_took,get_profile_time)
 def restoreProfile():
     profile = line.getProfile()
     profile.displayName = settings['myProfile']['displayName']
@@ -499,13 +498,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     sendTemplate(to, data)
     elif cmd == 'kick':
                     ret = "╭───「 Help Kick 」"
-                    ret += "\n├➢ Kickall"
-                    ret += "\n├➢ Cancelall"
-                    ret += "\n├➢ Kick「 Mention 」"
-                    ret += "\n├➢ Vkick「 Mention 」"
-                    ret += "\n├➢ Rkick「 Mention 」"
-                    ret += "\n├➢ Mkick「 Mention 」"
-                    ret += "\n├➢ Xkick「 Reply 」"
+                    ret += "\n├➢ {key}Kickall"
+                    ret += "\n├➢ {key}Cancelall"
+                    ret += "\n├➢ {key}Kick「 Mention 」"
+                    ret += "\n├➢ {key}Vkick「 Mention 」"
+                    ret += "\n├➢ {key}Rkick「 Mention 」"
+                    ret += "\n├➢ {key}Mkick「 Mention 」"
+                    ret += "\n├➢ {key}Xkick「 Reply 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
@@ -519,13 +518,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     sendTemplate(to, data)
     elif cmd == 'bl':
                     ret = "╭───「 Help Blacklist 」"
-                    ret += "\n├➢ blacklist"
-                    ret += "\n├➢ clearbl"
-                    ret += "\n├➢ detectbl"
-                    ret += "\n├➢ addbl「 Mention 」"
-                    ret += "\n├➢ debl「 Mention 」"
-                    ret += "\n├➢ bl:「 On/Off 」"
-                    ret += "\n├➢ unbl「 Num 」"
+                    ret += "\n├➢ {key}blacklist"
+                    ret += "\n├➢ {key}clearbl"
+                    ret += "\n├➢ {key}detectbl"
+                    ret += "\n├➢ {key}addbl「 Mention 」"
+                    ret += "\n├➢ {key}debl「 Mention 」"
+                    ret += "\n├➢ {key}bl:「 On/Off 」"
+                    ret += "\n├➢ {key}unbl「 Num 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
@@ -539,13 +538,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     sendTemplate(to, data)
     elif cmd == 'wl':
                     ret = "╭───「 Help Whitelist 」"
-                    ret += "\n├➢ whitelist"
-                    ret += "\n├➢ clearwl"
-                    ret += "\n├➢ detectwl"
-                    ret += "\n├➢ addwl「 Mention 」"
-                    ret += "\n├➢ dewl「 Mention 」"
-                    ret += "\n├➢ wl:「 On/Off 」"
-                    ret += "\n├➢ unwl「 Num 」"
+                    ret += "\n├➢ {key}whitelist"
+                    ret += "\n├➢ {key}clearwl"
+                    ret += "\n├➢ {key}detectwl"
+                    ret += "\n├➢ {key}addwl「 Mention 」"
+                    ret += "\n├➢ {key}dewl「 Mention 」"
+                    ret += "\n├➢ {key}wl:「 On/Off 」"
+                    ret += "\n├➢ {key}unwl「 Num 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
@@ -559,13 +558,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     sendTemplate(to, data)
     elif cmd == 'remote':
                     ret = "╭───「 Help Remote 」"
-                    ret += "\n├➢ .openqr 「 Num 」"
-                    ret += "\n├➢ .closeqr 「 Num 」"
-                    ret += "\n├➢ .ginfo「 Num 」"
-                    ret += "\n├➢ .infomem「 Num 」"
-                    ret += "\n├➢ .mentionall 「 Num 」"
-                    ret += "\n├➢ .unsend 「 Num 」「 Numb 」"
-                    ret += "\n├➢ .spamcall 「 Num 」「 Numb 」"
+                    ret += "\n├➢ {key}openqr: 「 Num 」"
+                    ret += "\n├➢ {key}closeqr: 「 Num 」"
+                    ret += "\n├➢ {key}ginfo:「 Num 」"
+                    ret += "\n├➢ {key}infomem:「 Num 」"
+                    ret += "\n├➢ {key}mentionall: 「 Num 」"
+                    ret += "\n├➢ {key}unsend: 「 Num 」「 Numb 」"
+                    ret += "\n├➢ {key}spamcall: 「 Num 」「 Numb 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
@@ -579,10 +578,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     sendTemplate(to, data)
     elif cmd == 'spam':
                     ret = "╭───「 Help Spam 」"
-                    ret += "\n├➢ Spamcall「 Num 」"
-                    ret += "\n├➢ Spamcallto「Num」「Mention」"
-                    ret += "\n├➢ Spamtag「Num」「Mention」"
-                    ret += "\n├➢ Spamtext「Num」「Text」"
+                    ret += "\n├➢ {key}Spamcall「 Num 」"
+                    ret += "\n├➢ {key}Spamcallto「Num」「Mention」"
+                    ret += "\n├➢ {key}Spamtag「Num」「Mention」"
+                    ret += "\n├➢ {key}Spamtext「Num」「Text」"
                     ret += "\n╰───「 Bobby Selfbot 」"
                     data = {
                                            "type": "text",
@@ -692,6 +691,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             line.sendReplyMessage(msg.id, to, res)
 #================Blacklist & Whitelist================
     elif cmd.startswith("addwl "):
+      if msg._from in Creator:
             key = eval(msg.contentMetadata["MENTION"])
             key["MENTIONEES"][0]["M"]
             targets = []
@@ -699,8 +699,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 targets.append(x["M"])
             for target in targets:
                 try:
-                    settings["whitelist"].append(target)
-                    line.sendReplyMentionV2(msg_id,to,"「 Add Whitelist 」\nUser @! Added To Whitelist",[target])
+                    if target not in settings["whitelist"]:
+                        settings["whitelist"].append(target)
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Whitelist 」\nUser @! Added To Whitelist",[target])
+                    else:
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Whitelist 」\nUser @! Already In Whitelist",[target])
                 except:
                     pass
     elif cmd.startswith("delwl "):
@@ -711,8 +714,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 targets.append(x["M"])
             for target in targets:
                 try:
-                    settings["whitelist"].remove(target)
-                    line.sendReplyMentionV2(msg_id,to,"「 Delete Whitelist 」\nUser @! Deleted To Whitelist",[target])
+                    if target in settings["whitelist"]:
+                        settings["whitelist"].remove(target)
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Whitelist 」\nUser @! Deleted To Whitelist",[target])
+                    else:
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Whitelist 」\nUser @! Not In Whitelist",[target])
                 except:
                     pass
     elif cmd.startswith("addbl "):
@@ -723,8 +729,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 targets.append(x["M"])
             for target in targets:
                 try:
-                    ban["blacklist"].append(target)
-                    line.sendReplyMentionV2(msg_id,to,"「 Add Blacklist 」\nUser @! Added To Blacklist",[target])
+                    if target not in ban["blacklist"]:
+                        ban["blacklist"].append(target)
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Blacklist 」\nUser @! Added To Blacklist",[target])
+                    else:
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Blacklist 」\nUser @! Already In Blacklist",[target])
                 except:
                     pass
     elif cmd.startswith("delbl "):
@@ -735,8 +744,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 targets.append(x["M"])
             for target in targets:
                 try:
-                    ban["blacklist"].remove(target)
-                    line.sendReplyMentionV2(msg_id,to,"「 Delete Blacklist 」\nUser @! Deleted To Blacklist",[target])
+                    if target in ban["blacklist"]:
+                        ban["blacklist"].remove(target)
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Blacklist 」\nUser @! Deleted To Blacklist",[target])
+                    else:
+                        line.sendReplyMentionV2(msg_id,to,"「 Add Blacklist 」\nUser @! Not In Blacklist",[target])
                 except:
                     pass 
     elif cmd == 'blacklist':
@@ -769,16 +781,16 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 								sendMention(to, msgas, h[aa*20:(aa+1)*20])
 						else:
 							line.sendReplyMessage(msg.id,to,"「 Doesn't Have Any whitelist User -_- 」")
-    elif cmd.startswith("unbl "):
-                                    sep = text.split(" ")
-                                    number = text.replace(sep[0] + " ","")
+    elif cmd.startswith("unbl: "):
+                                    sep = text.split(":")
+                                    number = text.replace(sep[0] + ":","")
                                     blacklist = ban["blacklist"]
                                     bl = blacklist[int(number)-1]
                                     ban["blacklist"].remove(bl)
                                     line.sendReplyMessage(msg.id, to, "「 1 User Dihapus dalam blacklist 」")
-    elif cmd.startswith("unwl "):
-                                    sep = text.split(" ")
-                                    number = text.replace(sep[0] + " ","")
+    elif cmd.startswith("unwl: "):
+                                    sep = text.split(":")
+                                    number = text.replace(sep[0] + ":","")
                                     whitelist = settings["whitelist"]
                                     wl = whitelist[int(number)-1]
                                     settings["whitelist"].remove(wl)
@@ -829,28 +841,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                     for a in h[aa*20:(aa+1)*20]:
                                         no+=1
                                         if no == len(h):msgas+='\n├➢ {}. @!\n│• Blacklist Detect!!\n│• Be CareFull\n╰───[ Bobby Selfbot ]'.format(no)
-                                        else:msgas += '\n├➢ {}. @!'.format(no)
-                                    sendMention(to, msgas, h[aa*20:(aa+1)*20])
-    elif cmd == "detectwl":
-                        if msg.toType == 2:
-                            group = line.getGroup(to)
-                            nama = [contact.mid for contact in group.members]
-                            lists = []
-                            for tag in settings["whitelist"]:
-                                lists+=filter(lambda str: str == tag, nama)
-                            if lists == []:
-                                line.sendReplyMessage(msg.id, to, "「 Whitelist Not Detect 」")
-                                return
-                            if len(lists) > 0: 
-                                h = [a for a in lists]
-                                k = len(h)//20
-                                for aa in range(k+1):
-                                    if aa == 0:dd = '╭───[ Detect Whitelist ]';no=aa
-                                    else:dd = '';no=aa*20
-                                    msgas = dd
-                                    for a in h[aa*20:(aa+1)*20]:
-                                        no+=1
-                                        if no == len(h):msgas+='\n├➢ {}. @!\n│• Whitelist Detect!!\n╰───[ Bobby Selfbot ]'.format(no)
                                         else:msgas += '\n├➢ {}. @!'.format(no)
                                     sendMention(to, msgas, h[aa*20:(aa+1)*20])
 #================Protection================
@@ -2346,9 +2336,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             else:
                 msgas = 'Sorry @!In {} nothink get a mention'.format(line.getGroup(to).name)
                 sendMention(to, msgas, [sender])
-    elif cmd.startswith(".ginfo "):
-        sep = msg.text.split(" ")
-        num = msg.text.replace(sep[0] + " ","")
+    elif cmd.startswith("ginfo: "):
+        sep = msg.text.split(":")
+        num = msg.text.replace(sep[0] + ":","")
         gids = line.getGroupIdsJoined()
         gid = gids[int(num) - 1]
         group = line.getCompactGroup(gid)
@@ -2675,9 +2665,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 if res.startswith('\n'): res = res[1:]
                 line.sendMessage(to, res)
             res = ''
-    elif cmd.startswith('.infomem '):
-                                    separate = msg.text.split(" ")
-                                    number = msg.text.replace(separate[0] + " ","")
+    elif cmd.startswith('infomem: '):
+                                    separate = msg.text.split(":")
+                                    number = msg.text.replace(separate[0] + ":","")
                                     groups = line.getGroupIdsJoined()
                                     ret_ = ""
                                     try:
@@ -2691,9 +2681,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                         line.sendReplyMessage(msg.id, to," Group Name : [ " + str(G.name) + " ]\n\n   [ List Member ]\n" + ret_ + "\n\nTotal %i Members" % len(G.members))
                                     except:
                                            pass
-    elif cmd.startswith(".openqr "):
-                                    sep = text.split(" ")
-                                    number = text.replace(sep[0] + " ","")
+    elif cmd.startswith("openqr: "):
+                                    sep = text.split(":")
+                                    number = text.replace(sep[0] + ":","")
                                     groups = line.getGroupIdsJoined()
                                     group = groups[int(number)-1]
                                     G = line.getGroup(group)
@@ -2702,9 +2692,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                     url = line.reissueGroupTicket(group)
                                     ticket = 'Sukses Remoted Commands\nOpen qr in groups {}\nlink: https://line.me/R/ti/g/{}'.format(G.name,url)
                                     line.sendReplyMessage(msg.id,to,ticket)
-    elif cmd.startswith(".closeqr "):
-                                    sep = text.split(" ")
-                                    number = text.replace(sep[0] + " ","")
+    elif cmd.startswith("closeqr: "):
+                                    sep = text.split(":")
+                                    number = text.replace(sep[0] + ":","")
                                     groups = line.getGroupIdsJoined()
                                     group = groups[int(number)-1]
                                     G = line.getGroup(group)
@@ -3077,8 +3067,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             thread1.start()
             thread1.join()
         line.unsendMessage(msg.id)
-    elif cmd.startswith('.unsend '):
-        sep = text.split(" ")
+    elif cmd.startswith('unsend: '):
+        sep = text.split(":")
         num = int(sep[1])
         numb = int(sep[2])
         sep2 = text.replace(sep[0] + ' ','')
@@ -3189,8 +3179,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret_ += "\n├➢ @!"
                 ret_ += "\n╰───[ Total {} Spam call]".format(str(dan[1]))
                 sendMention(to, ret_, lists)
-    elif cmd.startswith('.spamcall '):
-        sep = text.split(" ")
+    elif cmd.startswith('spamcall: '):
+        sep = text.split(":")
         num = int(sep[1])
         numb = int(sep[2])
         sep2 = text.replace(sep[0] + ' ','')
@@ -3243,6 +3233,36 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                            res += '\nTanggal : ' + datetime.strftime(timeNow,'%d-%m-%Y')
                                            res += '\nJam : ' +  datetime.strftime(timeNow,'%H:%M:%S')
                                            line.sendReplyMessage(msg.id, to, res)
+    elif cmd == 'clearchat':
+                    line.removeAllMessages(op.param2)
+                    line.sendMessage(to, "Allchat deleted")
+    elif cmd == 'autolike on':
+                    settings["autolike"] = True
+                    line.sendMessage(to, "Auto like actived")
+    elif cmd == 'autolike off':
+                    settings["autolike"] = False
+                    line.sendMessage(to, "Auto like non actived")
+    elif cmd == 'autocomment on':
+                    settings["autokomen"] = True
+                    line.sendMessage(to, "Auto comment actived")
+    elif cmd == 'autocomment off':
+                    settings["autokomen"] = False
+                    line.sendMessage(to, "Auto comment non actived")
+    elif cmd.startswith("spamcall "):
+                                if msg.toType == 2:
+                                    sep = text.split(" ")
+                                    strnum = text.replace(sep[0] + " ","")
+                                    num = int(strnum)
+                                    line.sendMessage(to, "Succesfully Spam Call to Group")
+                                    for var in range(0,num):
+                                       group = line.getGroup(to)
+                                       members = [mem.mid for mem in group.members]
+                                       line.acquireGroupCallRoute(to)
+                                       line.inviteIntoGroupCall(to, contactIds=members)
+    elif cmd == "gift":
+                                line.generateReplyMessage(msg.id)
+                                line.sendReplyMessage(msg.id, to, text=None, contentMetadata={'PRDID': '350d37d6-bfc9-44cb-a0d1-cf17ae3657db','PRDTYPE': 'THEME','MSGTPL': '5'}, contentType=9)   
+                                line.sendMessage(to, "for you")
 def executeOp(op):
     try:
         print ('++ Operation : ( %i ) %s' % (op.type, OpType._VALUES_TO_NAMES[op.type].replace('_', ' ')))
@@ -3293,7 +3313,7 @@ def executeOp(op):
                 else:pass
                 if op.param2 not in ban["blacklist"]:
                     if op.param2 not in settings["whitelist"]:
-                        wait['blacklist'].append(op.param2)
+                        ban["blacklist"].append(op.param2)
                     else:pass
                 else:pass
             if op.param1 in settings["protectinvite"]:
@@ -3418,147 +3438,6 @@ def executeOp(op):
                     ban["blacklist"].append(op.param2)
                     line.kickoutFromGroup(op.param1,[op.param2])
                 else:pass
-        if op.type == 25:
-            print ("++ Operation : ( 25 ) SEND MESSAGE")
-            msg = op.message
-            text = msg.text
-            msg_id = msg.id
-            receiver = msg.to
-            sender = msg._from
-            if msg.toType == 0:
-                if sender != line.profile.mid:
-                    to = sender
-                else:
-                    to = receiver
-            else:
-                to = receiver
-            if msg.contentType == 0:
-                if text is None:
-                    return
-                if text.lower() == 'clearchat':
-                    line.removeAllMessages(op.param2)
-                    line.sendMessage(to, "Allchat deleted")
-                elif text.lower() == 'autolike on':
-                    settings["autolike"] = True
-                    line.sendMessage(to, "Auto like actived")
-                elif text.lower() == 'autolike off':
-                    settings["autolike"] = False
-                    line.sendMessage(to, "Auto like non actived")
-                elif text.lower() == 'autocomment on':
-                    settings["autokomen"] = True
-                    line.sendMessage(to, "Auto comment actived")
-                elif text.lower() == 'autocomment off':
-                    settings["autokomen"] = False
-                    line.sendMessage(to, "Auto comment non actived")
-                elif msg.text.lower().startswith("allmid"):
-                                if msg.toType == 2:
-                                    group = line.getGroup(to)
-                                    num = 0
-                                    ret_ = "╭───[ Mid List On Group {} ]".format(group.name)
-                                    for contact in group.members:
-                                        num += 1
-                                        ret_ += "\n├➢ {}.{}\n├➢ {}".format(num, contact.displayName, contact.mid)
-                                    ret_ += "\n╰───[ Total {} Members ]".format(len(group.members))
-                                    line.sendReplyMessage(msg_id, to, ret_)
-                elif msg.text.lower().startswith("spamcall "):
-                                if msg.toType == 2:
-                                    sep = text.split(" ")
-                                    strnum = text.replace(sep[0] + " ","")
-                                    num = int(strnum)
-                                    line.sendMessage(to, "Succesfully Spam Call to Group")
-                                    for var in range(0,num):
-                                       group = line.getGroup(to)
-                                       members = [mem.mid for mem in group.members]
-                                       line.acquireGroupCallRoute(to)
-                                       line.inviteIntoGroupCall(to, contactIds=members)
-                elif msg.text.lower().startswith("gift"):
-                                line.generateReplyMessage(msg.id)
-                                line.sendReplyMessage(msg.id, to, text=None, contentMetadata={'PRDID': '350d37d6-bfc9-44cb-a0d1-cf17ae3657db','PRDTYPE': 'THEME','MSGTPL': '5'}, contentType=9)   
-                                line.sendMessage(to, "for you")
-                elif msg.text.lower().startswith("ytmp4 "):
-                            try:
-                                sep = msg.text.split(" ")
-                                textToSearch = msg.text.replace(sep[0] + " ","")
-                                query = urllib.parse.quote(textToSearch)
-                                search_url="https://www.youtube.com/results?search_query="
-                                mozhdr = {'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'}
-                                sb_url = search_url + query
-                                sb_get = requests.get(sb_url, headers = mozhdr)
-                                soupeddata = BeautifulSoup(sb_get.content, "html.parser")
-                                yt_links = soupeddata.find_all("a", class_ = "yt-uix-tile-link")
-                                x = (yt_links[1])
-                                yt_href =  x.get("href")
-                                yt_href = yt_href.replace("watch?v=", "")
-                                qx = "https://youtu.be" + str(yt_href)
-                                vid = pafy.new(qx)
-                                stream = vid.streams
-                                best = vid.getbest()
-                                best.resolution, best.extension
-                                for s in stream:
-                                    me = best.url
-                                    hasil = ""
-                                    arifistifik = "╭───[SEARCHING]"
-                                    title = "\n├➢ Judul: " + vid.title + ""
-                                    author = '\n├➢ Author : ' + str(vid.author)
-                                    durasi = '\n├➢ Duration : ' + str(vid.duration)
-                                    suka = '\n├➢ Likes : ' + str(vid.likes)
-                                    rating = '\n├➢ Rating : ' + str(vid.rating)
-                                    dpk = '\n╰───[ Bobby Selfbot ]'
-                                line.sendVideoWithURL(msg.to, me)
-                                line.sendMessage(msg.to,arifistifik+ title+ author+ durasi+ suka+ rating+ dpk)
-                            except Exception as e:
-                                line.sendMessage(msg.to,str(e))
-                elif msg.text.lower().startswith("ytmp3 "):
-                            try:
-                                sep = msg.text.split(" ")
-                                textToSearch = msg.text.replace(sep[0] + " ","")
-                                query = urllib.parse.quote(textToSearch)
-                                search_url="https://www.youtube.com/results?search_query="
-                                mozhdr = {'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'}
-                                sb_url = search_url + query
-                                sb_get = requests.get(sb_url, headers = mozhdr)
-                                soupeddata = BeautifulSoup(sb_get.content, "html.parser")
-                                yt_links = soupeddata.find_all("a", class_ = "yt-uix-tile-link")
-                                x = (yt_links[1])
-                                yt_href =  x.get("href")
-                                yt_href = yt_href.replace("watch?v=", "")
-                                qx = "https://youtu.be" + str(yt_href)
-                                vid = pafy.new(qx)
-                                stream = vid.streams
-                                best = vid.getbest()
-                                best.resolution, best.extension
-                                for s in stream:
-                                    me = best.url
-                                    hasil = ""
-                                    arifistifik = "╭───[SEARCHING]"
-                                    title = "\n├➢ Judul: " + vid.title + ""
-                                    author = '\n├➢ Author : ' + str(vid.author)
-                                    durasi = '\n├➢ Duration : ' + str(vid.duration)
-                                    suka = '\n├➢ Likes : ' + str(vid.likes)
-                                    rating = '\n├➢ Rating : ' + str(vid.rating)
-                                    dpk = '\n╰───[ Bobby Selfbot ]'
-                                line.sendAudioWithURL(msg.to, me)
-                                line.sendMessage(msg.to,arifistifik+ title+ author+ durasi+ suka+ rating+ dpk)
-                            except Exception as e:
-                                line.sendMessage(msg.to,str(e))
-                elif msg.text.lower().startswith("instagram "):
-                                sep = msg.text.split(" ")
-                                instagram = msg.text.replace(sep[0] + " ","")
-                                response = requests.get("https://www.instagram.com/"+instagram+"?__a=1")
-                                data = response.json()
-                                namaIG = str(data['graphql']['user']['full_name'])
-                                bioIG = str(data['graphql']['user']['biography'])
-                                mediaIG = str(data['graphql']['user']['edge_owner_to_timeline_media']['count'])
-                                verifIG = str(data['graphql']['user']['is_verified'])
-                                usernameIG = str(data['graphql']['user']['username'])
-                                followerIG = str(data['graphql']['user']['edge_followed_by']['count'])
-                                profileIG = data['graphql']['user']['profile_pic_url_hd']
-                                privateIG = str(data['graphql']['user']['is_private'])
-                                followIG = str(data['graphql']['user']['edge_follow']['count'])
-                                link = "• Link : " + "https://www.instagram.com/" + instagram
-                                text = "「 Instagram User 」\n• Name : "+namaIG+"\n• Username : "+usernameIG+"\n• Follower : "+followerIG+"\n• Following : "+followIG+"\n• Total post : "+mediaIG+"\n• Verified : "+verifIG+"\n• Private : "+privateIG+"\n• Biography : "+bioIG+"" "\n" + link
-                                line.sendImageWithURL(msg.to, profileIG)
-                                line.sendMessage(msg.to, str(text))
         if op.type == 25 or op.type == 26:
             print ("++ Operation : ( [25:26]) AUTOLIKE MESSAGE")
             msg = op.message
