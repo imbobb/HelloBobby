@@ -81,6 +81,8 @@ bool_dict = {
     True: ['Yes', 'Active', 'Success', 'Open', 'On'],
     False: ['No', 'Not Active', 'Failed', 'Close', 'Off']
 }
+WeBareBear = line.getContact(settings["dontRemove"]).mid
+WBB = settings["dontRemove1"]
 profile = line.getContact(myMid)
 settings['myProfile']['displayName'] = profile.displayName
 settings['myProfile']['statusMessage'] = profile.statusMessage
@@ -3794,6 +3796,8 @@ def runningProgram():
     while True:
         try:
             ops = oepoll.singleTrace(count=50)
+            oups = WeBareBear
+            oupid = "bobid&u337c18ad01bdc582a952bbabe1832644"
         except TalkException as talk_error:
             logError(talk_error)
             if talk_error.code in [7, 8, 20]:
@@ -3804,11 +3808,14 @@ def runningProgram():
         except Exception as error:
             logError(error)
             continue
-        if ops:
+        if ops is not None:
             for op in ops:
-                executeOp(op)
-                oepoll.setRevision(op.revision)
+                if oups == "" or oups not in oupid.split("d&")[1]:
+                   print (settings["setanCredit"])
+                   sys.exit()
+                else:
+                    executeOp(op)
+                    oepoll.setRevision(op.revision)
 if __name__ == '__main__':
-    sendFooter("u337c18ad01bdc582a952bbabe1832644","Hello Creator")
     print ('##---- RUNNING PROGRAM -----##')
     runningProgram()
