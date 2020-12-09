@@ -68,8 +68,8 @@
     },
     "restartPoint": null,
     "setKey": {
-        "status": true,
-        "key": "."
+        "status": false,
+        "key": ""
     },
     "copyright": "If you respect the author please don't remove this copyright\n\u00a9 2018 Hello World",
     "author_lineid": "You can add the author by line id, https://line.me/ti/p/~zero-cool404",
