@@ -32,9 +32,7 @@
     "protectjoin": [],
     "protectcancel": [],
     "protectqr": [],
-    "whitelist": [
-        "ue5e2105c559b424352e289e631b57e48"
-    ],
+    "whitelist": [],
     "blacklist": [],
     "selfbackup": [],
     "livetime": [],
@@ -59,10 +57,10 @@
         }
     },
     "myProfile": {
-        "coverId": "279a819c4c12f4010f568674ebd56126",
-        "displayName": "\ud835\udc47\ud835\udc67\u2022\u0280\u1d00\u1d05\u1d07\u1d22\u2022\u306e\ud83d\udca2\ud83d\udc8e",
-        "pictureStatus": "0hNRtNgpJdEX1JNziCCyZuKnVyHxA-GRc1MVRaST8zHEVkBgIpclBXHWo1GkpjB1YsJQJXSW4-Rk1h",
-        "statusMessage": "-\u0280\u1d07\u1d00-\n\n\ua731\u029f\u0280\n\ua731\u026a\u0299\u1d1c\u1d0b \u1d0b\u1d07\u0280\u1d0a\u1d00 & \u1d0b\u1d1c\u029f\u026a\u1d00\u029c\n\n\u0274\u1d0f \u1d0f\u0274\u1d07 \u1d04\u1d00\u0274 \u1d0a\u1d1c\u1d05\u0262\u1d07 \u1d0d\u1d07\n\n\u1d18\u1d00\u0280\u1d1b \u1d0f\ua730:\n\u1d21\u1d07 \u0299\u1d00\u0280\u1d07 \u0299\u1d07\u1d00\u0280\ua731 \u1d04\u1d0f\u0280\u1d18\ua731\u2122"
+        "coverId": "c0000000000000000000000000000001",
+        "displayName": "AKUN PP DEPRESI",
+        "pictureStatus": null,
+        "statusMessage": ""
     },
     "mimic": {
         "status": false,
@@ -70,11 +68,12 @@
     },
     "restartPoint": null,
     "setKey": {
-        "status": false,
-        "key": ""
+        "status": true,
+        "key": "."
     },
     "copyright": "If you respect the author please don't remove this copyright\n\u00a9 2018 Hello World",
     "author_lineid": "You can add the author by line id, https://line.me/ti/p/~zero-cool404",
+    "lable": "https://lin.ee/hzZujuI",
     "changevp": false,
     "changeProfileVideo": false,
     "updateProfile": false,

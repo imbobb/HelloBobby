@@ -39,7 +39,7 @@ parser.add_argument('-T', '--traceback', type=str2bool, nargs='?', default=False
 parser.add_argument('-S', '--showqr', type=str2bool, nargs='?', default=False, metavar='', required=False, const=True, choices=[True, False], help='Show QR | Use : True/False')
 args = parser.parse_args()
 listAppType = ['DESKTOPWIN', 'DESKTOPMAC', 'IOSIPAD', 'CHROMEOS']
-line = LINE("email","pw") #Input Your Email and Password Here
+line = LINE("farranrafael9@gmail.com","Massada_12345") #Input Your Email and Password Here
 #=======================================================================================================================
 myMid = line.profile.mid
 programStart = time.time()
@@ -264,17 +264,28 @@ def replaceAll(text, dic):
     for i, j in rep_this:
         text = text.replace(i, j)
     return text
+def sendFooter(to, isi):
+    data = {
+        "type": "text",
+        "text": isi,
+        "sentBy": {
+            "label": "We Bare Bears Corps™",
+            "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
+            "linkUrl": settings["lable"] # DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
+        }
+    }
+    sendTemplate(to, data)
 def help():
     if settings['setKey']['status'] == True:
         key = settings['setKey']['key']
     else:
         key = ''
     help =   "╭───「 Help 」" + "\n" + \
-             "├➢ " + key + "Group" + "\n" + \
-             "├➢ " + key + "Remote" + "\n" + \
-             "├➢ " + key + "Kick" + "\n" + \
-             "├➢ " + key + "Spam" + "\n" + \
-             "├➢ " + key + "Setting" + "\n" + \
+             "├➢ " + key + "group" + "\n" + \
+             "├➢ " + key + "remote" + "\n" + \
+             "├➢ " + key + "kick" + "\n" + \
+             "├➢ " + key + "spam" + "\n" + \
+             "├➢ " + key + "setting" + "\n" + \
              "╰───「 Bobby Selfbot 」"
     return help
 def special():
@@ -283,24 +294,24 @@ def special():
     else:
         key = ''
     helpGroup =   "╭───「 Help Group 」" + "\n" + \
-                    "├➢ " + key + "Groupinfo" + "\n" + \
-                    "├➢ " + key + "Grouplist" + "\n" + \
-                    "├➢ " + key + "InvitationList" + "\n" + \
-                    "├➢ " + key + "Invt「 Mention 」" + "\n" + \
-                    "├➢ " + key + "Xinvt「 Reply 」" + "\n" + \
-                    "├➢ " + key + "Openqr" + "\n" + \
-                    "├➢ " + key + "Closeqr" + "\n" + \
-                    "├➢ " + key + "Bl" + "\n" + \
-                    "├➢ " + key + "Wl" + "\n" + \
-                    "├➢ " + key + "Protect:set" + "\n" + \
-                    "├➢ " + key + "Protect:list" + "\n" + \
-                    "├➢ " + key + "Changegroupname「 Name 」" + "\n" + \
-                    "├➢ " + key + "Changegrouppict" + "\n" + \
-                    "├➢ " + key + "Lastseen「 Mention 」" + "\n" + \
-                    "├➢ " + key + "Find「 Mention 」" + "\n" + \
-                    "├➢ " + key + "Check mention" + "\n" + \
-                    "├➢ " + key + "Delcheckmention" + "\n" + \
-                    "├➢ " + key + "Mentionall" + "\n" + \
+                    "├➢ " + key + "groupinfo" + "\n" + \
+                    "├➢ " + key + "grouplist" + "\n" + \
+                    "├➢ " + key + "invitationList" + "\n" + \
+                    "├➢ " + key + "invite「 Mention 」" + "\n" + \
+                    "├➢ " + key + "xinvt「 Reply 」" + "\n" + \
+                    "├➢ " + key + "openqr" + "\n" + \
+                    "├➢ " + key + "closeqr" + "\n" + \
+                    "├➢ " + key + "bl" + "\n" + \
+                    "├➢ " + key + "wl" + "\n" + \
+                    "├➢ " + key + "protect:set" + "\n" + \
+                    "├➢ " + key + "protect:list" + "\n" + \
+                    "├➢ " + key + "changegroupname「 Name 」" + "\n" + \
+                    "├➢ " + key + "changegrouppict" + "\n" + \
+                    "├➢ " + key + "lastseen「 Mention 」" + "\n" + \
+                    "├➢ " + key + "find「 Mention 」" + "\n" + \
+                    "├➢ " + key + "check mention" + "\n" + \
+                    "├➢ " + key + "clear mention" + "\n" + \
+                    "├➢ " + key + "mentionall" + "\n" + \
                     "╰───「 Bobby Selfbot 」"
     return helpGroup
 def helpsettings():
@@ -309,16 +320,16 @@ def helpsettings():
     else:
         key = ''
     helpSettings =   "╭───「 Help Setting 」" + "\n" + \
-                    "├➢ " + key + "AutoAdd「On/Off」" + "\n" + \
-                    "├➢ " + key + "AutoJoin「On/Off」" + "\n" + \
-                    "├➢ " + key + "AutoJoinTicket「On/Off」" + "\n" + \
-                    "├➢ " + key + "AutoRead「On/Off」" + "\n" + \
-                    "├➢ " + key + "AutoRespon「On/Off」" + "\n" + \
-                    "├➢ " + key + "CheckContact「On/Off」" + "\n" + \
-                    "├➢ " + key + "CheckPost「On/Off」" + "\n" + \
-                    "├➢ " + key + "CheckSticker「On/Off」" + "\n" + \
-                    "├➢ " + key + "Unsend「On/Off」" + "\n" + \
-                    "├➢ " + key + "Sider「On/Off」" + "\n" + \
+                    "├➢ " + key + "autoAdd「On/Off」" + "\n" + \
+                    "├➢ " + key + "autoJoin「On/Off」" + "\n" + \
+                    "├➢ " + key + "autoJoinTicket「On/Off」" + "\n" + \
+                    "├➢ " + key + "autoRead「On/Off」" + "\n" + \
+                    "├➢ " + key + "autoRespon「On/Off」" + "\n" + \
+                    "├➢ " + key + "checkContact「On/Off」" + "\n" + \
+                    "├➢ " + key + "checkPost「On/Off」" + "\n" + \
+                    "├➢ " + key + "checkSticker「On/Off」" + "\n" + \
+                    "├➢ " + key + "unsend「On/Off」" + "\n" + \
+                    "├➢ " + key + "sider「On/Off」" + "\n" + \
                     "╰───「 Bobby Selfbot 」"
     return helpSettings
 def parsingRes(res):
@@ -437,65 +448,38 @@ def restoreProfile():
 def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     if cmd == 'mute':
         if to in silent['silent']:
-            line.sendReplyMessage(msg.id, to, 'you have to Mute this group :)\nPlease Usage Commands "unmute" ')
+            sendFooter(to, 'you have to Mute this group :)\nPlease Usage Commands "unmute" ')
         else:
             silent['silent'].append(to)
-            line.sendReplyMessage(msg.id, to, 'Bot cant Not Operation again♪')
+            sendFooter(to, 'Bot cant Not Operation again♪')
     elif cmd == 'unmute':
         if to not in silent['silent']:
-            line.sendReplyMessage(msg.id, to, "you haven't  this group :)")
+            sendFooter(to, "you haven't  this group :)")
         else:
             silent['silent'].remove(to)
-            line.sendReplyMessage(msg.id, to, 'Bot can Operation again♪')
+            sendFooter(to, 'Bot can Operation again♪')
     if to in silent['silent']:
         return
     if cmd == 'logout':
-        line.sendMessage(to, 'Selfbot will logged out')
+        sendFooter(to, 'Selfbot will logged out')
         sys.exit('##----- PROGRAM STOPPED -----##')
     elif cmd == 'logoutdevicee':
         line.logout()
         sys.exit('##----- CLIENT LOGOUT -----##')
     elif cmd == 'restart':
-        line.sendMessage(to, 'Bot will restarting, please wait until the bot can operate ♪')
+        sendFooter(to, 'Bot will restarting, please wait until the bot can operate ♪')
         settings['restartPoint'] = to
         restartProgram()
 #================Menu Help================
     elif cmd == 'help':
                     Help = help()
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(Help)),
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,Help)
     elif cmd == 'group':
                     Group = special()
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(Group)),
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,Group)
     elif cmd == 'setting':
                     helpSettings = helpsettings()
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(helpSettings)),
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,helpSettings)
     elif cmd == 'kick':
                     ret = "╭───「 Help Kick 」"
                     ret += "\n├➢ {key}Kickall"
@@ -506,16 +490,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ {key}Mkick「 Mention 」"
                     ret += "\n├➢ {key}Xkick「 Reply 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(ret)),
-                                           "sentBy": {
-                                           "label":"{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,parsingRes(ret).format_map(SafeDict(key=setKey.title())))
     elif cmd == 'bl':
                     ret = "╭───「 Help Blacklist 」"
                     ret += "\n├➢ {key}blacklist"
@@ -526,16 +501,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ {key}bl:「 On/Off 」"
                     ret += "\n├➢ {key}unbl「 Num 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(ret)),
-                                           "sentBy": {
-                                           "label":"{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imbobby_",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,parsingRes(ret).format_map(SafeDict(key=setKey.title())))
     elif cmd == 'wl':
                     ret = "╭───「 Help Whitelist 」"
                     ret += "\n├➢ {key}whitelist"
@@ -546,36 +512,18 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ {key}wl:「 On/Off 」"
                     ret += "\n├➢ {key}unwl「 Num 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(ret)),
-                                           "sentBy": {
-                                           "label":"{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imbobby_",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,parsingRes(ret).format_map(SafeDict(key=setKey.title())))
     elif cmd == 'remote':
                     ret = "╭───「 Help Remote 」"
-                    ret += "\n├➢ {key}openqr: 「 Num 」"
-                    ret += "\n├➢ {key}closeqr: 「 Num 」"
-                    ret += "\n├➢ {key}ginfo:「 Num 」"
-                    ret += "\n├➢ {key}infomem:「 Num 」"
-                    ret += "\n├➢ {key}mentionall: 「 Num 」"
-                    ret += "\n├➢ {key}unsend: 「 Num 」「 Numb 」"
-                    ret += "\n├➢ {key}spamcall: 「 Num 」「 Numb 」"
+                    ret += "\n├➢ openqr 「 Num 」"
+                    ret += "\n├➢ closeqr 「 Num 」"
+                    ret += "\n├➢ ginfo「 Num 」"
+                    ret += "\n├➢ infomem「 Num 」"
+                    ret += "\n├➢ mentionall 「 Num 」"
+                    ret += "\n├➢ unsend 「 Num 」「 Numb 」"
+                    ret += "\n├➢ spamcall 「 Num 」「 Numb 」"
                     ret += "\n╰───「 Bobby Selfbot 」"
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(ret)),
-                                           "sentBy": {
-                                           "label":"{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,ret)
     elif cmd == 'spam':
                     ret = "╭───「 Help Spam 」"
                     ret += "\n├➢ {key}Spamcall「 Num 」"
@@ -583,34 +531,16 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret += "\n├➢ {key}Spamtag「Num」「Mention」"
                     ret += "\n├➢ {key}Spamtext「Num」「Text」"
                     ret += "\n╰───「 Bobby Selfbot 」"
-                    data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(ret)),
-                                           "sentBy": {
-                                           "label":"{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-                    sendTemplate(to, data)
+                    sendFooter(to,parsingRes(ret).format_map(SafeDict(key=setKey.title())))
 #================BATAS================
     elif cmd == 'speed':
             debugs = debug()
-            data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(debugs)),
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-            sendTemplate(to, data)
+            sendFooter(to,debugs)
     elif cmd == 'me':
         line.sendMessageMusic(to, title=line.getContact(myMid).displayName, subText=str(line.getContact(myMid).statusMessage), url='https://line.me/ti/p/~imsnowball', iconurl="http://dl.profile.line-cdn.net/{}".format(line.getContact(myMid).pictureStatus), contentMetadata={})
     elif cmd == 'runtime':
         runtime = time.time() - programStart
-        line.sendMessage(to, 'Bot already running on ' + format_timespan(runtime))
+        sendFooter(to, 'Bot already running on ' + format_timespan(runtime))
     elif cmd == 'creator':
         line.sendContact(to, 'u337c18ad01bdc582a952bbabe1832644')
     elif cmd == 'cekbot':
@@ -637,27 +567,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         ret_ += "\n├➢ Cancel: {}".format(sil2)
         ret_ += "\n├➢ Add: {}".format(sil3)
         ret_ += "\n╰───[ Bobby Selfbot ]"
-        data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(ret_)),
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imbobby_",
-                                         }
-                                     }
-        sendTemplate(to, data)
+        sendFooter(to,ret_)
     elif cmd == "byeme":
-        data = {
-                                           "type": "text",
-                                           "text": "See you again",
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imsnowball",
-                                         }
-                                     }
-        sendTemplate(to, data)
+        text = "See You Again"
+        sendFooter(to,text)
         G = line.getGroup(to)
         line.leaveGroup(to)
 #================FOR USE VPS (VIRTUAL PRIVAT SERVER)================
@@ -674,24 +587,14 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             res += "\n├➢ Total Memory: {}".format(mem)
             res += "\n├➢ Free Memory: {}".format(fr)
             res += '\n╰───[ Bobby Selfbot ]'
-            data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(res)),
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imbobby_",
-                                         }
-                                     }
-            sendTemplate(to, data)
+            sendFooter(to,res)
     elif cmd == "clears":
             a = os.popen('echo 1 | sudo tee /proc/sys/vm/drop_caches\necho 2 | sudo tee /proc/sys/vm/drop_caches\necho 3 | sudo tee /proc/sys/vm/drop_caches\n').read()
             b = os.popen('cd / && cd tmp && rm *.bin').read()
             res = "Success clear cache Vps"
-            line.sendReplyMessage(msg.id, to, res)
+            sendFooter(to, res)
 #================Blacklist & Whitelist================
     elif cmd.startswith("addwl "):
-      if msg._from in Creator:
             key = eval(msg.contentMetadata["MENTION"])
             key["MENTIONEES"][0]["M"]
             targets = []
@@ -765,7 +668,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 									else:msgas += '\n├➢ {}. @!'.format(no)
 								sendMention(to, msgas, h[aa*20:(aa+1)*20])
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Doesn't Have Any Blacklist User -_- 」")
+							sendFooter(to,"「 Doesn't Have Any Blacklist User -_- 」")
     elif cmd == 'whitelist':
 						if len(settings["whitelist"]) > 0:
 							h = [a for a in settings["whitelist"]]
@@ -780,47 +683,47 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 									else:msgas += '\n├➢ {}. @!'.format(no)
 								sendMention(to, msgas, h[aa*20:(aa+1)*20])
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Doesn't Have Any whitelist User -_- 」")
+							sendFooter(to,"「 Doesn't Have Any whitelist User -_- 」")
     elif cmd.startswith("unbl: "):
                                     sep = text.split(":")
                                     number = text.replace(sep[0] + ":","")
                                     blacklist = ban["blacklist"]
                                     bl = blacklist[int(number)-1]
                                     ban["blacklist"].remove(bl)
-                                    line.sendReplyMessage(msg.id, to, "「 1 User Dihapus dalam blacklist 」")
+                                    sendFooter(to, "「 1 User Dihapus dalam blacklist 」")
     elif cmd.startswith("unwl: "):
                                     sep = text.split(":")
                                     number = text.replace(sep[0] + ":","")
                                     whitelist = settings["whitelist"]
                                     wl = whitelist[int(number)-1]
                                     settings["whitelist"].remove(wl)
-                                    line.sendReplyMessage(msg.id, to, "「 1 User Dihapus dalam whitelist 」")
+                                    sendFooter(to, "「 1 User Dihapus dalam whitelist 」")
     elif cmd == 'clearbl':
 						if len(ban["blacklist"]) > 0:
-							line.sendReplyMessage(msg.id, to, "「 {} User Dihapus dalam blacklist 」".format(len(ban["blacklist"])))
+							sendFooter(to, "「 {} User Dihapus dalam blacklist 」".format(len(ban["blacklist"])))
 							ban["blacklist"].clear()
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Tidak Ada Blacklist User -_- 」")
+							sendFooter(to,"「 Tidak Ada Blacklist User -_- 」")
     elif cmd == 'clearwl':
 						if len(settings["whitelist"]) > 0:
-							line.sendReplyMessage(msg.id, to, "「 {} User Dihapus dalam whitelist 」".format(len(settings["whitelist"])))
+							sendFooter(to, "「 {} User Dihapus dalam whitelist 」".format(len(settings["whitelist"])))
 							settings["whitelist"].clear()
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Tidak Ada whitelist User -_- 」")
+							sendFooter(to,"「 Tidak Ada whitelist User -_- 」")
     elif cmd == "bl:on":
                                 wait["wblacklist"] = True
-                                line.sendReplyMessage(msg.id, to,"「 Blacklist 」\nPlease Send Contact To Add ^_^")
+                                sendFooter(to,"「 Blacklist 」\nPlease Send Contact To Add ^_^")
 
     elif cmd == "bl:off":
                                 wait["dblacklist"] = True
-                                line.sendReplyMessage(msg.id, to,"「 Blacklist 」\nPlease Send Contact To Delete ^_^")
+                                sendFooter(to,"「 Blacklist 」\nPlease Send Contact To Delete ^_^")
     elif cmd == "wl:on":
                                 wait["wwhitelist"] = True
-                                line.sendReplyMessage(msg.id, to,"「 Whitelist 」\nPlease Send Contact To Add ^_^")
+                                sendFooter(to,"「 Whitelist 」\nPlease Send Contact To Add ^_^")
 
     elif cmd == "wl:off":
                                 wait["dwhitelist"] = True
-                                line.sendReplyMessage(msg.id, to,"「 Whitelist 」\nPlease Send Contact To Delete ^_^")
+                                sendFooter(to,"「 Whitelist 」\nPlease Send Contact To Delete ^_^")
     elif cmd == "detectbl":
                         if msg.toType == 2:
                             group = line.getGroup(to)
@@ -858,56 +761,47 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                 else: md+="┣ Lock Cancel 「🔓」"
                                 ret_ = str(md)
                                 ret_ += "\n┣━━「 Protect Command 」"
-                                ret_ += "\n┣ lock:qr「 On/Off 」"
-                                ret_ += "\n┣ lock:join「 On/Off 」"
-                                ret_ += "\n┣ lock:kick「 On/Off 」"
-                                ret_ += "\n┣ deny:invite「 On/Off 」"
-                                ret_ += "\n┣ lock:cancel「 On/Off 」"
-                                ret_ += "\n┣ max:protection「 On/Off 」"
+                                ret_ += "\n┣ {key}lock:qr「 On/Off 」"
+                                ret_ += "\n┣ {key}lock:join「 On/Off 」"
+                                ret_ += "\n┣ {key}lock:kick「 On/Off 」"
+                                ret_ += "\n┣ {key}deny:invite「 On/Off 」"
+                                ret_ += "\n┣ {key}lock:cancel「 On/Off 」"
+                                ret_ += "\n┣ {key}max:protection「 On/Off 」"
                                 ret_ += "\n┣━━「 Symbol Details 」"
                                 ret_ += "\n┣「🔒」: On/True/Enabled"
                                 ret_ += "\n┣「🔓」: Off/False/Disabled"
                                 ret_ += "\n┗━━━「 Bobby Selfbot 」"
-                                data = {
-                                           "type": "text",
-                                           "text": "{}".format(str(ret_)),
-                                           "sentBy": {
-                                           "label": "{}".format(line.getContact(myMid).displayName),
-                                           "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                           "linkUrl": "https://line.me/ti/p/~imbobby_",
-                                         }
-                                     }
-                                sendTemplate(to, data)
+                                sendFooter(to,parsingRes(ret_).format_map(SafeDict(key=setKey.title())))
     elif cmd == 'clear lock:join':
 						if len(settings["protectjoin"]) > 0:
-							line.sendReplyMessage(msg.id, to, "「 {} List Cleared All Lock Join 」".format(len(settings["protectjoin"])))
+							sendFooter(to, "「 {} List Cleared All Lock Join 」".format(len(settings["protectjoin"])))
 							settings["protectjoin"].clear()
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Doesn't List Lock Join -_- 」")
+							sendFooter(to,"「 Doesn't List Lock Join -_- 」")
     elif cmd == 'clear lock:kick':
 						if len(settings["protectkick"]) > 0:
-							line.sendReplyMessage(msg.id, to, "「 {} Clear List Cleared All Lock Kick 」".format(len(settings["protectkick"])))
+							sendFooter(to, "「 {} Clear List Cleared All Lock Kick 」".format(len(settings["protectkick"])))
 							settings["protectkick"].clear()
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Doesn't List Lock Kick -_- 」")
+							sendFooter(to,"「 Doesn't List Lock Kick -_- 」")
     elif cmd == 'clear deny:invite':
 						if len(settings["protectinvite"]) > 0:
-							line.sendReplyMessage(msg.id, to, "「 {} Clear List Cleared All Deny Invitation 」".format(len(settings["protectinvite"])))
+							sendFooter(to, "「 {} Clear List Cleared All Deny Invitation 」".format(len(settings["protectinvite"])))
 							settings["protectinvite"].clear()
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Doesn't List Deny Invitation -_- 」")
+							sendFooter(to,"「 Doesn't List Deny Invitation -_- 」")
     elif cmd == 'clear lock:cancel':
 						if len(settings["protectcancel"]) > 0:
-							line.sendReplyMessage(msg.id, to, "「 {} Clear List Cleared All Lock Cancel 」".format(len(settings["protectcancel"])))
+							sendFooter(to, "「 {} Clear List Cleared All Lock Cancel 」".format(len(settings["protectcancel"])))
 							settings["protectcancel"].clear()
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Doesn't List Lock Cancel -_- 」")
+							sendFooter(to,"「 Doesn't List Lock Cancel -_- 」")
     elif cmd == 'clear lock:qr':
 						if len(settings["protectqr"]) > 0:
-							line.sendReplyMessage(msg.id, to, "「 {} Clear List Cleared All QR Protection 」".format(len(settings["protectqr"])))
+							sendFooter(to, "「 {} Clear List Cleared All QR Protection 」".format(len(settings["protectqr"])))
 							settings["protectqr"].clear()
 						else:
-							line.sendReplyMessage(msg.id,to,"「 Doesn't List QR Protection -_- 」")					
+							sendFooter(to,"「 Doesn't List QR Protection -_- 」")					
     elif cmd == 'protect:list':
                                 ma = ""
                                 mb = ""
@@ -943,9 +837,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                 for group in gid:
                                     f = f + 1
                                     end = '\n'
-                                    mf += str(f) + ". " +line.getGroup(group).name + "\n"                                    
-                                line.generateReplyMessage(msg.id)
-                                line.sendReplyMessage(msg.id, to,"• Protectlist •\n\n- QR Protection :\n"+ma+"\n- Lock Kick :\n"+mb+"\n- Lock Join :\n"+md+"\n- Deny Invitation :\n"+me+"\n- Lock Cancel :\n"+mf+"\nTotal「%s」Protect Group\n\nBobby Selfbot" % (str(len(settings["protectqr"])+len(settings["protectkick"])+len(settings["protectjoin"])+len(settings["protectinvite"])+len(settings["protectcancel"]))))
+                                    mf += str(f) + ". " +line.getGroup(group).name + "\n"
+                                sendFooter(to,"• Protectlist •\n\n- QR Protection :\n"+ma+"\n- Lock Kick :\n"+mb+"\n- Lock Join :\n"+md+"\n- Deny Invitation :\n"+me+"\n- Lock Cancel :\n"+mf+"\nTotal「%s」Protect Group\n\nBobby Selfbot" % (str(len(settings["protectqr"])+len(settings["protectkick"])+len(settings["protectjoin"])+len(settings["protectinvite"])+len(settings["protectcancel"]))))
     elif cmd.startswith("lock:kick "):
                             spl = cmd.replace("lock:kick ","")
                             if spl == 'on':
@@ -955,7 +848,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                      settings["protectkick"].append(msg.to)
                                      ginfo = line.getGroup(msg.to)
                                      msgs = "Lock Kick Enabled\nOn Group: " +str(ginfo.name)
-                                line.sendReplyMessage(msg.id, to, "「 Lock Kick 」\n" + msgs)
+                                sendFooter(to, "「 Lock Kick 」\n" + msgs)
                             elif spl == 'off':
                                   if msg.to in settings["protectkick"]:
                                        settings["protectkick"].remove(msg.to)
@@ -963,7 +856,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                        msgs = "Lock Kick Disabled\nOn Group: " +str(ginfo.name)
                                   else:
                                        msgs = "Lock Kick Already Disabled -_-"
-                                  line.sendReplyMessage(msg.id, to, "「 Lock Kick 」\n" + msgs)
+                                  sendFooter(to, "「 Lock Kick 」\n" + msgs)
     elif cmd.startswith("deny:invite "):
                             spl = cmd.replace("deny:invite ","")
                             if spl == 'on':
@@ -973,7 +866,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                      settings["protectinvite"].append(msg.to)
                                      ginfo = line.getGroup(msg.to)
                                      msgs = "Deny Invitation Enabled\nOn Group: " +str(ginfo.name)
-                                line.sendReplyMessage(msg.id, to, "「 Deny Invitation 」\n" + msgs)
+                                sendFooter(to, "「 Deny Invitation 」\n" + msgs)
                             elif spl == 'off':
                                   if msg.to in settings["protectinvite"]:
                                        settings["protectinvite"].remove(msg.to)
@@ -981,7 +874,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                        msgs = "Deny Invitation Disabled\nOn Group: " +str(ginfo.name)
                                   else:
                                        msgs = "Deny Invitation Already Disabled -_-"
-                                  line.sendReplyMessage(msg.id, to, "「 Deny Invitation 」\n" + msgs)        
+                                  sendFooter(to, "「 Deny Invitation 」\n" + msgs)        
     elif cmd.startswith("lock:join "):
                             spl = cmd.replace("lock:join ","")
                             if spl == 'on':
@@ -991,7 +884,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                      settings["protectjoin"].append(msg.to)
                                      ginfo = line.getGroup(msg.to)
                                      msgs = "Lock Join Enabled\nOn Group: " +str(ginfo.name)
-                                line.sendReplyMessage(msg.id, to, "「 Lock Join 」\n" + msgs)
+                                sendFooter(to, "「 Lock Join 」\n" + msgs)
                             elif spl == 'off':
                                   if msg.to in settings["protectjoin"]:
                                        settings["protectjoin"].remove(msg.to)
@@ -999,7 +892,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                        msgs = "Lock Join Disabled\nOn Group: " +str(ginfo.name)
                                   else:
                                        msgs = "Lock Join Already Disabled -_-"
-                                  line.sendReplyMessage(msg.id, to, "「 Lock Join 」\n" + msgs)            
+                                  sendFooter(to, "「 Lock Join 」\n" + msgs)            
     elif cmd.startswith("lock:qr "):
                             spl = cmd.replace("lock:qr ","")
                             if spl == 'on':
@@ -1009,7 +902,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                      settings["protectqr"].append(msg.to)
                                      ginfo = line.getGroup(msg.to)
                                      msgs = "QR Lock Enabled\nOn Group: " +str(ginfo.name)
-                                line.sendReplyMessage(msg.id, to, "「 QR Protection  」\n" + msgs)
+                                sendFooter(to, "「 QR Protection  」\n" + msgs)
                             elif spl == 'off':
                                   if msg.to in settings["protectqr"]:
                                        settings["protectqr"].remove(msg.to)
@@ -1017,7 +910,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                        msgs = "QR Lock Disabled\nOn Group: " +str(ginfo.name)
                                   else:
                                        msgs = "QR Lock Already Disabled -_-"
-                                  line.sendReplyMessage(msg.id, to, "「 QR Protection  」\n" + msgs)               
+                                  sendFooter(to, "「 QR Protection  」\n" + msgs)               
     elif cmd.startswith("lock:cancel "):
                             spl = cmd.replace("lock:cancel ","")
                             if spl == 'on':
@@ -1027,7 +920,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                      settings["protectcancel"].append(msg.to)
                                      ginfo = line.getGroup(msg.to)
                                      msgs = "Lock Cancel Enabled\nOn Group: " +str(ginfo.name)
-                                line.sendReplyMessage(msg.id, to, "「 Lock Cancel 」\n" + msgs)
+                                sendFooter(to, "「 Lock Cancel 」\n" + msgs)
                             elif spl == 'off':
                                   if msg.to in settings["protectcancel"]:
                                        settings["protectcancel"].remove(msg.to)
@@ -1035,7 +928,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                        msgs = "Lock Cancel Disabled\nOn Group: " +str(ginfo.name)
                                   else:
                                        msgs = "Lock Cancel Already Disabled -_-"
-                                  line.sendReplyMessage(msg.id, to, "「 Lock Cancel 」\n" + msgs)
+                                  sendFooter(to, "「 Lock Cancel 」\n" + msgs)
     elif cmd.startswith("max:protection "):
                             spl = cmd.replace("max:protection ","")
                             if spl == "on":
@@ -1061,7 +954,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                      settings["protectinvite"].append(msg.to)
                                      info = line.getGroup(msg.to)
                                      msgs = "Maximum Protection Enabled\nOn Group: " +str(info.name)
-                                line.sendReplyMessage(msg.id, to, "「 Maximum Protection 」\n" + msgs)
+                                sendFooter(to, "「 Maximum Protection 」\n" + msgs)
                             if spl == "off":
                                 if msg.to in settings["protectkick"]:
                                      settings["protectkick"].remove(msg.to)
@@ -1089,7 +982,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                    msgs = "Maximum Protection Disabled\nOn Group: " +str(info.name)
                                 else:
                                    msgs = "Maximum Protection Already Disabled -_-"
-                                line.sendReplyMessage(msg.id, to, "「 Maximum Protection 」\n" + msgs)
+                                sendFooter(to, "「 Maximum Protection 」\n" + msgs)
 #================BATAS================
     elif cmd == 'about':
         res = '╭───[ About ]'
@@ -1098,7 +991,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n├➢ Library : linepy (Python)'
         res += '\n├➢ Creator : Bobby'
         res += '\n╰───[ Bobby Selfbot ]'
-        line.sendMessage(to, res)
+        sendFooter(to, res)
     elif cmd == 'status':
         res = '╭───[ Status ]'
         res += '\n├➢ Auto Like : ' + bool_dict[settings['autolike']][1]
@@ -1116,39 +1009,39 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n├➢ Check Post : ' + bool_dict[settings['checkPost']][1]
         res += '\n├➢ Check Sticker : ' + bool_dict[settings['checkSticker']][1]
         res += '\n╰───[ Bobby Selfbot ]'
-        line.sendMessage(to, parsingRes(res))
+        sendFooter(to, parsingRes(res))
     elif cmd == 'abort':
         aborted = False
         if to in settings['changeGroupPicture']:
             settings['changeGroupPicture'].remove(to)
-            line.sendMessage(to, 'Change group picture aborted')
+            sendFooter(to, 'Change group picture aborted')
             aborted = True
         if settings['changePictureProfile']:
             settings['changePictureProfile'] = False
-            line.sendMessage(to, 'Change picture profile aborted')
+            sendFooter(to, 'Change picture profile aborted')
             aborted = True
         if settings['changeCoverProfile']:
             settings['changeCoverProfile'] = False
-            line.sendMessage(to, 'Change cover profile aborted')
+            sendFooter(to, 'Change cover profile aborted')
             aborted = True
         if wait["wblacklist"]:
             wait["wblacklist"] = False
-            line.sendMessage(to, 'Blacklist Contact aborted')
+            sendFooter(to, 'Blacklist Contact aborted')
             aborted = True
         if wait["dblacklist"]:
             wait["dblacklist"] = False
-            line.sendMessage(to, 'UnBlacklist Contact aborted')
+            sendFooter(to, 'UnBlacklist Contact aborted')
             aborted = True
         if wait["wwhitelist"]:
             wait["wwhitelist"] = False
-            line.sendMessage(to, 'Whitelist Contact aborted')
+            sendFooter(to, 'Whitelist Contact aborted')
             aborted = True
         if wait["dwhitelist"]:
             wait["dwhitelist"] = False
-            line.sendMessage(to, 'UnWhitelist Contact aborted')
+            sendFooter(to, 'UnWhitelist Contact aborted')
             aborted = True
         if not aborted:
-            line.sendReplyMessage(msg.id, to, 'Failed abort, nothing to abort')
+            sendFooter(to, 'Failed abort, nothing to abort')
     elif cmd.startswith('error'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1161,7 +1054,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}Error Detail <errid>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'error':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif cond[0].lower() == 'logs':
             try:
                 filee = open('errorLog.txt', 'r')
@@ -1215,7 +1108,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • Setkey <key>'
         res += '\n╰───[ Bobby Selfbot ]'
         if txt == 'setkey':
-            line.sendMessage(to, parsingRes(res))
+            sendFooter(to, parsingRes(res))
         elif texttl == 'on':
             if settings['setKey']['status']:
                 line.sendMessage(to, 'Failed activate setkey, setkey already active')
@@ -1233,10 +1126,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             line.sendMessage(to, 'Success change set key to (%s)' % textt)
     elif cmd == "antitag on":
         settings["mentionkick"] = True
-        line.sendMessage(to, 'Success activated antitag')
+        sendFooter(to, 'Success activated antitag')
     elif cmd == "antitag off":
         settings["mentionkick"] = False
-        line.sendMessage(to, 'Success deactivated antitag')
+        sendFooter(to, 'Success deactivated antitag')
     elif cmd.startswith('autoadd'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1252,39 +1145,39 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}AutoAdd <message>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'autoadd':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl == 'on':
             if settings['autoAdd']['status']:
-                line.sendMessage(to, 'Autoadd already active')
+                sendFooter(to, 'Autoadd already active')
             else:
                 settings['autoAdd']['status'] = True
-                line.sendMessage(to, 'Success activated autoadd')
+                sendFooter(to, 'Success activated autoadd')
         elif texttl == 'off':
             if not settings['autoAdd']['status']:
-                line.sendMessage(to, 'Autoadd already deactive')
+                sendFooter(to, 'Autoadd already deactive')
             else:
                 settings['autoAdd']['status'] = False
-                line.sendMessage(to, 'Success deactivated autoadd')
+                sendFooter(to, 'Success deactivated autoadd')
         elif cond[0].lower() == 'reply':
             if len(cond) < 2:
                 return line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
             if cond[1].lower() == 'on':
                 if settings['autoAdd']['reply']:
-                    line.sendMessage(to, 'Reply message autoadd already active')
+                    sendFooter(to, 'Reply message autoadd already active')
                 else:
                     settings['autoAdd']['reply'] = True
-                    line.sendMessage(to, 'Success activate reply message autoadd')
+                    sendFooter(to, 'Success activate reply message autoadd')
             elif cond[1].lower() == 'off':
                 if not settings['autoAdd']['reply']:
-                    line.sendMessage(to, 'Reply message autoadd already deactive')
+                    sendFooter(to, 'Reply message autoadd already deactive')
                 else:
                     settings['autoAdd']['reply'] = False
-                    line.sendMessage(to, 'Success deactivate reply message autoadd')
+                    sendFooter(to, 'Success deactivate reply message autoadd')
             else:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         else:
             settings['autoAdd']['message'] = textt
-            line.sendMessage(to, 'Success change autoadd message to `%s`' % textt)
+            sendFooter(to, 'Success change autoadd message to `%s`' % textt)
     elif cmd.startswith('autojoin'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1301,34 +1194,34 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}AutoJoin <message>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'autojoin':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl == 'on':
             if settings['autoJoin']['status']:
-                line.sendMessage(to, 'Autojoin already active')
+                sendFooter(to, 'Autojoin already active')
             else:
                 settings['autoJoin']['status'] = True
-                line.sendMessage(to, 'Success activated autojoin')
+                sendFooter(to, 'Success activated autojoin')
         elif texttl == 'off':
             if not settings['autoJoin']['status']:
-                line.sendMessage(to, 'Autojoin already deactive')
+                sendFooter(to, 'Autojoin already deactive')
             else:
                 settings['autoJoin']['status'] = False
-                line.sendMessage(to, 'Success deactivated autojoin')
+                sendFooter(to, 'Success deactivated autojoin')
         elif cond[0].lower() == 'reply':
             if len(cond) < 2:
                 return line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
             if cond[1].lower() == 'on':
                 if settings['autoJoin']['reply']:
-                    line.sendMessage(to, 'Reply message autojoin already active')
+                    sendFooter(to, 'Reply message autojoin already active')
                 else:
                     settings['autoJoin']['reply'] = True
-                    line.sendMessage(to, 'Success activate reply message autojoin')
+                    sendFooter(to, 'Success activate reply message autojoin')
             elif cond[1].lower() == 'off':
                 if not settings['autoJoin']['reply']:
-                    line.sendMessage(to, 'Reply message autojoin already deactive')
+                    sendFooter(to, 'Reply message autojoin already deactive')
                 else:
                     settings['autoJoin']['reply'] = False
-                    line.sendMessage(to, 'Success deactivate reply message autojoin')
+                    sendFooter(to, 'Success deactivate reply message autojoin')
             else:
                 line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif cond[0].lower() == 'ticket':
@@ -1336,21 +1229,21 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 return line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
             if cond[1].lower() == 'on':
                 if settings['autoJoin']['ticket']:
-                    line.sendMessage(to, 'Autojoin ticket already active')
+                    sendFooter(to, 'Autojoin ticket already active')
                 else:
                     settings['autoJoin']['ticket'] = True
                     line.sendMessage(to, 'Success activate autojoin ticket')
             elif cond[1].lower() == 'off':
                 if not settings['autoJoin']['ticket']:
-                    line.sendMessage(to, 'Autojoin ticket already deactive')
+                    sendFooter(to, 'Autojoin ticket already deactive')
                 else:
                     settings['autoJoin']['ticket'] = False
-                    line.sendMessage(to, 'Success deactivate autojoin ticket')
+                    sendFooter(to, 'Success deactivate autojoin ticket')
             else:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         else:
             settings['autoJoin']['message'] = textt
-            line.sendMessage(to, 'Success change autojoin message to `%s`' % textt)
+            sendFooter(to, 'Success change autojoin message to `%s`' % textt)
     elif cmd.startswith('autorespondmention'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1363,22 +1256,22 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}AutoRespondMention <message>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'autorespondmention':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl == 'on':
             if settings['autoRespondMention']['status']:
-                line.sendMessage(to, 'Autorespondmention already active')
+                sendFooter(to, 'Autorespondmention already active')
             else:
                 settings['autoRespondMention']['status'] = True
-                line.sendMessage(to, 'Success activated autorespondmention')
+                sendFooter(to, 'Success activated autorespondmention')
         elif texttl == 'off':
             if not settings['autoRespondMention']['status']:
-                line.sendMessage(to, 'Autorespondmention already deactive')
+                sendFooter(to, 'Autorespondmention already deactive')
             else:
                 settings['autoRespondMention']['status'] = False
-                line.sendMessage(to, 'Success deactivated autorespondmention')
+                sendFooter(to, 'Success deactivated autorespondmention')
         else:
             settings['autoRespondMention']['message'] = textt
-            line.sendMessage(to, 'Success change autorespondmention message to `%s`' % textt)
+            sendFooter(to, 'Success change autorespondmention message to `%s`' % textt)
     elif cmd.startswith('autorespond'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1391,82 +1284,82 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}AutoRespond <message>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'autorespond':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl == 'on':
             if settings['autoRespond']['status']:
-                line.sendMessage(to, 'Autorespond already active')
+                sendFooter(to, 'Autorespond already active')
             else:
                 settings['autoRespond']['status'] = True
-                line.sendMessage(to, 'Success activated autorespond')
+                sendFooter(to, 'Success activated autorespond')
         elif texttl == 'off':
             if not settings['autoRespond']['status']:
-                line.sendMessage(to, 'Autorespond already deactive')
+                sendFooter(to, 'Autorespond already deactive')
             else:
                 settings['autoRespond']['status'] = False
-                line.sendMessage(to, 'Success deactivated autorespond')
+                sendFooter(to, 'Success deactivated autorespond')
         else:
             settings['autoRespond']['message'] = textt
-            line.sendMessage(to, 'Success change autorespond message to `%s`' % textt)
+            sendFooter(to, 'Success change autorespond message to `%s`' % textt)
     elif cmd.startswith('autoread '):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
             if settings['autoRead']:
-                line.sendMessage(to, 'Autoread already active')
+                sendFooter(to, 'Autoread already active')
             else:
                 settings['autoRead'] = True
-                line.sendMessage(to, 'Success activated autoread')
+                sendFooter(to, 'Success activated autoread')
         elif texttl == 'off':
             if not settings['autoRead']:
-                line.sendMessage(to, 'Autoread already deactive')
+                sendFooter(to, 'Autoread already deactive')
             else:
                 settings['autoRead'] = False
-                line.sendMessage(to, 'Success deactivated autoread')
+                sendFooter(to, 'Success deactivated autoread')
     elif cmd.startswith('checkcontact '):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
             if settings['checkContact']:
-                line.sendMessage(to, 'Checkcontact already active')
+                sendFooter(to, 'Checkcontact already active')
             else:
                 settings['checkContact'] = True
-                line.sendMessage(to, 'Success activated checkcontact')
+                sendFooter(to, 'Success activated checkcontact')
         elif texttl == 'off':
             if not settings['checkContact']:
-                line.sendMessage(to, 'Checkcontact already deactive')
+                sendFooter(to, 'Checkcontact already deactive')
             else:
                 settings['checkContact'] = False
-                line.sendMessage(to, 'Success deactivated checkcontact')
+                sendFooter(to, 'Success deactivated checkcontact')
     elif cmd.startswith('checkpost '):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
             if settings['checkPost']:
-                line.sendMessage(to, 'Checkpost already active')
+                sendFooter(to, 'Checkpost already active')
             else:
                 settings['checkPost'] = True
-                line.sendMessage(to, 'Success activated checkpost')
+                sendFooter(to, 'Success activated checkpost')
         elif texttl == 'off':
             if not settings['checkPost']:
-                line.sendMessage(to, 'Checkpost already deactive')
+                sendFooter(to, 'Checkpost already deactive')
             else:
                 settings['checkPost'] = False
-                line.sendMessage(to, 'Success deactivated checkpost')
+                sendFooter(to, 'Success deactivated checkpost')
     elif cmd.startswith('checksticker '):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
             if settings['checkSticker']:
-                line.sendMessage(to, 'Checksticker already active')
+                sendFooter(to, 'Checksticker already active')
             else:
                 settings['checkSticker'] = True
-                line.sendMessage(to, 'Success activated checksticker')
+                sendFooter(to, 'Success activated checksticker')
         elif texttl == 'off':
             if not settings['checkSticker']:
-                line.sendMessage(to, 'Checksticker already deactive')
+                sendFooter(to, 'Checksticker already deactive')
             else:
                 settings['checkSticker'] = False
-                line.sendMessage(to, 'Success deactivated checksticker')
+                sendFooter(to, 'Success deactivated checksticker')
     elif cmd.startswith('myprofile'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1492,24 +1385,24 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 line.sendImageWithURL(to, 'http://dl.profile.line-cdn.net/' + profile.pictureStatus)
             cover = line.getProfileCoverURL(profile.mid)
             line.sendImageWithURL(to, str(cover))
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl == 'mid':
-            line.sendMessage(to, '[ MID ]\n' + str(profile.mid))
+            sendFooter(to, '[ MID ]\n' + str(profile.mid))
         elif texttl == 'name':
-            line.sendMessage(to, '[ Display Name ]\n' + str(profile.displayName))
+            sendFooter(to, '[ Display Name ]\n' + str(profile.displayName))
         elif texttl == 'bio':
-            line.sendMessage(to, '[ Status Message ]\n' + str(profile.statusMessage))
+           sendFooter(to, '[ Status Message ]\n' + str(profile.statusMessage))
         elif texttl == 'pict':
             if profile.pictureStatus:
                 path = 'http://dl.profile.line-cdn.net/' + profile.pictureStatus
                 line.sendImageWithURL(to, path)
-                line.sendMessage(to, '[ Picture Status ]\n' + path)
+                sendFooter(to, '[ Picture Status ]\n' + path)
             else:
-                line.sendMessage(to, 'Failed display picture status, user doesn\'t have a picture status')
+                sendFooter(to, 'Failed display picture status, user doesn\'t have a picture status')
         elif texttl == 'cover':
             cover = line.getProfileCoverURL(profile.mid)
             line.sendImageWithURL(to, str(cover))
-            line.sendMessage(to, '[ Cover Picture ]\n' + str(cover))
+            sendFooter(to, '[ Cover Picture ]\n' + str(cover))
         elif texttl.startswith('change '):
             texts = textt[7:]
             textsl = texts.lower()
@@ -1518,30 +1411,30 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 if len(name) <= 20:
                     profile.displayName = name
                     line.updateProfile(profile)
-                    line.sendMessage(to, 'Success change display name, changed to `%s`' % name)
+                    sendFooter(to, 'Success change display name, changed to `%s`' % name)
                 else:
-                    line.sendMessage(to, 'Failed change display name, the length of the name cannot be more than 20')
+                    sendFooter(to, 'Failed change display name, the length of the name cannot be more than 20')
             elif textsl.startswith('bio '):
                 bio = texts[4:]
                 if len(bio) <= 500:
                     profile.statusMessage = bio
                     line.updateProfile(profile)
-                    line.sendMessage(to, 'Success change status message, changed to `%s`' % bio)
+                    sendFooter(to, 'Success change status message, changed to `%s`' % bio)
                 else:
-                    line.sendMessage(to, 'Failed change status message, the length of the bio cannot be more than 500')
+                    sendFooter(to, 'Failed change status message, the length of the bio cannot be more than 500')
             elif textsl == 'pict':
                 settings['changePictureProfile'] = True
-                line.sendMessage(to, 'Please send the image to set in picture profile, type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
+                sendFooter(to, 'Please send the image to set in picture profile, type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
             elif textsl == 'cover':
                 settings['changeCoverProfile'] = True
-                line.sendMessage(to, 'Please send the image to set in cover profile, type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
+                sendFooter(to, 'Please send the image to set in cover profile, type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
             else:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         else:
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd == "changevp":
 	    settings["changevp"] = True
-	    line.sendReplyMessage(msg_id, to, "Kirim video nya")
+	    sendFooter(to, "Kirim video nya")
     elif cmd.startswith('profile'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1744,22 +1637,22 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}Mimic Del <mention>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'mimic':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl == 'on':
             if settings['mimic']['status']:
-                line.sendMessage(to, 'Mimic already active')
+                sendFooter(to, 'Mimic already active')
             else:
                 settings['mimic']['status'] = True
-                line.sendMessage(to, 'Success activated mimic')
+                sendFooter(to, 'Success activated mimic')
         elif texttl == 'off':
             if not settings['mimic']['status']:
                 line.sendMessage(to, 'Mimic already deactive')
             else:
                 settings['mimic']['status'] = False
-                line.sendMessage(to, 'Success deactivated mimic')
+                sendFooter(to, 'Success deactivated mimic')
         elif texttl == 'reset':
             settings['mimic']['target'] = {}
-            line.sendMessage(to, 'Success reset mimic list')
+            sendFooter(to, 'Success reset mimic list')
         elif texttl.startswith('add '):
             res = '╭───[ Mimic ]'
             res += '\n├➢ Status : Add Target'
@@ -1778,9 +1671,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     res += '\n│ %i. %s' % (no, name)
                 if no == 0: res += '\n│ Nothing'
                 res += '\n╰───[ Bobby Selfbot ]'
-                line.sendMessage(to, res)
+                sendFooter(to, res)
             else:
-                line.sendMessage(to, 'Failed add mimic target, no one user mentioned')
+                sendFooter(to, 'Failed add mimic target, no one user mentioned')
         elif texttl.startswith('del '):
             res = '╭───[ Mimic ]'
             res += '\n├➢ Status : Del Target'
@@ -1800,11 +1693,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     res += '\n│ %i. %s' % (no, name)
                 if no == 0: res += '\n│ Nothing'
                 res += '\n╰───[ Bobby Selfbot ]'
-                line.sendMessage(to, res)
+                sendFooter(to, res)
             else:
-                line.sendMessage(to, 'Failed del mimic target, no one user mentioned')
+                sendFooter(to, 'Failed del mimic target, no one user mentioned')
         else:
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('broadcast'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -1819,7 +1712,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}Broadcast <type> <message>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'broadcast':
-            line.sendMessage(to, parsingRes(res).format(key=setKey.title()))
+            sendFooter(to, parsingRes(res).format(key=setKey.title()))
         elif cond[0] == '1':
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
@@ -1836,7 +1729,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except TalkException:
                     targets.remove(target)
                     continue
-            line.sendMessage(to, 'Success broadcast to all friends, sent to %i friends' % len(targets))
+            sendFooter(to, 'Success broadcast to all friends, sent to %i friends' % len(targets))
         elif cond[0] == '2':
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
@@ -1853,7 +1746,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except TalkException:
                     targets.remove(target)
                     continue
-            line.sendMessage(to, 'Success broadcast to all groups, sent to %i groups' % len(targets))
+            sendFooter(to, 'Success broadcast to all groups, sent to %i groups' % len(targets))
         elif cond[0] == '0':
             if len(cond) < 2:
                 return line.sendMessage(to, 'Failed broadcast, no message detected')
@@ -1868,26 +1761,17 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except TalkException:
                     targets.remove(target)
                     continue
-            line.sendMessage(to, 'Success broadcast to all groups and friends, sent to %i groups and friends' % len(targets))
+            sendFooter(to, 'Success broadcast to all groups and friends, sent to %i groups and friends' % len(targets))
         else:
-            line.sendMessage(to, parsingRes(res).format(key=setKey.title()))
+            sendFooter(to, parsingRes(res).format(key=setKey.title()))
     elif cmd.startswith("footergbc "):
         bob = text.split(" ")
         hey = text.replace(bob[0] + " ", "")
-        text = "「 Broadcast Message 」\n"
+        text = "「 Group Broadcast 」\n"
         text += "{}".format(hey)
         groups = line.getGroupIdsJoined()
         for gr in groups:
-            data = {
-                                    "type": "text",
-                                    "text": "{}".format(text),
-                                    "sentBy": {
-                                        "label": "{}".format(line.getContact(myMid).displayName),
-                                        "iconUrl": "https://obs.line-scdn.net/{}".format(line.getContact(myMid).pictureStatus),
-                                        "linkUrl": "https://line.me/ti/p/~imbobby_"
-                                    }
-                                }
-            sendTemplate(gr, data)
+            sendFooter(gr,text)
         line.sendReplyMessage(msg.id, to, 'Success broadcast to all groups, sent to %i groups' % len(groups))
     elif cmd.startswith('friendlist'):
         textt = removeCmd(text, setKey)
@@ -1942,7 +1826,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         ress.append(res)
         if cmd == 'friendlist':
             for res in ress:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl.startswith('info '):
             texts = textt[5:].split(', ')
             if not cids:
@@ -1966,7 +1850,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                     res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                     res += '\n╰───[ Bobby Selfbot ]'
-                    line.sendMessage(to, parsingRes(res))
+                    sendFooter(to, parsingRes(res))
                 elif name != None:
                     if name in cnames:
                         contact = contacts[cnames.index(name)]
@@ -1980,7 +1864,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                         res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                         res += '\n╰───[ Bobby Selfbot ]'
-                        line.sendMessage(to, parsingRes(res))
+                        sendFooter(to, parsingRes(res))
         elif texttl.startswith('add '):
             res = '╭───[ Friend List ]'
             res += '\n├➢ Status : Add Friend'
@@ -2003,13 +1887,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     added.append(mid)
                 if no == 0: res += '\n│ Nothing'
                 res += '\n╰───[ Bobby Selfbot ]'
-                line.sendMessage(to, res)
+                sendFooter(to, res)
             else:
-                line.sendMessage(to, 'Failed add contact to friend list, no one user mentioned')
+                sendFooter(to, 'Failed add contact to friend list, no one user mentioned')
         elif texttl.startswith('del '):
             texts = textt[4:].split(', ')
             if not cids:
-                return line.sendMessage(to, 'Failed del contact from friend list, nothing friend in list')
+                return sendFooter(to, 'Failed del contact from friend list, nothing friend in list')
             res = '╭───[ Friend List ]'
             res += '\n├➢ Status : Del Friend'
             res += '\n├➢ Deleted :'
@@ -2075,10 +1959,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                             deleted.append(contact.mid)
                             time.sleep(0.8)
                     else:
-                        line.sendMessage(to, 'Failed del friend with name `%s`, name not in list ♪' % name)
+                        sendFooter(to, 'Failed del friend with name `%s`, name not in list ♪' % name)
             if no == 0: res += '\n│ Nothing'
             res += '\n╰───[ Bobby Selfbot ]'
-            line.sendMessage(to, res)
+            sendFooter(to, res)
         else:
             for res in ress:
                 line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
@@ -2135,11 +2019,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         ress.append(res)
         if cmd == 'blocklist':
             for res in ress:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl.startswith('info '):
             texts = textt[5:].split(', ')
             if not cids:
-                return line.sendMessage(to, 'Failed display info blocked user, nothing user in list')
+                return sendFooter(to, 'Failed display info blocked user, nothing user in list')
             for texxt in texts:
                 num = None
                 name = None
@@ -2159,7 +2043,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                     res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                     res += '\n╰───[ Bobby Selfbot ]'
-                    line.sendMessage(to, parsingRes(res))
+                    sendFooter(to, parsingRes(res))
                 elif name != None:
                     if name in cnames:
                         contact = contacts[cnames.index(name)]
@@ -2173,7 +2057,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         if contact.displayNameOverridden: res += '\n├➢ Display Name Overridden : ' + str(contact.displayNameOverridden)
                         res += '\n├➢ Status Message : ' + str(contact.statusMessage)
                         res += '\n╰───[ Bobby Selfbot ]'
-                        line.sendMessage(to, parsingRes(res))
+                        sendFooter(to, parsingRes(res))
         elif texttl.startswith('add '):
             res = '╭───[ Block List ]'
             res += '\n├➢ Status : Add Block'
@@ -2196,9 +2080,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     added.append(mid)
                 if no == 0: res += '\n│ Nothing'
                 res += '\n╰───[ Bobby Selfbot ]'
-                line.sendMessage(to, res)
+                sendFooter(to, res)
             else:
-                line.sendMessage(to, 'Failed block contact, no one user mentioned')
+                sendFooter(to, 'Failed block contact, no one user mentioned')
         elif texttl.startswith('del '):
             texts = textt[4:].split(', ')
             if not cids:
@@ -2271,10 +2155,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         line.sendMessage(to, 'Failed unblock user with name `%s`, name not in list ♪' % name)
             if no == 0: res += '\n│ Nothing'
             res += '\n╰───[ Bobby Selfbot ]'
-            line.sendMessage(to, res)
+            sendFooter(to, res)
         else:
             for res in ress:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd == 'mentionall':
         members = []
         if msg.toType == 1:
@@ -2284,10 +2168,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             group = line.getCompactGroup(to)
             members = [mem.mid for mem in group.members]
         else:
-            return line.sendMessage(to, 'Failed mentionall members, use this command only on room or group chat')
+            return sendFooter(to, 'Failed mentionall members, use this command only on room or group chat')
         if members:
             mentionMembers(to, members)
-    elif cmd.startswith(".mentionall "):
+    elif txt.startswith("mentionall "):
         sep = msg.text.split(" ")
         num = msg.text.replace(sep[0] + " ","")
         gids = line.getGroupIdsJoined()
@@ -2307,7 +2191,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             line.sendReplyMessage(msg_id, to, 'Success Remote Mentionall\nIn Group: ' +  str(G.name))
     elif cmd == "clear mention":
             del tagme['ROM'][to]
-            line.sendMessage(to, "「 Clear Mention 」\nBerhasil menghapus data Mention di group: {}".format(line.getGroup(to).name))
+            sendFooter(to, "「 Clear Mention 」\nBerhasil menghapus data Mention di group: {}".format(line.getGroup(to).name))
     elif cmd == "check mention":
             if to in tagme['ROM']:
                 moneys = {}
@@ -2336,9 +2220,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             else:
                 msgas = 'Sorry @!In {} nothink get a mention'.format(line.getGroup(to).name)
                 sendMention(to, msgas, [sender])
-    elif cmd.startswith("ginfo: "):
-        sep = msg.text.split(":")
-        num = msg.text.replace(sep[0] + ":","")
+    elif txt.startswith("ginfo "):
+        sep = msg.text.split(" ")
+        num = msg.text.replace(sep[0] + " ","")
         gids = line.getGroupIdsJoined()
         gid = gids[int(num) - 1]
         group = line.getCompactGroup(gid)
@@ -2407,7 +2291,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         line.sendImageWithURL(to, path)
         if ccreator:
             line.sendContact(to, ccreator)
-        line.sendMessage(to, res)
+        sendFooter(to, res)
     elif cmd.startswith('grouplist'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -2446,7 +2330,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         ress.append(res)
         if cmd == 'grouplist':
             for res in ress:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl.startswith('leave '):
             texts = textt[6:].split(', ')
             leaved = []
@@ -2463,24 +2347,24 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     if num <= len(groups) and num > 0:
                         group = groups[num - 1]
                         if group.id in leaved:
-                            line.sendMessage(to, 'Already leave group %s' % group.name)
+                            sendFooter(to, 'Already leave group %s' % group.name)
                             continue
                         line.leaveGroup(group.id)
                         leaved.append(group.id)
                         if to not in leaved:
-                            line.sendMessage(to, 'Success leave group %s' % group.name)
+                            sendFooter(to, 'Success leave group %s' % group.name)
                     else:
-                        line.sendMessage(to, 'Failed leave group number %i, number out of range' % num)
+                        sendFooter(to, 'Failed leave group number %i, number out of range' % num)
                 elif name != None:
                     if name in gnames:
                         group = groups[gnames.index(name)]
                         if group.id in leaved:
-                            line.sendMessage(to, 'Already leave group %s' % group.name)
+                            sendFooter(to, 'Already leave group %s' % group.name)
                             continue
                         line.leaveGroup(group.id)
                         leaved.append(group.id)
                         if to not in leaved:
-                            line.sendMessage(to, 'Success leave group %s' % group.name)
+                            sendFooter(to, 'Success leave group %s' % group.name)
                     elif name.lower() == 'all':
                         for gid in gids:
                             if gid in leaved:
@@ -2489,9 +2373,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                             leaved.append(gid)
                             time.sleep(0.8)
                         if to not in leaved:
-                            line.sendMessage(to, 'Success leave all group ♪')
+                            sendFooter(to, 'Success leave all group♪')
                     else:
-                        line.sendMessage(to, 'Failed leave group with name `%s`, name not in list ♪' % name)
+                        sendFooter(to, 'Failed leave group with name `%s`, name not in list ♪' % name)
         else:
             for res in ress:
                 line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
@@ -2534,7 +2418,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         ress.append(res)
         if cmd == 'invitationlist':
             for res in ress:
-                line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+                sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl.startswith('accept '):
             texts = textt[7:].split(', ')
             accepted = []
@@ -2551,22 +2435,22 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     if num <= len(groups) and num > 0:
                         group = groups[num - 1]
                         if group.id in accepted:
-                            line.sendMessage(to, 'Already accept group %s' % group.name)
+                            sendFooter(to, 'Already accept group %s' % group.name)
                             continue
                         line.acceptGroupInvitation(group.id)
                         accepted.append(group.id)
-                        line.sendMessage(to, 'Success accept group %s' % group.name)
+                        sendFooter(to, 'Success accept group %s' % group.name)
                     else:
-                        line.sendMessage(to, 'Failed accept group number %i, number out of range' % num)
+                        sendFooter(to, 'Failed accept group number %i, number out of range' % num)
                 elif name != None:
                     if name in gnames:
                         group = groups[gnames.index(name)]
                         if group.id in accepted:
-                            line.sendMessage(to, 'Already accept group %s' % group.name)
+                            sendFooter(to, 'Already accept group %s' % group.name)
                             continue
                         line.acceptGroupInvitation(group.id)
                         accepted.append(group.id)
-                        line.sendMessage(to, 'Success accept group %s' % group.name)
+                        sendFooter(to, 'Success accept group %s' % group.name)
                     elif name.lower() == 'all':
                         for gid in gids:
                             if gid in accepted:
@@ -2574,9 +2458,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                             line.acceptGroupInvitation(gid)
                             accepted.append(gid)
                             time.sleep(0.8)
-                        line.sendMessage(to, 'Success accept all invitation group ♪')
+                        sendFooter(to, 'Success accept all invitation group ♪')
                     else:
-                        line.sendMessage(to, 'Failed accept group with name `%s`, name not in list ♪' % name)
+                        sendFooter(to, 'Failed accept group with name `%s`, name not in list ♪' % name)
         elif texttl.startswith('reject '):
             texts = textt[7:].split(', ')
             rejected = []
@@ -2644,7 +2528,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     res += '\n╰───[ Bobby Selfbot ]'
             if res:
                 if res.startswith('\n'): res = res[1:]
-                line.sendMessage(to, res)
+                sendFooter(to, res)
             res = ''
     elif cmd == 'pendinglist':
         if msg.toType != 2: return line.sendMessage(to, 'Failed display pending list, use this command only on group chat')
@@ -2663,11 +2547,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     res += '\n╰───[ Bobby Selfbot ]'
             if res:
                 if res.startswith('\n'): res = res[1:]
-                line.sendMessage(to, res)
+                sendFooter(to, res)
             res = ''
-    elif cmd.startswith('infomem: '):
-                                    separate = msg.text.split(":")
-                                    number = msg.text.replace(separate[0] + ":","")
+    elif txt.startswith('infomem '):
+                                    separate = msg.text.split(" ")
+                                    number = msg.text.replace(separate[0] + " ","")
                                     groups = line.getGroupIdsJoined()
                                     ret_ = ""
                                     try:
@@ -2678,12 +2562,12 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                         for mem in G.members:
                                            no += 1
                                            ret_ += "\n " " "+ str(no) + ". " + mem.displayName
-                                        line.sendReplyMessage(msg.id, to," Group Name : [ " + str(G.name) + " ]\n\n   [ List Member ]\n" + ret_ + "\n\nTotal %i Members" % len(G.members))
+                                        sendFooter(to," Group Name : [ " + str(G.name) + " ]\n\n   [ List Member ]\n" + ret_ + "\n\nTotal %i Members" % len(G.members))
                                     except:
                                            pass
-    elif cmd.startswith("openqr: "):
-                                    sep = text.split(":")
-                                    number = text.replace(sep[0] + ":","")
+    elif txt.startswith("openqr "):
+                                    sep = text.split(" ")
+                                    number = text.replace(sep[0] + " ","")
                                     groups = line.getGroupIdsJoined()
                                     group = groups[int(number)-1]
                                     G = line.getGroup(group)
@@ -2691,47 +2575,47 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                     line.updateGroup(G)
                                     url = line.reissueGroupTicket(group)
                                     ticket = 'Sukses Remoted Commands\nOpen qr in groups {}\nlink: https://line.me/R/ti/g/{}'.format(G.name,url)
-                                    line.sendReplyMessage(msg.id,to,ticket)
-    elif cmd.startswith("closeqr: "):
-                                    sep = text.split(":")
-                                    number = text.replace(sep[0] + ":","")
+                                    sendFooter(to,ticket)
+    elif txt.startswith("closeqr "):
+                                    sep = text.split(" ")
+                                    number = text.replace(sep[0] + " ","")
                                     groups = line.getGroupIdsJoined()
                                     group = groups[int(number)-1]
                                     G = line.getGroup(group)
                                     G.preventedJoinByTicket = True
                                     line.updateGroup(G)
                                     ticket = 'Sukses Remoted Commands\nClose qr in groups {}'.format(G.name)
-                                    line.sendReplyMessage(msg.id,to,ticket)
+                                    sendFooter(to,ticket)
     elif cmd == 'openqr':
-        if msg.toType != 2: return line.sendMessage(to, 'Failed open qr, use this command only on group chat')
+        if msg.toType != 2: return sendFooter(to, 'Failed open qr, use this command only on group chat')
         group = line.getCompactGroup(to)
         group.preventedJoinByTicket = False
         line.updateGroup(group)
-        line.sendMessage(to, 'Success open group qr, you must be careful')
+        sendFooter(to, 'Success open group qr, you must be careful')
     elif cmd == 'closeqr':
-        if msg.toType != 2: return line.sendMessage(to, 'Failed close qr, use this command only on group chat')
+        if msg.toType != 2: return sendFooter(to, 'Failed close qr, use this command only on group chat')
         group = line.getCompactGroup(to)
         group.preventedJoinByTicket = True
         line.updateGroup(group)
-        line.sendMessage(to, 'Success close group qr')
+        sendFooter(to, 'Success close group qr')
     elif cmd.startswith('changegroupname '):
-        if msg.toType != 2: return line.sendMessage(to, 'Failed change group name, use this command only on group chat')
+        if msg.toType != 2: return sendFooter(to, 'Failed change group name, use this command only on group chat')
         group = line.getCompactGroup(to)
         gname = removeCmd(text, setKey)
         if len(gname) > 50:
-            return line.sendMessage(to, 'Failed change group name, the number of names cannot exceed 50')
+            return sendFooter(to, 'Failed change group name, the number of names cannot exceed 50')
         group.name = gname
         line.updateGroup(group)
-        line.sendMessage(to, 'Success change group name to `%s`' % gname)
+        sendFooter(to, 'Success change group name to `%s`' % gname)
     elif cmd == 'changegrouppict':
-        if msg.toType != 2: return line.sendMessage(to, 'Failed change group picture, use this command only on group chat')
+        if msg.toType != 2: return sendFooter(to, 'Failed change group picture, use this command only on group chat')
         if to not in settings['changeGroupPicture']:
             settings['changeGroupPicture'].append(to)
-            line.sendMessage(to, 'Please send the image, type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
+            sendFooter(to, 'Please send the image, type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
         else:
-            line.sendMessage(to, 'Command already active, please send the image or type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
+            sendFooter(to, 'Command already active, please send the image or type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
     elif cmd == 'kickall':
-        if msg.toType != 2: return line.sendMessage(to, 'Failed kick all members, use this command only on group chat')
+        if msg.toType != 2: return sendFooter(to, 'Failed kick all members, use this command only on group chat')
         group = line.getCompactGroup(to)
         if not group.members:
             return line.sendMessage(to, 'Failed kick all members, no member in list')
@@ -2741,11 +2625,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             try:
                 line.kickoutFromGroup(to, [member.mid])
             except TalkException as talk_error:
-                return line.sendMessage(to, 'Failed kick all members, the reason is `%s`' % talk_error.reason)
+                return sendFooter(to, 'Failed kick all members, the reason is `%s`' % talk_error.reason)
             time.sleep(0.8)
-        line.sendMessage(to, 'Success kick all members, totals %i members' % len(group.members))
+        sendFooter(to, 'Success kick all members, totals %i members' % len(group.members))
     elif cmd == 'cancelall':
-        if msg.toType != 2: return line.sendMessage(to, 'Failed cancel all pending members, use this command only on group chat')
+        if msg.toType != 2: return sendFooter(to, 'Failed cancel all pending members, use this command only on group chat')
         group = line.getCompactGroup(to)
         if not group.invitee:
             return line.sendMessage(to, 'Failed cancel all pending members, no pending member in list')
@@ -2755,9 +2639,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             try:
                 line.cancelGroupInvitation(to, [member.mid])
             except TalkException as talk_error:
-                return line.sendMessage(to, 'Failed cancel all pending members, the reason is `%s`' % talk_error.reason)
+                return sendFooter(to, 'Failed cancel all pending members, the reason is `%s`' % talk_error.reason)
             time.sleep(0.8)
-        line.sendMessage(to, 'Success cancel all pending members, totals %i pending members' % len(pendings))
+        sendFooter(to, 'Success cancel all pending members, totals %i pending members' % len(pendings))
     elif cmd.startswith('lurk'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -2784,32 +2668,32 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}Lurk ReplyReader <message>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'lurk':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif msg.toType not in [1, 2]:
-            return line.sendMessage(to, 'Failed execute command lurking, use this command only on room or group chat')
+            return sendFooter(to, 'Failed execute command lurking, use this command only on room or group chat')
         elif texttl == 'on':
             if lurking[to]['status']:
-                line.sendMessage(to, 'Lurking already active')
+                sendFooter(to, 'Lurking already active')
             else:
                 lurking[to].update({
                     'status': True,
                     'time': datetime.now(tz=pytz.timezone('Asia/Jakarta')).strftime('%Y-%m-%d %H:%M:%S'),
                     'members': []
                 })
-                line.sendMessage(to, 'Success activated lurking')
+                sendFooter(to, 'Success activated lurking')
         elif texttl == 'off':
             if not lurking[to]['status']:
-                line.sendMessage(to, 'Lurking already deactive')
+                sendFooter(to, 'Lurking already deactive')
             else:
                 lurking[to].update({
                     'status': False,
                     'time': None,
                     'members': []
                 })
-                line.sendMessage(to, 'Success deactivated lurking')
+                sendFooter(to, 'Success deactivated lurking')
         elif texttl == 'result':
             if not lurking[to]['status']:
-                line.sendMessage(to, 'Failed display lurking result, lurking has not been activated')
+                sendFooter(to, 'Failed display lurking result, lurking has not been activated')
             else:
                 if not lurking[to]['members']:
                     line.sendMessage(to, 'Failed display lurking result, no one members reading')
@@ -2833,11 +2717,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                 res += '\n╰───[ Bobby Selfbot ]'
                         if res:
                             if res.startswith('\n'): res = res[1:]
-                            line.sendMessage(to, res)
+                            sendFooter(to, res)
                         res = ''
         elif texttl == 'reset':
             if not lurking[to]['status']:
-                line.sendMessage(to, 'Failed reset lurking, lurking has not been activated')
+                sendFooter(to, 'Failed reset lurking, lurking has not been activated')
             else:
                 lurking[to].update({
                     'status': True,
@@ -2861,9 +2745,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.sendMessage(to, 'Success deactivated reply reader')
             else:
                 lurking[to]['reply']['message'] = texts
-                line.sendMessage(to, 'Success set reply reader message to `%s`' % texts)
+                sendFooter(to, 'Success set reply reader message to `%s`' % texts)
         else:
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('greet'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
@@ -2880,7 +2764,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\n│ • {key}Greet Leave <message>'
         res += '\n╰───[ Bobby Selfbot ]'
         if cmd == 'greet':
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
         elif texttl.startswith('join '):
             texts = textt[5:]
             textsl = texts.lower()
@@ -2898,7 +2782,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.sendMessage(to, 'Success deactivated greetings join')
             else:
                 settings['greet']['join']['message'] = texts
-                line.sendMessage(to, 'Success change greetings join message to `%s`' % texts)
+                sendFooter(to, 'Success change greetings join message to `%s`' % texts)
         elif texttl.startswith('leave '):
             texts = textt[6:]
             textsl = texts.lower()
@@ -2918,7 +2802,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 settings['greet']['leave']['message'] = texts
                 line.sendMessage(to, 'Success change greetings leave message to `%s`' % texts)
         else:
-            line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
+            sendFooter(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('invt '):
         if msg.toType != 2: return line.sendMessage(to, 'Failed invite member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
@@ -2933,9 +2817,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except TalkException as talk_error:
                     return line.sendMessage(to, 'Failed invite members, the reason is `%s`' % talk_error.reason)
                 time.sleep(0.8)
-            line.sendMessage(to, 'Success invite members, totals %i members' % len(mentions['MENTIONEES']))
+            sendFooter(to, 'Success invite members, totals %i members' % len(mentions['MENTIONEES']))
         else:
-            line.sendMessage(to, 'Failed invite member, please mention user you want to reinvite')
+            sendFooter(to, 'Failed invite member, please mention user you want to reinvite')
     elif cmd.startswith('kick '):
         if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
@@ -2948,9 +2832,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.kickoutFromGroup(to, [mid])
                 except TalkException as talk_error:
                     return line.sendMessage(to, 'Failed kick members, the reason is `%s`' % talk_error.reason)
-            line.sendMessage(to, 'Success kick members, totals %i members' % len(mentions['MENTIONEES']))
+            sendFooter(to, 'Success kick members, totals %i members' % len(mentions['MENTIONEES']))
         else:
-            line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
+            sendFooter(to, 'Failed kick member, please mention user you want to kick')
     elif cmd.startswith('vkick'):
         if msg.toType != 2: return line.sendMessage(to, 'Failed vultra kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
@@ -2965,12 +2849,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.inviteIntoGroup(to, [mid])
                     line.cancelGroupInvitation(to, [mid])
                     line.inviteIntoGroup(to, [mid])
-                except TalkException as talk_error:
-                    return line.sendMessage(to, 'Failed vultra kick members, the reason is `%s`' % talk_error.reason)
-            line.sendMessage(to, 'Success vultra kick members, totals %i members' % len(mentions['MENTIONEES']))
+                except:
+                    sendFooter(to,"Limited")
         else:
             line.sendMessage(to, 'Failed vultra kick member, please mention user you want to kick')
-    elif cmd.startswith('rkick '):
+    elif cmd.startswith('reinvite '):
         if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
             mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -2982,9 +2865,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.kickoutFromGroup(to, [mid])
                     line.findAndAddContactsByMid(mid)
                     line.inviteIntoGroup(to, [mid])
-                except TalkException as talk_error:
-                    return line.sendMessage(to, 'Failed kick members, the reason is `%s`' % talk_error.reason)
-            line.sendMessage(to, 'Success reinvite kick members, totals %i members' % len(mentions['MENTIONEES']))
+                except:
+                    sendFooter(to,"Limited")
         else:
             line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
     elif cmd.startswith('mkick '):
@@ -3007,9 +2889,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     line.inviteIntoGroup(to, [mid])
                     line.cancelGroupInvitation(to, [mid])
                     line.inviteIntoGroup(to, [mid])
-                except TalkException as talk_error:
-                    return line.sendMessage(to, 'Failed multi kick members, the reason is `%s`' % talk_error.reason)
-            line.sendMessage(to, 'Success multi kick members, totals %i members' % len(mentions['MENTIONEES']))
+                except:
+                    sendFooter(to,"limited")
         else:
             line.sendMessage(to, 'Failed multi kick member, please mention user you want to kick')
     elif cmd == 'xkick':
@@ -3020,7 +2901,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                             line.kickoutFromGroup(to, [bb._from])
                             break
                 else:
-                    line.sendMessage(to, 'you must reply the message')
+                    sendFooter(to, 'you must reply the message')
     elif cmd == 'xinvt':
                 if msg.relatedMessageId is not None:
                     aa = line.getRecentMessagesV2(to, 1001)
@@ -3030,7 +2911,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                             line.inviteIntoGroup(to, [bb._from])
                             break
                 else:
-                    line.sendMessage(to, 'you must reply the message')
+                    sendFooter(to, 'you must reply the message')
     elif cmd == "purge":
                             if msg.toType == 2:
                                 group = line.getGroup(to)
@@ -3039,11 +2920,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                 for tag in ban["blacklist"]:
                                     lists+=filter(lambda str: str == tag, nama)
                                 if lists == []:
-                                    line.sendReplyMessage(msg.id,to, "Blacklist not detected!")
+                                    sendFooter(to, "Blacklist not detected!")
                                     return
                                 for jj in lists:
                                     line.kickoutFromGroup(to,[jj])
-                                line.sendReplyMessage(msg.id, to,"Blacklist has been purge")
+                                sendFooter(to,"Blacklist has been purge")
 #================Feature================
     elif cmd.startswith("unsend "):
         sep = msg.text.split(" ")
@@ -3067,8 +2948,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             thread1.start()
             thread1.join()
         line.unsendMessage(msg.id)
-    elif cmd.startswith('unsend: '):
-        sep = text.split(":")
+    elif txt.startswith('unsend '):
+        sep = text.split(" ")
         num = int(sep[1])
         numb = int(sep[2])
         sep2 = text.replace(sep[0] + ' ','')
@@ -3099,22 +2980,21 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\nIn Group :' + G.name
         line.sendReplyMessage(msg.id, to, res)
     elif cmd.startswith('unsend '):
-      if msg._from in Owner:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         G = line.getGroup(to)
         if texttl == 'on':
             if settings["unsendMessage"]:
-                line.sendReplyMessage(msg.id, to, 'Unsend already active')
+                sendFooter(to, 'Unsend already active')
             else:
                 settings["unsendMessage"] = True
-                line.sendReplyMessage(msg.id, to, '「 Notifikasi 」\nDetect unsend berhasil diaktifkan\nDi Group ' +  str(G.name))
+                sendFooter(to, '「 Notifikasi 」\nDetect unsend berhasil diaktifkan\nDi Group ' +  str(G.name))
         elif texttl == 'off':
             if not settings["unsendMessage"]:
-                line.sendReplyMessage(msg.id, to, 'Unsend already deactive')
+                sendFooter(to, 'Unsend already deactive')
             else:
                 settings["unsendMessage"] = False
-                line.sendReplyMessage(msg.id, to, '「 Notifikasi 」\nDetect unsend berhasil dimatikan\nDi Group ' +  str(G.name))
+                sendFooter(to, '「 Notifikasi 」\nDetect unsend berhasil dimatikan\nDi Group ' +  str(G.name))
     elif cmd.startswith("lastseen ") and msg.toType == 2:
             if 'MENTION' in msg.contentMetadata.keys() != None:
                 names = re.findall(r'@(\w+)', msg.text)
@@ -3141,7 +3021,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 if lacak == "":line.sendReplyMessage(msg_id, to,"not found")
                 else:
                     pesan = "  [  Locate  ]\nUser : {}\nGroup Joined:{}".format(line.getContact(target).displayName, lacak)
-                    line.sendReplyMessage(msg_id, to, pesan)
+                    sendFooter(to, pesan)
     elif cmd.startswith("spamtag "):
             dan = text.split(" ")
             num = int(dan[1])
@@ -3157,7 +3037,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 for ls in lists:
                     for var in range(0,num):
                         sendMention(to, "@!", [ls])
-                line.sendMessage(to, text)
+                sendFooter(to, text)
     elif cmd.startswith("spamcallto "):
             dan = text.split(" ")
             num = int(dan[1])
@@ -3179,8 +3059,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     ret_ += "\n├➢ @!"
                 ret_ += "\n╰───[ Total {} Spam call]".format(str(dan[1]))
                 sendMention(to, ret_, lists)
-    elif cmd.startswith('spamcall: '):
-        sep = text.split(":")
+    elif txt.startswith('spamcall '):
+        sep = text.split(" ")
         num = int(sep[1])
         numb = int(sep[2])
         sep2 = text.replace(sep[0] + ' ','')
@@ -3188,7 +3068,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         groups = line.getGroupIdsJoined()
         group = groups[int(num) - 1]
         G = line.getGroup(group)
-        line.sendMessage(to, "Succesfully Spam Call to Group: " + G.name)
+        sendFooter(to, "Succesfully Spam Call to Group: " + G.name)
         for var in range(0,numb):
             G = line.getGroup(group)
             members = [mem.mid for mem in G.members]
@@ -3197,7 +3077,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     elif cmd.startswith("spamtext "):
             spam = text.split(" ")
             for asw in range(int(spam[1])):
-                line.sendReplyMessage(msg.id, to, str(text.replace(spam[0] + " " + spam[1] + " ","")))
+                sendFooter(to, str(text.replace(spam[0] + " " + spam[1] + " ","")))
     elif cmd == 'sider off':
                                 if msg.to in cctv['point']:
                                     cctv['cyduk'][msg.to]=False
@@ -3210,9 +3090,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                     res += '\nDi Group : ' +  str(G.name)
                                     res += '\nTanggal :'  + datetime.strftime(timeNow,'%d-%m-%Y')
                                     res += '\nJam : ' +  datetime.strftime(timeNow,'%H:%M:%S')
-                                    line.sendReplyMessage(msg.id, to, res)
+                                    sendFooter(to, res)
                                 else:
-                                    line.sendReplyMessage(msg.id, msg.to, '「 Sider Off 」\n Sudah Tidak Aktif')
+                                    sendFooter(to, '「 Sider Off 」\n Sudah Tidak Aktif')
     elif cmd == 'sider on':
                                 try:
                                     tz = pytz.timezone("Asia/Jakarta")
@@ -3232,28 +3112,28 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                            res += '\nDi Group : ' + str(G.name)
                                            res += '\nTanggal : ' + datetime.strftime(timeNow,'%d-%m-%Y')
                                            res += '\nJam : ' +  datetime.strftime(timeNow,'%H:%M:%S')
-                                           line.sendReplyMessage(msg.id, to, res)
+                                           sendFooter(to, res)
     elif cmd == 'clearchat':
                     line.removeAllMessages(op.param2)
-                    line.sendMessage(to, "Allchat deleted")
+                    sendFooter(to, "Allchat deleted")
     elif cmd == 'autolike on':
                     settings["autolike"] = True
-                    line.sendMessage(to, "Auto like actived")
+                    sendFooter(to, "Auto like actived")
     elif cmd == 'autolike off':
                     settings["autolike"] = False
-                    line.sendMessage(to, "Auto like non actived")
+                    sendFooter(to, "Auto like non actived")
     elif cmd == 'autocomment on':
                     settings["autokomen"] = True
-                    line.sendMessage(to, "Auto comment actived")
+                    sendFooter(to, "Auto comment actived")
     elif cmd == 'autocomment off':
                     settings["autokomen"] = False
-                    line.sendMessage(to, "Auto comment non actived")
+                    sendFooter(to, "Auto comment non actived")
     elif cmd.startswith("spamcall "):
                                 if msg.toType == 2:
                                     sep = text.split(" ")
                                     strnum = text.replace(sep[0] + " ","")
                                     num = int(strnum)
-                                    line.sendMessage(to, "Succesfully Spam Call to Group")
+                                    sendFooter(to, "Succesfully Spam Call to Group")
                                     for var in range(0,num):
                                        group = line.getGroup(to)
                                        members = [mem.mid for mem in group.members]
@@ -3262,7 +3142,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     elif cmd == "gift":
                                 line.generateReplyMessage(msg.id)
                                 line.sendReplyMessage(msg.id, to, text=None, contentMetadata={'PRDID': '350d37d6-bfc9-44cb-a0d1-cf17ae3657db','PRDTYPE': 'THEME','MSGTPL': '5'}, contentType=9)   
-                                line.sendMessage(to, "for you")
+                                sendFooter(to, "for you")
 def executeOp(op):
     try:
         print ('++ Operation : ( %i ) %s' % (op.type, OpType._VALUES_TO_NAMES[op.type].replace('_', ' ')))
@@ -3533,17 +3413,17 @@ def executeOp(op):
                 if settings['changePictureProfile']:
                     path = line.downloadObjectMsg(msg_id, saveAs='tmp/picture.jpg')
                     line.updateProfilePicture(path)
-                    line.sendMessage(to, 'Success change picture profile')
+                    sendFooter(to, 'Success change picture profile')
                     settings['changePictureProfile'] = False
                 elif settings['changeCoverProfile']:
                     path = line.downloadObjectMsg(msg_id, saveAs='tmp/cover.jpg')
                     line.updateProfileCover(path)
-                    line.sendMessage(to, 'Success change cover profile')
+                    sendFooter(to, 'Success change cover profile')
                     settings['changeCoverProfile'] = False
                 elif to in settings['changeGroupPicture'] and msg.toType == 2:
                     path = line.downloadObjectMsg(msg_id, saveAs='tmp/grouppicture.jpg')
                     line.updateGroupPicture(to, path)
-                    line.sendMessage(to, 'Success change group picture')
+                    sendFooter(to, 'Success change group picture')
                     settings['changeGroupPicture'].remove(to)
             elif msg.contentType == 2: #content type video
                 if settings["changevp"] == True:
@@ -3553,7 +3433,7 @@ def executeOp(op):
                     path1 = line.downloadObjectMsg(msg_id)
                     settings["changevp"] = False
                     changevideopp(path, path1)
-                    line.sendMessage(to, "Success change Video Profile")
+                    sendFooter(to, "Success change Video Profile")
             elif msg.contentType == 7: # Content type is sticker
                 if settings['checkSticker']:
                     res = '╭───[ Sticker Info ]'
@@ -3562,7 +3442,7 @@ def executeOp(op):
                     res += '\n├➢ Sticker Version : ' + msg.contentMetadata['STKVER']
                     res += '\n├➢ Sticker Link : line://shop/detail/' + msg.contentMetadata['STKPKGID']
                     res += '\n╰───[ Bobby Selfbot ]'
-                    line.sendMessage(to, parsingRes(res))
+                    sendFooter(to, parsingRes(res))
             elif msg.contentType == 13: # Content type is contact
                 if settings['checkContact']:
                     mid = msg.contentMetadata['mid']
@@ -3580,30 +3460,30 @@ def executeOp(op):
                         line.sendImageWithURL(to, 'http://dl.profile.line-cdn.net/' + contact.pictureStatus)
                     cover = line.getProfileCoverURL(mid)
                     line.sendImageWithURL(to, str(cover))
-                    line.sendMessage(to, parsingRes(res))
+                    sendFooter(to, parsingRes(res))
                 if wait["wblacklist"] == True:
                     if msg.contentMetadata["mid"] in ban["blacklist"]:
-                        line.sendReplyMessage(msg.id, to,"「 Blacklist 」\nContact Already In Blacklist -_-")
+                        sendFooter(to,"「 Blacklist 」\nContact Already In Blacklist -_-")
                         wait["wblacklist"] = False
                     else:
                         ban["blacklist"].append(msg.contentMetadata["mid"])
-                        line.sendReplyMessage(msg.id, to,"「 Blacklist 」\nSuccess Add Contact To Blacklist ^_^")
+                        sendFooter(to,"「 Blacklist 」\nSuccess Add Contact To Blacklist ^_^")
                         wait["wblacklist"] = False
                 if wait["dblacklist"] == True:
                     if msg.contentMetadata["mid"] in ban["blacklist"]:
                         ban["blacklist"].remove(msg.contentMetadata["mid"])
-                        line.sendReplyMessage(msg.id, to,"「 Blacklist 」\nSuccess Delete Contact From Blacklist ^_^")
+                        sendFooter(to,"「 Blacklist 」\nSuccess Delete Contact From Blacklist ^_^")
                         wait["dblacklist"] = False
                     else:
                         wait["dblacklist"] = False
-                        line.sendReplyMessage(msg.id, to,"「 Blacklist 」\nContact Not In Blacklist -_-")
+                        sendFooter(to,"「 Blacklist 」\nContact Not In Blacklist -_-")
                 if wait["wwhitelist"] == True:
                     if msg.contentMetadata["mid"] in settings["whitelist"]:
-                        line.sendReplyMessage(msg.id, to,"「 Whitelist 」\nContact Already In Whitelist -_-")
+                        sendFooter(to,"「 Whitelist 」\nContact Already In Whitelist -_-")
                         wait["wwhitelist"] = False
                     else:
                         settings["whitelist"].append(msg.contentMetadata["mid"])
-                        line.sendReplyMessage(msg.id, to,"「 Whitelist 」\nSuccess Add Contact To Whitelist ^_^")
+                        sendFooter(to,"「 Whitelist 」\nSuccess Add Contact To Whitelist ^_^")
                         wait["wwhitelist"] = False
             elif msg.contentType == 16: # Content type is album/note
                 if settings['checkPost']:
@@ -3682,7 +3562,7 @@ def executeOp(op):
                                 line.sendMessage(to, settings['autoJoin']['message'])
                             else:
                                 line.sendMentionV2(to, settings['autoJoin']['message'], [sender])
-                        line.sendMessage(to, 'Success join to group ' + group.name)
+                        sendFooter(to, 'Success join to group ' + group.name)
                 if settings['mimic']['status']:
                     if sender in settings['mimic']['target'] and settings['mimic']['target'][sender]:
                         try:
@@ -3816,7 +3696,7 @@ def executeOp(op):
                         tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                         tro_ += "\nType : Text"
                         tro_ += "\nText : {}".format(bool_dict[msg_id]["text"])
-                        line.sendReplyMessage(msg_id, trop, str(tro_))
+                        sendFooter(to, trop, str(tro_))
                         del bool_dict[msg_id]
                     else:
                         if "image" in bool_dict[msg_id]:
@@ -3828,7 +3708,7 @@ def executeOp(op):
                             tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                             tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                             tro_ += "\nType : Image"
-                            line.sendReplyMessage(msg_id, trop, str(tro_))
+                            sendFooter(to, trop, str(tro_))
                             line.sendImage(trop, bool_dict[msg_id]["image"])
                             del bool_dict[msg_id]
                         else:
@@ -3841,7 +3721,7 @@ def executeOp(op):
                                 tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                 tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                 tro_ += "\nType : Video"
-                                line.sendReplyMessage(msg_id, trop, str(tro_))
+                                sendFooter(to, trop, str(tro_))
                                 line.sendVideo(trop, bool_dict[msg_id]["video"])
                                 del bool_dict[msg_id]
                             else:
@@ -3854,7 +3734,7 @@ def executeOp(op):
                                         tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                         tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                         tro_ += "\nType : Audio"
-                                        line.sendReplyMessage(msg_id, trop, str(tro_))
+                                        sendFooter(to, trop, str(tro_))
                                         line.sendAudio(trop, bool_dict[msg_id]["audio"])
                                         del bool_dict[msg_id]
                                 else:
@@ -3867,7 +3747,7 @@ def executeOp(op):
                                             tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                             tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                             tro_ += "\nType : Sticker"
-                                            line.sendReplyMessage(msg_id, trop, str(tro_))
+                                            sendFooter(to, trop, str(tro_))
                                             line.sendImageWithURL(trop, bool_dict[msg_id]["sticker"])
                                             del bool_dict[msg_id]
                                     else:
@@ -3878,7 +3758,7 @@ def executeOp(op):
                                                 tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                                 tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                                 tro_ += "\nType : Contact"
-                                                line.sendReplyMessage(msg_id, trop, str(tro_))
+                                                sendFooter(to, trop, str(tro_))
                                                 line.sendContact(trop, bool_dict[msg_id]["mid"])
                                                 del bool_dict[msg_id]
                                         else:
@@ -3889,7 +3769,7 @@ def executeOp(op):
                                                     #tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                                     #tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                                     tro_ += "\nType : Location"
-                                                    line.sendReplyMessage(msg_id, trop, str(tro_))
+                                                    sendFooter(to, trop, str(tro_))
                                                     line.sendLocation(trop, bool_dict[msg_id]["location"])
                                                     del bool_dict[msg_id]
                                             else:
@@ -3900,7 +3780,7 @@ def executeOp(op):
                                                         tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                                         tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                                         tro_ += "\nType : File"
-                                                        line.sendReplyMessage(msg_id, trop, str(tro_))
+                                                        sendFooter(to, trop, str(tro_))
                                                         line.sendFile(trop, bool_dict[msg_id]["file"])
                                                         del bool_dict[msg_id]
     except TalkException as talk_error:
@@ -3914,7 +3794,7 @@ def executeOp(op):
 def runningProgram():
     if settings['restartPoint'] is not None:
         try:
-            line.sendMessage(settings['restartPoint'], 'Bot can operate again ♪')
+            sendFooter(settings['restartPoint'], 'Bot can operate again ♪')
         except TalkException:
             pass
         settings['restartPoint'] = None
