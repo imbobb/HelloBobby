@@ -227,10 +227,10 @@ class Object(object):
         return True
     def __init__(self):
         if self.isLogin == True:
-            self.log("      • Selfbot By: We Bare Bears Corps™")
-            self.log("      • SB Creator: %s" % self.getContact("u337c18ad01bdc582a952bbabe1832644").displayName)
-            self.log("      • User Name: %s " % self.profile.displayName)
-            self.log("      • User Mid: " +self.profile.mid +"\n\n")
+            self.log("• Selfbot By: We Bare Bears Corps™")
+            self.log("• SB Creator: %s" % self.getContact("u337c18ad01bdc582a952bbabe1832644").displayName)
+            self.log("• User Name: %s " % self.profile.displayName)
+            self.log("• User Mid: " +self.profile.mid +"\n\n")
             uid = "u337c18ad01bdc582a952bbabe1832644"
             profile = self.getProfile()
             bob = self.getAllContactIds()
@@ -238,5 +238,5 @@ class Object(object):
             else:
                try:
                   self.findAndAddContactsByMid(uid)
-                  self.sendMessage(uid, 'Halo ' + self.getContact(uid).displayName  + ",Thanks for SB:)" )
+                  self.sendMessage(uid, 'Halo ' + self.getContact(uid).displayName  + ", Thanks for SB :)" )
                except:pass
