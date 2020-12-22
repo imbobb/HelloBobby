@@ -3369,11 +3369,6 @@ def executeOp(op):
             if text in tmp_text:
                 return tmp_text.remove(text)
             if msg.contentType == 0:
-                if settings["unsendMessage"]:
-                	try:
-                	    bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
-                	except Exception as e:
-                	    print (e)
                 if '/ti/g/' in text and settings['autoJoin']['ticket']:
                     regex = re.compile('(?:line\:\/|line\.me\/R)\/ti\/g\/([a-zA-Z0-9_-]+)?')
                     links = regex.findall(text)
@@ -3420,12 +3415,6 @@ def executeOp(op):
                     line.updateProfileCover(path)
                     sendFooter(to, 'Success change cover profile')
                     settings['changeCoverProfile'] = False
-                if settings["unsendMessage"]:
-                	try:
-                	    path = line.downloadObjectMsg(msg_id)
-                	    bool_dict[msg.id] = {"from":msg._from,"image":path,"createdTime":msg.createdTime}
-                	except Exception as e:
-                	    print (e)
                 elif to in settings['changeGroupPicture'] and msg.toType == 2:
                     path = line.downloadObjectMsg(msg_id, saveAs='tmp/grouppicture.jpg')
                     line.updateGroupPicture(to, path)
@@ -3440,19 +3429,6 @@ def executeOp(op):
                     settings["changevp"] = False
                     changevideopp(path, path1)
                     sendFooter(to, "Success change Video Profile")
-                if settings["unsendMessage"]:
-                	try:
-                	    path = line.downloadObjectMsg(msg_id)
-                	    bool_dict[msg.id] = {"from":msg._from,"video":path,"createdTime":msg.createdTime}
-                	except Exception as e:
-                	    print (e)
-            elif msg.contentType == 3:
-                if settings["unsendMessage"]:
-                	try:
-                	    path = line.downloadObjectMsg(msg_id)
-                	    bool_dict[msg.id] = {"from":msg._from,"audio":path,"createdTime":msg.createdTime}
-                	except Exception as e:
-                	    print (e)
             elif msg.contentType == 7: # Content type is sticker
                 if settings['checkSticker']:
                     res = '╭───[ Sticker Info ]'
@@ -3462,13 +3438,6 @@ def executeOp(op):
                     res += '\n├➢ Sticker Link : line://shop/detail/' + msg.contentMetadata['STKPKGID']
                     res += '\n╰───[ Bobby Selfbot ]'
                     sendFooter(to, parsingRes(res))
-                if settings["unsendMessage"]:
-                	try:
-                	    sticker = msg.contentMetadata["STKID"]
-                	    link = "http://dl.stickershop.line.naver.jp/stickershop/v1/sticker/{}/android/sticker.png".format(sticker)
-                	    bool_dict[msg.id] = {"from":msg._from,"sticker":link,"createdTime":msg.createdTime}
-                	except Exception as e:
-                	    print (e)
             elif msg.contentType == 13: # Content type is contact
                 if settings['checkContact']:
                     mid = msg.contentMetadata['mid']
@@ -3511,26 +3480,11 @@ def executeOp(op):
                         settings["whitelist"].append(msg.contentMetadata["mid"])
                         sendFooter(to,"「 Whitelist 」\nSuccess Add Contact To Whitelist ^_^")
                         wait["wwhitelist"] = False
-                if settings["unsendMessage"]:
-                	try:
-                	    mid = msg.contentMetadata["mid"]
-                	    bool_dict[msg.id] = {"from":msg._from,"mid":mid,"createdTime":msg.createdTime}
-                	except Exception as e:
-                	    print (e)
             elif msg.contentType == 14: #Type file
                 if settings["unsendMessage"]:
                 	try:
                 	    path = line.downloadObjectMsg(msg_id)
                 	    bool_dict[msg.id] = {"from":msg._from,"file":path,"createdTime":msg.createdTime}
-                	except Exception as e:
-                	    print (e)
-            elif msg.contentType == 15: #Type location
-                if settings["unsendMessage"]:
-                	try:
-                	    if msg.location != None:
-                	        bool_dict[msg.id] = {"location":msg.location,"from":msg._from,"createdTime":msg.createdTime}
-                	    else:
-                	        bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
                 	except Exception as e:
                 	    print (e)
             elif msg.contentType == 16: # Content type is album/note
@@ -3588,6 +3542,11 @@ def executeOp(op):
                                             line.kickoutFromGroup(msg.to, [msg._from])
                                             break
             if msg.contentType == 0: # Content type is text
+                if settings["unsendMessage"]:
+                	try:
+                	    bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
                 if '/ti/g/' in text and settings['autoJoin']['ticket']:
                     regex = re.compile('(?:line\:\/|line\.me\/R)\/ti\/g\/([a-zA-Z0-9_-]+)?')
                     links = regex.findall(text)
@@ -3657,6 +3616,58 @@ def executeOp(op):
                 lastseen['find'][msg._from] = True
             except:
                 pass
+            elif msg.contentType == 1: # Content type is image
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"image":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 2: #content type video
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"video":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 3:
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"audio":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 7: # Content type is sticker
+                if settings["unsendMessage"]:
+                	try:
+                	    sticker = msg.contentMetadata["STKID"]
+                	    link = "http://dl.stickershop.line.naver.jp/stickershop/v1/sticker/{}/android/sticker.png".format(sticker)
+                	    bool_dict[msg.id] = {"from":msg._from,"sticker":link,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 13: # Content type is contact
+                if settings["unsendMessage"]:
+                	try:
+                	    mid = msg.contentMetadata["mid"]
+                	    bool_dict[msg.id] = {"from":msg._from,"mid":mid,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 14: #Type file
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"file":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 15: #Type location
+                if settings["unsendMessage"]:
+                	try:
+                	    if msg.location != None:
+                	        bool_dict[msg.id] = {"location":msg.location,"from":msg._from,"createdTime":msg.createdTime}
+                	    else:
+                	        bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
         if op.type == 55:
             if op.param1 in lurking:
                 if lurking[op.param1]['status'] and op.param2 not in lurking[op.param1]['members']:
