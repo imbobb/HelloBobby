@@ -39,7 +39,7 @@ parser.add_argument('-T', '--traceback', type=str2bool, nargs='?', default=False
 parser.add_argument('-S', '--showqr', type=str2bool, nargs='?', default=False, metavar='', required=False, const=True, choices=[True, False], help='Show QR | Use : True/False')
 args = parser.parse_args()
 listAppType = ['DESKTOPWIN', 'DESKTOPMAC', 'IOSIPAD', 'CHROMEOS']
-line = LINE("email","pw") #Input Your Email and Password Here
+line = LINE("farranrafael9@gmail.com","Massada_12345") #Input Your Email and Password Here
 #=======================================================================================================================
 myMid = line.profile.mid
 programStart = time.time()
@@ -3258,7 +3258,7 @@ def executeOp(op):
         if op.type == 19 or op.type == 133:
           if op.param3 in myMid:
                 ban["blacklist"].append(op.param2)
-                group = "Mid GC" #mid gc dapat di lihat di groupinfo
+                group = "u337c18ad01bdc582a952bbabe1832644" #Can Change for Mid Group or Line Personal Chat
                 nameGroup = line.getGroup(op.param1).name
                 jam = pytz.timezone("Asia/Jakarta")
                 jamSek = datetime.now(tz=jam)
@@ -3646,28 +3646,38 @@ def executeOp(op):
                 	        bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
                 	except Exception as e:
                 	    print (e)
+        elif op.type == 26:
+            msg      = op.message
+            text     = str(msg.text)
+            msg_id   = msg.id
+            receiver = msg.to
+            sender   = msg._from
+            to       = sender if not msg.toType and sender != myMid else receiver
+            txt      = text.lower()
+            if settings['autoRead']:
+                line.sendChatChecked(to, msg_id)
             if msg.contentType == 0:
-                try:
-                    Name = line.getContact(op.param2).mid
-                    group = line.getGroup(op.param1).name
-                    tz = pytz.timezone("Asia/Jakarta")
-                    timeNow = datetime.now(tz=tz)
-                    day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"]
-                    hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
-                    bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
-                    hr = timeNow.strftime("%A")
-                    bln = timeNow.strftime("%m")
-                    for i in range(len(day)):
-                        if hr == day[i]: hasil = hari[i]
-                    for k in range(0, len(bulan)):
-                        if bln == str(k): bln = bulan[k-1]
-                    readTime = timeNow.strftime('%H.%M')
-                    readTime2 = hr
-                    readTime3 = timeNow.strftime('%d') + "-" + bln + "-" + timeNow.strftime('%Y')
-                    lastseen["username"][Name] = "was lastseen\nin group ' " + group + " '\nat time " + readTime + " WIB\non " + readTime2 + ", " + readTime3
-                    lastseen['find'][op.param2] = True
-                except:
-                    pass
+                if op.param1 not in lastseen["find"]:
+                    try:
+                        Name = line.getContact(op.param2).mid
+                        group = line.getGroup(op.param1).name
+                        tz = pytz.timezone("Asia/Jakarta")
+                        timeNow = datetime.now(tz=tz)
+                        day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"]
+                        hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+                        bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+                        hr = timeNow.strftime("%A")
+                        bln = timeNow.strftime("%m")
+                        for i in range(len(day)):
+                            if hr == day[i]: hasil = hari[i]
+                        for k in range(0, len(bulan)):
+                            if bln == str(k): bln = bulan[k-1]
+                        readTime = timeNow.strftime('%H.%M')
+                        readTime2 = hr
+                        readTime3 = timeNow.strftime('%d') + "-" + bln + "-" + timeNow.strftime('%Y')
+                        lastseen["username"][Name] = "was lastseen\nin group ' " + group + " '\nat time " + readTime + " WIB\non " + readTime2 + ", " + readTime3
+                        lastseen['find'][op.param2] = True
+                    except:pass
         if op.type == 55:
             if op.param1 in lurking:
                 if lurking[op.param1]['status'] and op.param2 not in lurking[op.param1]['members']:
