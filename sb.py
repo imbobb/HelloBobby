@@ -3646,6 +3646,28 @@ def executeOp(op):
                 	        bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
                 	except Exception as e:
                 	    print (e)
+            if msg.contentType == 0:
+                try:
+                    Name = line.getContact(op.param2).mid
+                    group = line.getGroup(op.param1).name
+                    tz = pytz.timezone("Asia/Jakarta")
+                    timeNow = datetime.now(tz=tz)
+                    day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"]
+                    hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+                    bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+                    hr = timeNow.strftime("%A")
+                    bln = timeNow.strftime("%m")
+                    for i in range(len(day)):
+                        if hr == day[i]: hasil = hari[i]
+                    for k in range(0, len(bulan)):
+                        if bln == str(k): bln = bulan[k-1]
+                    readTime = timeNow.strftime('%H.%M')
+                    readTime2 = hr
+                    readTime3 = timeNow.strftime('%d') + "-" + bln + "-" + timeNow.strftime('%Y')
+                    lastseen["username"][Name] = "was lastseen\nin group ' " + group + " '\nat time " + readTime + " WIB\non " + readTime2 + ", " + readTime3
+                    lastseen['find'][op.param2] = True
+                except:
+                    pass
         if op.type == 55:
             if op.param1 in lurking:
                 if lurking[op.param1]['status'] and op.param2 not in lurking[op.param1]['members']:
