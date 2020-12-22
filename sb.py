@@ -330,7 +330,7 @@ def helpsettings():
                     "├➢ " + key + "checkContact「On/Off」" + "\n" + \
                     "├➢ " + key + "checkPost「On/Off」" + "\n" + \
                     "├➢ " + key + "checkSticker「On/Off」" + "\n" + \
-                    "├➢ " + key + "unsend「On/Off」" + "\n" + \
+                    "├➢ " + key + "resendchat「On/Off」" + "\n" + \
                     "├➢ " + key + "sider「On/Off」" + "\n" + \
                     "╰───「 Bobby Selfbot 」"
     return helpSettings
@@ -2974,22 +2974,22 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         res += '\nTotal unsend {} message.'.format(len(MId))
         res += '\nIn Group :' + G.name
         line.sendReplyMessage(msg.id, to, res)
-    elif cmd.startswith('unsend '):
+    elif cmd.startswith('resendchat '):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         G = line.getGroup(to)
         if texttl == 'on':
             if settings["unsendMessage"]:
-                sendFooter(to, 'Unsend already active')
+                sendFooter(to, 'Resend Chat already active')
             else:
                 settings["unsendMessage"] = True
-                sendFooter(to, '「 Notifikasi 」\nDetect unsend berhasil diaktifkan\nDi Group ' +  str(G.name))
+                sendFooter(to, '「 Notifikasi 」\nResend Chat berhasil diaktifkan\nDi Group ' +  str(G.name))
         elif texttl == 'off':
             if not settings["unsendMessage"]:
-                sendFooter(to, 'Unsend already deactive')
+                sendFooter(to, 'Resend Chat already deactive')
             else:
                 settings["unsendMessage"] = False
-                sendFooter(to, '「 Notifikasi 」\nDetect unsend berhasil dimatikan\nDi Group ' +  str(G.name))
+                sendFooter(to, '「 Notifikasi 」\nResend Chat berhasil dimatikan\nDi Group ' +  str(G.name))
     elif cmd.startswith("lastseen ") and msg.toType == 2:
             if 'MENTION' in msg.contentMetadata.keys() != None:
                 names = re.findall(r'@(\w+)', msg.text)
@@ -3109,7 +3109,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                                            res += '\nJam : ' +  datetime.strftime(timeNow,'%H:%M:%S')
                                            sendFooter(to, res)
     elif cmd == 'clearchat':
-                    line.removeAllMessages(op.param2)
+                    line.removeAllMessages(to)
                     sendFooter(to, "Allchat deleted")
     elif cmd == 'autolike on':
                     settings["autolike"] = True
@@ -3369,6 +3369,11 @@ def executeOp(op):
             if text in tmp_text:
                 return tmp_text.remove(text)
             if msg.contentType == 0:
+                if settings["unsendMessage"]:
+                	try:
+                	    bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
                 if '/ti/g/' in text and settings['autoJoin']['ticket']:
                     regex = re.compile('(?:line\:\/|line\.me\/R)\/ti\/g\/([a-zA-Z0-9_-]+)?')
                     links = regex.findall(text)
@@ -3415,6 +3420,12 @@ def executeOp(op):
                     line.updateProfileCover(path)
                     sendFooter(to, 'Success change cover profile')
                     settings['changeCoverProfile'] = False
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"image":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
                 elif to in settings['changeGroupPicture'] and msg.toType == 2:
                     path = line.downloadObjectMsg(msg_id, saveAs='tmp/grouppicture.jpg')
                     line.updateGroupPicture(to, path)
@@ -3429,6 +3440,19 @@ def executeOp(op):
                     settings["changevp"] = False
                     changevideopp(path, path1)
                     sendFooter(to, "Success change Video Profile")
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"video":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 3:
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"audio":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
             elif msg.contentType == 7: # Content type is sticker
                 if settings['checkSticker']:
                     res = '╭───[ Sticker Info ]'
@@ -3438,6 +3462,13 @@ def executeOp(op):
                     res += '\n├➢ Sticker Link : line://shop/detail/' + msg.contentMetadata['STKPKGID']
                     res += '\n╰───[ Bobby Selfbot ]'
                     sendFooter(to, parsingRes(res))
+                if settings["unsendMessage"]:
+                	try:
+                	    sticker = msg.contentMetadata["STKID"]
+                	    link = "http://dl.stickershop.line.naver.jp/stickershop/v1/sticker/{}/android/sticker.png".format(sticker)
+                	    bool_dict[msg.id] = {"from":msg._from,"sticker":link,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
             elif msg.contentType == 13: # Content type is contact
                 if settings['checkContact']:
                     mid = msg.contentMetadata['mid']
@@ -3480,6 +3511,28 @@ def executeOp(op):
                         settings["whitelist"].append(msg.contentMetadata["mid"])
                         sendFooter(to,"「 Whitelist 」\nSuccess Add Contact To Whitelist ^_^")
                         wait["wwhitelist"] = False
+                if settings["unsendMessage"]:
+                	try:
+                	    mid = msg.contentMetadata["mid"]
+                	    bool_dict[msg.id] = {"from":msg._from,"mid":mid,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 14: #Type file
+                if settings["unsendMessage"]:
+                	try:
+                	    path = line.downloadObjectMsg(msg_id)
+                	    bool_dict[msg.id] = {"from":msg._from,"file":path,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
+            elif msg.contentType == 15: #Type location
+                if settings["unsendMessage"]:
+                	try:
+                	    if msg.location != None:
+                	        bool_dict[msg.id] = {"location":msg.location,"from":msg._from,"createdTime":msg.createdTime}
+                	    else:
+                	        bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
+                	except Exception as e:
+                	    print (e)
             elif msg.contentType == 16: # Content type is album/note
                 if settings['checkPost']:
                     if msg.contentMetadata['serviceType'] in ['GB', 'NT', 'MH']:
