@@ -3733,7 +3733,7 @@ def executeOp(op):
                         tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                         tro_ += "\nType : Text"
                         tro_ += "\nText : {}".format(bool_dict[msg_id]["text"])
-                        sendFooter(to, trop, str(tro_))
+                        line.sendReplyMessage(msg_id, trop, str(tro_))
                         del bool_dict[msg_id]
                     else:
                         if "image" in bool_dict[msg_id]:
@@ -3745,7 +3745,7 @@ def executeOp(op):
                             tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                             tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                             tro_ += "\nType : Image"
-                            sendFooter(to, trop, str(tro_))
+                            line.sendReplyMessage(msg_id, trop, str(tro_))
                             line.sendImage(trop, bool_dict[msg_id]["image"])
                             del bool_dict[msg_id]
                         else:
@@ -3758,7 +3758,7 @@ def executeOp(op):
                                 tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                 tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                 tro_ += "\nType : Video"
-                                sendFooter(to, trop, str(tro_))
+                                line.sendReplyMessage(msg_id, trop, str(tro_))
                                 line.sendVideo(trop, bool_dict[msg_id]["video"])
                                 del bool_dict[msg_id]
                             else:
@@ -3771,7 +3771,7 @@ def executeOp(op):
                                         tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                         tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                         tro_ += "\nType : Audio"
-                                        sendFooter(to, trop, str(tro_))
+                                        line.sendReplyMessage(msg_id, trop, str(tro_))
                                         line.sendAudio(trop, bool_dict[msg_id]["audio"])
                                         del bool_dict[msg_id]
                                 else:
@@ -3784,7 +3784,7 @@ def executeOp(op):
                                             tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                             tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                             tro_ += "\nType : Sticker"
-                                            sendFooter(to, trop, str(tro_))
+                                            line.sendReplyMessage(msg_id, trop, str(tro_))
                                             line.sendImageWithURL(trop, bool_dict[msg_id]["sticker"])
                                             del bool_dict[msg_id]
                                     else:
@@ -3795,7 +3795,7 @@ def executeOp(op):
                                                 tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                                 tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                                 tro_ += "\nType : Contact"
-                                                sendFooter(to, trop, str(tro_))
+                                                line.sendReplyMessage(msg_id, trop, str(tro_))
                                                 line.sendContact(trop, bool_dict[msg_id]["mid"])
                                                 del bool_dict[msg_id]
                                         else:
@@ -3806,7 +3806,7 @@ def executeOp(op):
                                                     #tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                                     #tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                                     tro_ += "\nType : Location"
-                                                    sendFooter(to, trop, str(tro_))
+                                                    line.sendReplyMessage(msg_id, trop, str(tro_))
                                                     line.sendLocation(trop, bool_dict[msg_id]["location"])
                                                     del bool_dict[msg_id]
                                             else:
@@ -3817,7 +3817,7 @@ def executeOp(op):
                                                         tro_ += "\nTanggal : {}".format(str(datetime.strftime(timeNow,'%d-%m-%Y')))
                                                         tro_ += "\nJam : {}".format(str(datetime.strftime(timeNow,'%H:%M:%S')))
                                                         tro_ += "\nType : File"
-                                                        sendFooter(to, trop, str(tro_))
+                                                        line.sendReplyMessage(msg_id, trop, str(tro_))
                                                         line.sendFile(trop, bool_dict[msg_id]["file"])
                                                         del bool_dict[msg_id]
     except TalkException as talk_error:
