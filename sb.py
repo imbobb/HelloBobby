@@ -3541,7 +3541,6 @@ def executeOp(op):
                                             sendMention(to,"Ngetag sih, jadi kena kick kan @!", [msg._from])
                                             line.kickoutFromGroup(msg.to, [msg._from])
                                             break
-            if msg.contentType == 0: # Content type is text
                 if settings["unsendMessage"]:
                 	try:
                 	    bool_dict[msg.id] = {"text":msg.text,"from":msg._from,"createdTime":msg.createdTime}
@@ -3595,27 +3594,6 @@ def executeOp(op):
                                 sendFooter(to, settings['autoRespond']['message'])
                             else:
                                 line.sendMentionV2(to, settings['autoRespond']['message'], [sender])
-            try:
-                Name = line.getContact(msg._from).mid
-                group = line.getGroup(msg.to).name
-                tz = pytz.timezone("Asia/Jakarta")
-                timeNow = datetime.now(tz=tz)
-                day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"]
-                hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
-                bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
-                hr = timeNow.strftime("%A")
-                bln = timeNow.strftime("%m")
-                for i in range(len(day)):
-                    if hr == day[i]: hasil = hari[i]
-                for k in range(0, len(bulan)):
-                    if bln == str(k): bln = bulan[k-1]
-                readTime = timeNow.strftime('%H.%M')
-                readTime2 = hr
-                readTime3 = timeNow.strftime('%d') + "-" + bln + "-" + timeNow.strftime('%Y')
-                lastseen["username"][Name] = "was lastseen\nin group ' " + group + " '\nat time " + readTime + " WIB\non " + readTime2 + ", " + readTime3
-                lastseen['find'][msg._from] = True
-            except:
-                pass
             elif msg.contentType == 1: # Content type is image
                 if settings["unsendMessage"]:
                 	try:
